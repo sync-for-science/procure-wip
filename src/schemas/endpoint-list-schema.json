@@ -1,0 +1,42 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"definitions": {
+		"endpoint_item": {
+			"type": "object",
+			"anyOf": [
+				{ "required": ["fhirEndpoint", "name"] },
+				{ "required": ["FHIRPatientFacingURI", "OrganizationName"] }
+			],
+			"properties": {
+				"clientId": { "type": "string" },
+				"queryProfile": { "type": "string" },
+				"isOpen": { "type": "boolean" },
+				"scope": {
+					"type": "array",
+					"items": {"type": "string"}
+				},
+				"fhirEndpoint": { 
+					"type": "string",
+					"format": "uri"
+				},
+				"patient": { "type": "string" },
+				"OrganizationName": { "type": "string" },
+				"FHIRPatientFacingURI": {
+					"type": "string",
+					"format": "uri"
+				}
+			}
+		}
+	},
+	"type": "object",
+	"anyOf": [
+		{ "required": ["Entries"] },
+		{ "required": ["entry"] }
+	],
+	"properties": {
+		"Entries": { 
+			"type": "array",
+			"items": { "$ref": "#/definitions/endpoint_item" }
+		}
+	}
+}

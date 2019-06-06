@@ -1,0 +1,56 @@
+{
+  "resourceType": "Conformance",
+  "publisher": "Not provided",
+  "date": "2019-03-05T13:34:36-05:00",
+  "kind": "instance",
+  "software": {
+      "name": "Smile CDR",
+      "version": "2018.05.R01"
+  },
+  "implementation": {
+      "description": "FHIR REST Server",
+      "url": "https://launch.smarthealthit.org/v/r2/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6IjdiNjk3MzIyLTM2MDctNDZjYi1hMjQwLWMwODFiY2NiYTJlNSJ9/fhir"
+  },
+  "fhirVersion": "1.0.2",
+  "acceptUnknown": "extensions",
+  "format": [
+      "application/xml+fhir",
+      "application/json+fhir"
+  ],
+  "rest": [
+      {
+          "mode": "server",
+          "security": {
+              "cors": true,
+              "extension": [
+                  {
+                      "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris",
+                      "extension": [
+                          {
+                              "url": "authorize",
+                              "valueUri": "http://launch.smarthealthit.org/v/r2/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6IjdiNjk3MzIyLTM2MDctNDZjYi1hMjQwLWMwODFiY2NiYTJlNSJ9/auth/authorize"
+                          },
+                          {
+                              "url": "token",
+                              "valueUri": "http://launch.smarthealthit.org/v/r2/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6IjdiNjk3MzIyLTM2MDctNDZjYi1hMjQwLWMwODFiY2NiYTJlNSJ9/auth/token"
+                          }
+                      ]
+                  }
+              ],
+              "service": [
+                  {
+                      "coding": [
+                          {
+                              "system": "http://hl7.org/fhir/restful-security-service",
+                              "code": "SMART-on-FHIR",
+                              "display": "SMART-on-FHIR"
+                          }
+                      ],
+                      "text": "OAuth2 using SMART-on-FHIR profile (see http://docs.smarthealthit.org)"
+                  }
+              ]
+          }
+      }
+  ]
+  
+}

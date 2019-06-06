@@ -1,0 +1,22 @@
+{
+	"json.schemas": [
+		{
+			"fileMatch": [
+				"config.json"
+			],
+			"url": "./src/schemas/config-schema.json"
+		},
+		{
+			"fileMatch": [
+				"endpoints.json"
+			],
+			"url": "./src/schemas/endpoint-list-schema.json"
+		},
+		{
+			"fileMatch": [
+				"providers.json"
+			],
+			"url": "./src/schemas/providers-schema.json"
+		}
+	]
+}

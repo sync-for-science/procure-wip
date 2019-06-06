@@ -1,0 +1,55 @@
+{
+	"mimeTypeMappings": {
+		"application/pdf": "pdf",
+		"application/json": "json",
+		"application/xml": "xml",
+		"text/plain": "txt",
+		"text/html": "html",
+		"image/jpeg": "jpg",
+		"image/bpm": "bmp",
+		"video/mp4": "mp4"
+	},
+	"dateSortElements": {
+		"AllergyIntolerance": ["onset", "recordedDate"],
+		"CarePlan": ["modified"],
+		"CareTeam": ["modified"],
+		"Condition": ["onsetDateTime", "onsetPeriod", "abatementDateTime", "abatementPeriod"],
+		"DiagnosticReport": ["effectiveDateTime", "effectivePeriod"],
+		"DocumentReference": ["created"],
+		"Encounter": ["period"],
+		"Goal": ["startDate", "targetDate", "statusDate"],
+		"Immunization": ["date"],
+		"MedicationOrder": ["dateWritten", "dateEnded"],
+		"MedicationStatement": ["effectiveDateTime", "effectivePeriod", "dateAsserted"],
+		"Observation": ["effectiveDateTime", "effectivePeriod"],
+		"Patient": ["birthDate"],
+		"Procedure": ["performedDateTime", "performedPeriod"]
+	},
+	"redirectUri": null,
+	"endpointLists": [{
+		"path": "./config/epic_endpoints.json",
+		"defaults": {
+			"clientId": "TBD",
+			"queryProfile": "argonaut_epic",
+			"isOpen": false,
+			"scope": [
+				"patient/launch", "patient/*.read"
+			]
+		}
+	}],
+	"queryProfiles": {
+		"labs": {
+			"title": "Laboratory Results (DSTU2)",
+			"fhirVersion": "R2",
+			"queries": [{
+				"title": "Laboratory Results",
+				"resourcePath": "Observation", 
+				"params": {"category": "vital-signs", "patient": "{{patientId}}"},
+				"retrieveReferences": "encounter"
+			},{
+				"title": "Demographics",
+				"resourcePath": "Patient/{{patientId}}"
+			}]
+		}
+	}
+}

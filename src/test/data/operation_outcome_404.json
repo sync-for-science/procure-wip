@@ -1,0 +1,10 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Resource Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6123 is not known"
+        }
+    ]
+}

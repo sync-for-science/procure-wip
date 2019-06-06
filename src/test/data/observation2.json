@@ -1,0 +1,794 @@
+{
+    "resourceType": "Bundle",
+    "id": "b00e8605-46dd-4f3f-8833-e79cfbf2f908",
+    "meta": {
+        "lastUpdated": "2019-03-12T16:40:31.755-04:00"
+    },
+    "type": "searchset",
+    "total": 64,
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://launch.smarthealthit.org/v/r2/fhir?_getpages=b00e8605-46dd-4f3f-8833-e79cfbf2f908&_getpagesoffset=50&_count=50&_pretty=true&_bundletype=searchset"
+        },
+        {
+            "relation": "previous",
+            "url": "https://launch.smarthealthit.org/v/r2/fhir?_getpages=b00e8605-46dd-4f3f-8833-e79cfbf2f908&_getpagesoffset=0&_count=50&_pretty=true&_bundletype=searchset"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/2e0f7e07-4698-407f-975f-313cf74cf103",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "2e0f7e07-4698-407f-975f-313cf74cf103",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:17:02.411-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "2093-3",
+                            "display": "Total Cholesterol"
+                        }
+                    ],
+                    "text": "Total Cholesterol"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/d4257739-1e7e-4164-8555-23a4938c9413"
+                },
+                "effectiveDateTime": "2013-11-07T10:50:38-05:00",
+                "issued": "2013-11-07T10:50:38-05:00",
+                "valueQuantity": {
+                    "value": 161,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mg/dL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/c4e902b9-e81e-4027-bbe2-b7d758ab0deb",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "c4e902b9-e81e-4027-bbe2-b7d758ab0deb",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:16:45.268-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "20565-8",
+                            "display": "Carbon Dioxide"
+                        }
+                    ],
+                    "text": "Carbon Dioxide"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 29,
+                    "unit": "mmol/L",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mmol/L"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/d01d6fb6-a33b-42c0-96cb-6e814a6190b8",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "d01d6fb6-a33b-42c0-96cb-6e814a6190b8",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:16:45.242-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "2069-3",
+                            "display": "Chloride"
+                        }
+                    ],
+                    "text": "Chloride"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 101,
+                    "unit": "mmol/L",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mmol/L"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/703e3a29-f010-4b4b-af03-ac76b7eed52d",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "703e3a29-f010-4b4b-af03-ac76b7eed52d",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:16:45.222-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "6298-4",
+                            "display": "Potassium"
+                        }
+                    ],
+                    "text": "Potassium"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 4.88877990338983,
+                    "unit": "mmol/L",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mmol/L"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/6fc1640d-dcde-40ad-aee2-e4a49a28e58a",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "6fc1640d-dcde-40ad-aee2-e4a49a28e58a",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:16:45.190-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "2947-0",
+                            "display": "Sodium"
+                        }
+                    ],
+                    "text": "Sodium"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 142,
+                    "unit": "mmol/L",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mmol/L"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/7f789cac-ac93-4790-ade0-8621fafecdfc",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "7f789cac-ac93-4790-ade0-8621fafecdfc",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:16:45.162-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "49765-1",
+                            "display": "Calcium"
+                        }
+                    ],
+                    "text": "Calcium"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 8.82854655386536,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mg/dL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/9dfe733b-7c57-4c4a-b206-a4ec27d7c51b",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "9dfe733b-7c57-4c4a-b206-a4ec27d7c51b",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:16:45.126-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "38483-4",
+                            "display": "Creatinine"
+                        }
+                    ],
+                    "text": "Creatinine"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 1,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mg/dL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/a1966844-355d-4f53-abae-0013e33d6a56",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "a1966844-355d-4f53-abae-0013e33d6a56",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:16:45.093-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "6299-2",
+                            "display": "Urea Nitrogen"
+                        }
+                    ],
+                    "text": "Urea Nitrogen"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 8,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mg/dL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/807c5245-8fe4-45b0-b435-5adf644cddf2",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "807c5245-8fe4-45b0-b435-5adf644cddf2",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:15:28.888-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "6298-4",
+                            "display": "Potassium"
+                        }
+                    ],
+                    "text": "Potassium"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/c5c4d1a9-5f7a-40e0-8dd8-1bbd38f1e02b"
+                },
+                "effectiveDateTime": "2011-06-21T01:49:44-04:00",
+                "issued": "2011-06-21T01:49:44-04:00",
+                "valueQuantity": {
+                    "value": 4.187107397488584,
+                    "unit": "mmol/L",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mmol/L"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/ae3a00bd-83cc-4566-bf7d-5bc621e64edc",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "ae3a00bd-83cc-4566-bf7d-5bc621e64edc",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:14:52.985-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "vital-signs"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "55284-4",
+                            "display": "Blood Pressure"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/eb306de2-f4a2-47ee-ad3e-b22f6bc2bd3e"
+                },
+                "effectiveDateTime": "2015-11-07T04:41:40-05:00",
+                "issued": "2015-11-07T04:41:40-05:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Systolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 109,
+                            "unit": "mmHg",
+                            "system": "http://unitsofmeasure.org/",
+                            "code": "mmHg"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic Blood Pressure"
+                                }
+                            ],
+                            "text": "Diastolic Blood Pressure"
+                        },
+                        "valueQuantity": {
+                            "value": 70,
+                            "unit": "mmHg",
+                            "system": "http://unitsofmeasure.org/",
+                            "code": "mmHg"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/100427a3-d038-4737-9dfd-3913b9af28fd",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "100427a3-d038-4737-9dfd-3913b9af28fd",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:13:32.231-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "vital-signs"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body Weight"
+                        }
+                    ],
+                    "text": "Body Weight"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 97.87361132723062,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "kg"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/a3beb832-9946-4a39-86ee-dc933a53cebf",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "a3beb832-9946-4a39-86ee-dc933a53cebf",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:13:26.507-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "vital-signs"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "39156-5",
+                            "display": "Body Mass Index"
+                        }
+                    ],
+                    "text": "Body Mass Index"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/eb306de2-f4a2-47ee-ad3e-b22f6bc2bd3e"
+                },
+                "effectiveDateTime": "2015-11-07T04:41:40-05:00",
+                "issued": "2015-11-07T04:41:40-05:00",
+                "valueQuantity": {
+                    "value": 46.876914477119115,
+                    "unit": "kg/m2",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "kg/m2"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/aaffdc93-721d-4d00-a3dd-66cdd897e032",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "aaffdc93-721d-4d00-a3dd-66cdd897e032",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:12:03.574-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "2339-0",
+                            "display": "Glucose"
+                        }
+                    ],
+                    "text": "Glucose"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/70677dff-e863-4728-a537-9bb853beae72"
+                },
+                "effectiveDateTime": "2009-06-13T12:15:38-04:00",
+                "issued": "2009-06-13T12:15:38-04:00",
+                "valueQuantity": {
+                    "value": 86,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mg/dL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Observation/b06e4bba-8ec1-4db4-ae00-f1946be5dc27",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "b06e4bba-8ec1-4db4-ae00-f1946be5dc27",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:10:38.210-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/observation-category",
+                            "code": "laboratory"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "49765-1",
+                            "display": "Calcium"
+                        }
+                    ],
+                    "text": "Calcium"
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "encounter": {
+                    "reference": "Encounter/c5c4d1a9-5f7a-40e0-8dd8-1bbd38f1e02b"
+                },
+                "effectiveDateTime": "2011-06-21T01:49:44-04:00",
+                "issued": "2011-06-21T01:49:44-04:00",
+                "valueQuantity": {
+                    "value": 9.015579407464731,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org/",
+                    "code": "mg/dL"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}

@@ -1,0 +1,96 @@
+{
+    "resourceType": "Bundle",
+    "id": "3544e06e-2676-4445-a22c-62bcc52deeb0",
+    "meta": {
+        "lastUpdated": "2019-03-12T17:10:36.155-04:00"
+    },
+    "type": "searchset",
+    "total": 2,
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://launch.smarthealthit.org/v/r2/fhir/Procedure?patient=c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Procedure/RES442219",
+            "resource": {
+                "resourceType": "Procedure",
+                "id": "RES442219",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:40:01.272-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "status": "completed",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "73761001",
+                            "display": "Colonoscopy"
+                        }
+                    ],
+                    "text": "Colonoscopy"
+                },
+                "performedPeriod": {
+                    "start": "2016-12-11T12:29:29-05:00",
+                    "end": "2016-12-11T13:11:34-05:00"
+                },
+                "encounter": {
+                    "reference": "Encounter/06405d1d-1feb-4b20-8a2a-daa657fb71c4"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://launch.smarthealthit.org/v/r2/fhir/Procedure/RES442212",
+            "resource": {
+                "resourceType": "Procedure",
+                "id": "RES442212",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2018-05-07T13:23:28.863-04:00",
+                    "tag": [
+                        {
+                            "system": "https://smarthealthit.org/tags",
+                            "code": "synthea-8-2017"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+                },
+                "status": "completed",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "428191000124101",
+                            "display": "Documentation of current medications"
+                        }
+                    ],
+                    "text": "Documentation of current medications"
+                },
+                "performedDateTime": "2011-06-21T01:49:44-04:00",
+                "encounter": {
+                    "reference": "Encounter/c5c4d1a9-5f7a-40e0-8dd8-1bbd38f1e02b"
+                }
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+}

@@ -1,0 +1,110 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"definitions": {
+		"mime_type_mappings": {
+			"type": "object",
+			"additionalProperties": { 
+				"type": "string", 
+				"maxLength": 4,
+				"propertyNames": {
+					"pattern": "^[-\\w]+/[-\\w+]+$"
+				}
+			}
+		},
+		"date_sort_elements": {
+			"type": "object",
+			"additionalProperties": { 
+				"type": "array",
+				"items": { "type": "string" }
+			},
+			"propertyNames": {
+				"pattern": "^[A-Z][A-Za-z]*$"
+			}
+		},
+		"endpoint_lists": {
+			"type": "array",
+			"items": { "$ref": "#/definitions/endpoint_list" }
+		},
+		"endpoint_list": {
+			"type": "object",
+			"properties": {
+				"path": { "type": "string" },
+				"defaults": { "$ref": "#/definitions/endpoint_list_default" }
+			},
+			"additionalProperties": false
+		},
+		"endpoint_list_default": {
+			"type": "object",
+			"properties": {
+				"clientId": { "type": "string" },
+				"queryProfile": { "type": "string" },
+				"isOpen": { "type": "boolean" },
+				"scope": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^[-\\w]+/(\\*\\.)?[*-\\w+]+(\\.\\w+)?$" 
+					}
+				},
+				"fhirEndpoint": { 
+					"type": "string",
+					"format": "uri"
+				},
+				"patient": { "type": "string" }
+			}
+		},
+		"query_profiles": {
+			"type": "object",
+			"additionalProperties": { "$ref": "#/definitions/query_profile" }
+		},
+		"query_profile": {
+			"type": "object",
+			"properties": {
+				"title": {"type": "string"},
+				"fhirVersion": { 
+					"type": "string",
+					"enum": ["DSTU2", "STU3", "R2", "R3", "R4", "R5"]
+				},
+				"queries": {
+					"type": "array",
+					"minLength": 1,
+					"items": { "$ref": "#/definitions/query" }
+				}
+			},
+			"additionalProperties": false
+		},
+		"query": {
+			"type": "object",
+			"required": [ "resourcePath" ],
+			"properties": {
+				"title": { "type": "string"},
+				"resourcePath": { "type": "string" },
+				"params" : {
+					"type": "object",
+					"additionalProperties": {
+						"type": ["string", "array", "integer", "number"],
+						"item": { "type": "string" }
+					}
+				},
+				"retrieveReferences": { "type": "string" },
+				"containReferences": { "type": "string" },
+				"downloadAttachments": { "type": "string" },
+				"pageLimit": { "type": "integer" }
+			},
+			"additionalProperties": false
+		}
+	},
+	"type": "object",
+	"required": [ "queryProfiles" ],
+	"additionalProperties": false,
+	"properties": {
+		"mimeTypeMappings": { "$ref": "#/definitions/mime_type_mappings" },
+		"dateSortElements": { "$ref": "#/definitions/date_sort_elements" },
+		"redirectUri": { 
+			"type": ["string", "null"],
+			"format": "uri"
+		},
+		"endpointLists": { "$ref": "#/definitions/endpoint_lists" },
+		"queryProfiles": { "$ref": "#/definitions/query_profiles" }
+	}
+}
