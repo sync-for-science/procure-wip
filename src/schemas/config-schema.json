@@ -86,9 +86,18 @@
 						"item": { "type": "string" }
 					}
 				},
-				"retrieveReferences": { "type": "string" },
-				"containReferences": { "type": "string" },
-				"downloadAttachments": { "type": "string" },
+				"retrieveReferences": { 
+					"type": ["array", "string"],
+					"items": { "type": "string" }
+				},
+				"containReferences": { 
+					"type": ["array", "string"],
+					"items": { "type": "string" }
+				},
+				"downloadAttachments": { 
+					"type": ["array", "string"],
+					"items": { "type": "string" }
+				},
 				"pageLimit": { "type": "integer" }
 			},
 			"additionalProperties": false

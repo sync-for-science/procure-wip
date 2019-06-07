@@ -45,7 +45,7 @@
 				"title": "Laboratory Results",
 				"resourcePath": "Observation", 
 				"params": {"category": "vital-signs", "patient": "{{patientId}}"},
-				"retrieveReferences": "encounter"
+				"retrieveReferences": ["encounter", "secondpath"]
 			},{
 				"title": "Demographics",
 				"resourcePath": "Patient/{{patientId}}"
