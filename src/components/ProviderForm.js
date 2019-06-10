@@ -27,6 +27,18 @@ export default () => {
 		return [{label: "Custom Endpoint", value: "custom"}].concat(orgs);
 	});
 
+	//escape key effect
+	//creates a warning due to a reactjs bug: https://github.com/facebook/react/pull/15650 
+	useEffect(() => {
+		const downHandler = e => {
+			if (e.keyCode === 27) handleCancel(e);
+		};
+		window.addEventListener("keydown", downHandler);
+		return () => {
+			window.removeEventListener("keydown", downHandler);
+		};
+	}, []);
+
 	useEffect( () => {
 		if (!provider.id && uiState.id && uiState.mode === "editProvider") {
 			const currentProvider = providers.find(p => p.id === uiState.id);
