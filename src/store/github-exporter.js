@@ -86,7 +86,8 @@ export default class GithubExporter {
 			return sanitizeFilename(p.name);
 		})
 		const tree = baseTree.tree.filter( item => {
-			return folders.find( f => item.path.indexOf(f) !== 0)
+			const clear = folders.find( f => item.type === "tree" && item.path === f);
+			return clear ? false : true;
 		});
 		return Promise.all( 
 			_.map( providers, (provider, i) => {
