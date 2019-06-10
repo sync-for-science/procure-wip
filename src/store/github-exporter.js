@@ -43,7 +43,7 @@ export default class GithubExporter {
 			return Promise.all(
 				_.map( bundles, (bundle, resourceType) => {
 					return createBlob(
-						JSON.stringify(bundle),
+						JSON.stringify(bundle, null, 2),
 						resourceType+".json"
 					)
 				})

@@ -17,7 +17,7 @@ function addProviderToZip(zipFolder, provider) {
 			}
 		}).value();
 	_.each(bundles, (bundle, resourceType) => {
-		zipFolder.file(resourceType+".json", JSON.stringify(bundle)) 
+		zipFolder.file(resourceType+".json", JSON.stringify(bundle, null, 2)) 
 	});
 	_.each(provider.data.files, f => {
 		zipFolder.file(f.fileName, f.blob, {type: "blob"});
