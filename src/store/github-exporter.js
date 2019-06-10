@@ -173,9 +173,9 @@ export default class GithubExporter {
 					lastCommit,
 					"ProcureBot pull request",
 					branchName
-				).then( () => {
+				).then( pull => {
 					if (this.statusCb)
-						this.statusCb("A new pull request has been created");
+						this.statusCb("A new pull request has been created", pull.html_url);
 				})
 			});		
 	}

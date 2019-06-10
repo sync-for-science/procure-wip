@@ -96,15 +96,19 @@ export default () => {
 		</Col></Row>
 	);
 
-	const renderMessage = () => (
-		<Row><Col xs={12}>
+	const renderMessage = () => {
+		const url = uiState.statusUrl 
+			? <span> (<a href={uiState.statusUrl} target="_blank" rel="noopener noreferrer">view</a>)</span>
+			: null;
+		return <Row><Col xs={12}>
 			<Container>
 				<Alert color="success">
-					<span>{uiState.status}</span>
+					{uiState.status}
+					{url}.
 				</Alert>
 			</Container>
 		</Col></Row>
-	);
+	};
 
 	const renderForm = () => <Form onSubmit={handleSubmit}>
 		<ModalBody>

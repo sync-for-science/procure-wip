@@ -249,8 +249,8 @@ const actions = store => {
 	});
 	store.on("export/github", ( {githubConfig, providers} ) => {
 		
-		const statusCallback = (status) => {
-			store.dispatch("uiState/merge", { status });
+		const statusCallback = (status, statusUrl) => {
+			store.dispatch("uiState/merge", { status, statusUrl });
 		}
 
 		store.dispatch("uiState/merge", {
