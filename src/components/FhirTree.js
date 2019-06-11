@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import useStoreon from "storeon/react";
 import Select from "react-select";
 import JSONTree from "react-json-tree";
@@ -18,6 +18,8 @@ export default () => {
 	const [resourceType, setResourceType] = useState();
 	const [position, setPosition] = useState(1);
 	const [overlayResources, setOverlayResources] = useState([]);
+
+	const componentTopRef = useRef();
 
 	let providerOptions = useMemo( () => {
 		return _.chain(providers)
@@ -136,7 +138,8 @@ export default () => {
 			const file = providers[index[0]].data.files[index[1]];
 			saveAs(file.blob, file.fileName);
 		} else {
-			setOverlayResources([...overlayResources, url])
+			setOverlayResources([...overlayResources, url]);
+			window.scrollTo(0, componentTopRef.current.offsetTop);
 		}
 	}
 
@@ -204,7 +207,7 @@ export default () => {
 		</div>;
 	}
 
-	return <div>
+	return <div ref={componentTopRef}>
 		<h3 style={{margin:"1em 0"}}>Browse Data</h3>
 		{ filters }
 		{ renderPositionNav() }
