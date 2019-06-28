@@ -1,4 +1,9 @@
 {
+	"credentials": {
+		"epic_sandbox_secure": {"clientId": "8ab5bc00-5c7b-4dc4-bf2f-3eba54e3b21d" },
+		"smart_sandbox_secure": {"clientId": "fake_client_id"},
+		"epic": {"clientId": "tbd"}
+	},
 	"mimeTypeMappings": {
 		"application/pdf": "pdf",
 		"application/json": "json",
@@ -25,23 +30,24 @@
 		"Patient": ["birthDate"], //move patient resource to the end of the list of sorted items
 		"Procedure": ["performedDateTime", "performedPeriod"]
 	},
-	"endpointLists": [{
-		"path": "./config/epic_endpoints.json",
-		"defaults": {
-			"clientId": "TBD",
-			"queryProfile": "argonaut_epic",
-			"isOpen": false,
-			"scope": [
-				"patient/launch", "patient/*.read"
-			]
+	"endpointLists": {
+		"epic_endpoints": {
+			"path": "./config/epic_endpoints.json",
+			"defaults": {
+				"queryProfile": "argonaut_epic",
+				"isOpen": false,
+				"credentialId": "epic",
+				"scope": ["patient/launch", "patient/*.read"]
+			}
+		},
+		"sandbox_endpoints": {
+			"path": "./config/sandbox_endpoints.json",
+			"defaults": {
+				"queryProfile": "argonaut_spec",
+				"scope": ["patient/*.read", "launch/patient"]
+			}
 		}
-	},{
-		"path": "./config/sandbox_endpoints.json",
-		"defaults": {
-			"queryProfile": "argonaut_spec",
-			"scope": ["patient/*.read", "launch/patient"]
-		}
-	}],
+	},
 	"redirectUri": null,
 	"queryProfiles": {
 		"labs": {

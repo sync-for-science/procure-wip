@@ -3,7 +3,7 @@ import stripJsonComments from "strip-json-comments";
 import tv4 from "tv4";
 import endpointListSchema from "../schemas/endpoint-list-schema.json";
 import configSchema from "../schemas/config-schema.json";
-
+import _ from "lodash";
 
 function loadConfigFile(path) {
 	return fetch(path)
@@ -22,17 +22,36 @@ function loadConfigFile(path) {
 			}
 			return data;
 		})
-		//check for invalid queryProfile name references (can't do this in json schema v4)
+		//check for invalid queryProfile name and credential references (can't do this in json schema v4)
 		.then( config => {
-			const queryProfileNames = Object.keys(config.queryProfiles);
-			config.endpointLists && config.endpointLists.forEach( endpoint => {
-				if (endpoint.defaults && endpoint.defaults.queryProfile && 
-					queryProfileNames.indexOf(endpoint.defaults.queryProfile) === -1
-				) throw new Error(
-					"Invalid default query profile in " + 
-					path + " - " + endpoint.defaults.queryProfile
-				);
-			})
+			if (!config.endpointLists) return config;
+			
+			const invalidEndpointId = _.find( _.keys(config.endpointLists) || [], id => {
+				const v = config.endpointLists[id];
+				return (
+					v && v.defaults && v.defaults.queryProfile && 
+					!config.queryProfiles[v.defaults.queryProfile]
+				)
+			});
+
+			if (invalidEndpointId) throw new Error(
+				"Invalid query profile in endpoint " + 
+				path + ": /endpointLists/" + invalidEndpointId + "/defaults"
+			);
+
+			const invalidCredentialId = _.find( _.keys(config.endpointLists) || [], id => {
+				const v = config.endpointLists[id];
+				return (
+					v && v.defaults && v.defaults.credentialId && 
+					!config.credentials[v.defaults.credentialId]
+				)
+			});
+
+			if (invalidCredentialId) throw new Error(
+				"Invalid credential id in endpoint " + 
+				path + ": /endpointLists/" + invalidCredentialId + "/defaults"
+			);
+
 			return config;
 		})
 		//check for invalid template name references (can't do this in json schema v4)
@@ -49,7 +68,10 @@ function loadConfigFile(path) {
 			})
 			return config;
 		})
-		.then( config => loadEndpointLists(config) )
+		.then( config => {
+			if (!config.endpointLists) return config;
+			return loadEndpointLists(config);
+		})
 		.then( config => {
 			config.redirectUri = config.redirectUri || 
 				window.location.href.split(/\?|#/)[0].replace(/\/*$/, "/callback.html");
@@ -59,9 +81,8 @@ function loadConfigFile(path) {
 }
 
 function loadEndpointLists(config) {
-	if (!config.endpointLists) return config;
 
-	const getEndpointList = (endpointList, i) => {
+	const getEndpointList = (endpointList, id) => {
 		if (!endpointList.path) return;
 
 		return fetch(endpointList.path)
@@ -80,18 +101,28 @@ function loadEndpointLists(config) {
 				}
 				return data;
 			})
-			//check for invalid queryProfile name references (can't do this in json schema)
+
+			//check for invalid queryProfile name references and credential ids(can't do this in json schema)
 			.then( data => {
-				const queryProfileNames = Object.keys(config.queryProfiles);
+
 				(data.entry || data.Entries || []).forEach( endpoint => {
-					if (endpoint.queryProfile &&
-						queryProfileNames.indexOf(endpoint.queryProfile) === -1
+					if (endpoint.queryProfile && !config.queryProfiles[endpoint.queryProfile]
 					) throw new Error(
-						"Invalid default query profile in " + 
+						"Invalid query profile in endpoint list " + 
 						endpointList.path + " - " + endpoint.queryProfile
 					);
+				});
+
+				(data.entry || data.Entries || []).forEach( endpoint => {
+					if (endpoint.credentialId && !config.credentials[endpoint.credentialId]
+					) throw new Error(
+						"Invalid credential id endpoint list " + 
+						endpointList.path + " - " + endpoint.credentialId
+					);
 				})
+
 				return data; 
+
 			})
 			.then( data => {
 				const result = (data.Entries || data.entry).map( entry => {
@@ -111,7 +142,7 @@ function loadEndpointLists(config) {
 					}
 					//add defaults group name
 					if (endpointList.defaults)
-						newEntry.defaultId = i;
+						newEntry.defaultId = id;
 					return newEntry;
 				});
 				return result
@@ -122,13 +153,12 @@ function loadEndpointLists(config) {
 			})
 	}
 
-	return Promise.all(config.endpointLists.map((l,i) => getEndpointList(l,i)))
+	return Promise.all(
+		_.map( config.endpointLists, (l,id) => getEndpointList(l,id) )
+	)
 		.then( data => {
 			const organizations = [].concat.apply([], data);
-			const orgDefaults = {};
-			config.endpointLists.forEach((list, i) => {
-				if (list.defaults) orgDefaults[i] = list.defaults;
-			});
+			const orgDefaults = _.mapValues( config.endpointLists, v => v.defaults );
 			return {...config, orgDefaults, organizations, endpointLists: null}
 		});
 }

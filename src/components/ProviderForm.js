@@ -9,10 +9,10 @@ export default () => {
 
 	//app state
 	const {
-		uiState, providers, queryProfiles, 
+		uiState, providers, queryProfiles, credentials,
 		organizations, orgDefaults, redirectUri, dispatch
 	 } = useStoreon(
-		"uiState", "providers", "queryProfiles", 
+		"uiState", "providers", "queryProfiles", "credentials",
 		"organizations", "orgDefaults", "redirectUri"
 	 );
 
@@ -80,6 +80,10 @@ export default () => {
 				scope: ["patient/*.read", "launch/patient"],
 			}
 		}
+		//get credential details if included by reference
+		if (orgConfig.credentialId)
+			orgConfig = {...credentials[orgConfig.credentialId], ...orgConfig};
+
 		//update provider with new defaults
 		const updatedProvider = {
 			...orgConfig,
