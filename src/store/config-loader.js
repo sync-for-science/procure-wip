@@ -22,7 +22,7 @@ function loadConfigFile(path) {
 			}
 			return data;
 		})
-		//check for invalid queryProfile name references (can't do this in json schema)
+		//check for invalid queryProfile name references (can't do this in json schema v4)
 		.then( config => {
 			const queryProfileNames = Object.keys(config.queryProfiles);
 			config.endpointLists && config.endpointLists.forEach( endpoint => {
@@ -32,6 +32,20 @@ function loadConfigFile(path) {
 					"Invalid default query profile in " + 
 					path + " - " + endpoint.defaults.queryProfile
 				);
+			})
+			return config;
+		})
+		//check for invalid template name references (can't do this in json schema v4)
+		.then( config => {
+			if (!config.spreadsheetTemplates) return config;
+
+			const templateNames = Object.keys(config.spreadsheetTemplates);
+			templateNames.forEach( templateName => {
+				const baseTemplates = config.spreadsheetTemplates[templateName].extends || [];
+				baseTemplates.forEach( baseTemplateName => {
+					if (templateNames.indexOf(baseTemplateName) === -1)
+						throw new Error("Invalid base template name in '" + templateName + "'");
+				})
 			})
 			return config;
 		})

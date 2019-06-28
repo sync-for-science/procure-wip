@@ -219,9 +219,9 @@
 
 
 
-			// },{
-				// "resourcePath": "Observation",
-				// "params": {"patient": "{{patientId}}", "_count": 100}
+			},{
+				"resourcePath": "Observation",
+				"params": {"patient": "{{patientId}}", "_count": 100}
 			// },{
 				// "resourcePath": "Device",
 				// "params": {"patient": "{{patientId}}"}
@@ -282,5 +282,42 @@
 			// 	"retrieveReferences": "informationSource"
 			}]
 		}
-	}	
+	},
+	"spreadsheetTemplates": {
+		"vitalSigns": {
+			"name": "Vital Signs",
+			"sortBy": [{"name": "EffectiveDateTime", "dir": "desc"}],
+			"template": [
+				{"path": "resourceType", "test": "validateValue", "target": "Observation"},
+				{"path": "category.coding", "test": "validateCode", "target": "vital-signs", "id": "category"},
+				{"name": "Source", "transform": "getHelperData", "helperDataField": "source"},
+				{"name": "ResourceId", "path": "id"},
+				{"name": "Status", "path": "status"},
+				{"name": "EffectiveDateTime", "path": "effectiveDateTime", "transform": "parseDateForExcel"},
+				{"name": "ObservationType", "path": ["code.text", "code.coding[0].display"]},
+				{"name": "ObservationCodes", "path": "code.coding", "transform": "stringifyCodings", "test": "validateExists"},
+				{"path": ["component", "*"], "id": "component", "children": [
+					{"name": "ValueType", "path": ["code.text", "code.coding[0].display"]},
+					{"name": "ValueCodes", "path": "code.coding", "transform": "stringifyCodings"},
+					{"name": "Value","path": "valueQuantity.value", "test": "validateExists"},
+					{"name": "ValueUnit", "path": ["valueQuantity.unit", "valueQuantity.code"]}
+				]}
+			]
+		},
+		"laboratory": {
+			"name": "Quantitative Lab Results",
+			"extends": ["vitalSigns"],
+			"template": [
+				{"id":"category", "target":"laboratory"},
+				{"id": "component", "children": [
+					{"name": "ReferenceLowValue", "path": "referenceRange[0].low.value"},
+					{"name": "ReferenceLowUnit", "path": "referenceRange[0].low.unit"},
+					{"name": "ReferenceHighValue", "path": "referenceRange[0].high.value"},
+					{"name": "ReferenceHighUnit", "path": "referenceRange[0].high.unit"},
+					{"name": "Interpretation", "path": ["interpretation.text", "interpretation.coding[0].display"]},
+					{"name": "InterpretationCode", "path": "interpretation.coding", "transform": "stringifyCodings"}
+				]}
+			]
+		}
+	}
 }

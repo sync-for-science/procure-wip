@@ -1,0 +1,4356 @@
+{
+  "entry": [
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrosyG3KPzDXf3pviWMZpcO4A-wOY5opJLV022-ltSQzxHB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-12-22T22:37:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrosyG3KPzDXf3pviWMZpcO4A-wOY5opJLV022-ltSQzxHB",
+        "code": {
+          "text": "Weight",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 90,
+          "unit": "kg",
+          "code": "kg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrosyG3KPzDXf3pviWMZpcO4BDEL1wHlk5gD9OISIe6d56B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-12-22T22:37:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrosyG3KPzDXf3pviWMZpcO4BDEL1wHlk5gD9OISIe6d56B",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 55,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrosyG3KPzDXf3pviWMZpcO4DPGcsBC3iLs7mFdogU5vkgB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-12-22T22:37:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrosyG3KPzDXf3pviWMZpcO4DPGcsBC3iLs7mFdogU5vkgB",
+        "code": {
+          "text": "BP",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 120,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 80,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ts--nCm8LQTYZ6h1uHets3RflgYEtqCj97Q9hbcNej9AB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-11-23T00:40:00Z",
+        "status": "final",
+        "id": "Ts--nCm8LQTYZ6h1uHets3RflgYEtqCj97Q9hbcNej9AB",
+        "code": {
+          "text": "QT INTERVAL",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8636-3",
+              "display": "Q-T interval corrected"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 337,
+          "unit": "ms",
+          "code": "ms",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "ms"
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ts--nCm8LQTYZ6h1uHets3ah77MzV.kivH488NiDMSrwB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-11-23T00:40:00Z",
+        "status": "final",
+        "id": "Ts--nCm8LQTYZ6h1uHets3ah77MzV.kivH488NiDMSrwB",
+        "code": {
+          "text": "PR INTERVAL",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8625-6",
+              "display": "P-R Interval"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 134,
+          "unit": "ms",
+          "code": "ms",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "ms"
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/T-Yg3qugm894vP9EcxejLQhX7QpEW8l81H4XKyiDkYn0B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-11-22T23:33:00Z",
+        "status": "final",
+        "id": "T-Yg3qugm894vP9EcxejLQhX7QpEW8l81H4XKyiDkYn0B",
+        "code": {
+          "text": "BUN / CREAT RATIO",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "3097-3",
+              "display": "Urea nitrogen/Creatinine [Mass Ratio] in Serum or Plasma"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "valueRatio": {
+          "numerator": {
+            "value": 17
+          },
+          "denominator": {
+            "value": 1
+          }
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TlXV0dopaw4xMHS5wb3Zaq7QJ0Wltulhezv6y3jp-PSgB",
+      "resource": {
+        "resourceType": "Observation",
+        "valueString": "Positive",
+        "effectiveDateTime": "2016-11-22T22:32:00Z",
+        "status": "final",
+        "id": "TlXV0dopaw4xMHS5wb3Zaq7QJ0Wltulhezv6y3jp-PSgB",
+        "code": {
+          "text": "RH FACTOR",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11572-5",
+              "display": "Rheumatoid factor [Units/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "Medical Director Hspc, MD",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TxPf-2k10wDuh3VGWxdtkxgB"
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIYo134g4uZWYC363DVW39npB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIYo134g4uZWYC363DVW39npB",
+        "code": {
+          "text": "BMI (Calculated)",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "39156-5",
+              "display": "Body mass index"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 28.6
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIYz0DeF3lUUdA2I7GCkFMOoB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIYz0DeF3lUUdA2I7GCkFMOoB",
+        "code": {
+          "text": "Weight",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 90.7,
+          "unit": "kg",
+          "code": "kg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIbfHB2tCIji02R3yFXSi4vWB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIbfHB2tCIji02R3yFXSi4vWB",
+        "code": {
+          "text": "Height",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 178,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIZFtuSefbDU66Um80glhD7XB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIZFtuSefbDU66Um80glhD7XB",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 71,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIbqfiRJTmZfK.seS16W01szB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIbqfiRJTmZfK.seS16W01szB",
+        "code": {
+          "text": "Temp",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "code": "Cel",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIaZD8VA1RJoWevwqB5zm2feB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsron.8Qlu-yjOF792bUBX3SIaZD8VA1RJoWevwqB5zm2feB",
+        "code": {
+          "text": "BP",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 122,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 80,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TY0LFe7yCo3zzwfBkI8aE3PFzKjqrHlpcTw.sH211V8IB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-11T23:13:00Z",
+        "status": "registered",
+        "id": "TY0LFe7yCo3zzwfBkI8aE3PFzKjqrHlpcTw.sH211V8IB",
+        "code": {
+          "text": "HEMOGLOBIN A1C/HEMOGLOBIN TOTAL IN BLOOD",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4548-4",
+              "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 5,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "4.0 - 6.0 %",
+            "low": {
+              "value": 4,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 6,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ta2SF7QbUwYc48UV97Nkr.okW4lQgqPzu7V1lBvE17joB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "registered",
+        "id": "Ta2SF7QbUwYc48UV97Nkr.okW4lQgqPzu7V1lBvE17joB",
+        "code": {
+          "text": "LEUKOCYTES [10*3/ML] CORRECTED FOR NUCLEATED ERYTHROCYTES IN BLOOD",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "12227-5",
+              "display": "Leukocytes [#/volume] corrected for nucleated erythrocytes in Blood"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 7,
+          "unit": "10*3/mL",
+          "code": "10*3/mL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "1.00 - 10.00 10*3/mL",
+            "low": {
+              "value": 1,
+              "unit": "10*3/mL",
+              "code": "10*3/mL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 10,
+              "unit": "10*3/mL",
+              "code": "10*3/mL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOknosDue7p1Edc0etU6-qtV8B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOknosDue7p1Edc0etU6-qtV8B",
+        "code": {
+          "text": "ALBUMIN [G/DL] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1751-7",
+              "display": "Albumin [Mass/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 4.7,
+          "unit": "g/dL",
+          "code": "g/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "3.5 - 5.0 g/dL",
+            "low": {
+              "value": 3.5,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 5,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOklNCGhcyIQ-6xIMIBY7e5YYB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOklNCGhcyIQ-6xIMIBY7e5YYB",
+        "code": {
+          "text": "TOTAL PROTEIN",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2885-2",
+              "display": "Protein [Mass/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.1,
+          "unit": "g/dL",
+          "code": "g/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "6.4 - 8.2 g/dL",
+            "low": {
+              "value": 6.4,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 8.2,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ta2SF7QbUwYc48UV97Nkr.mPFnpMedsr1YJfBlc7qDlgB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "registered",
+        "id": "Ta2SF7QbUwYc48UV97Nkr.mPFnpMedsr1YJfBlc7qDlgB",
+        "code": {
+          "text": "ERYTHROCYTES [10*6/UL] IN BLOOD BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "789-8",
+              "display": "Erythrocytes [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 4.8,
+          "unit": "10*6/µL"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "4.50 - 5.90 10*6/µL",
+            "low": {
+              "value": 4.5,
+              "unit": "10*6/µL"
+            },
+            "high": {
+              "value": 5.9,
+              "unit": "10*6/µL"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ta2SF7QbUwYc48UV97Nkr.ieu-B9RmRSXTVvHdzncHg8B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "registered",
+        "id": "Ta2SF7QbUwYc48UV97Nkr.ieu-B9RmRSXTVvHdzncHg8B",
+        "code": {
+          "text": "PLATELETS [10*3/UL] IN BLOOD AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 277,
+          "unit": "10*3/uL",
+          "code": "10*3/uL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "150 - 399 10*3/uL",
+            "low": {
+              "value": 150,
+              "unit": "10*3/uL",
+              "code": "10*3/uL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 399,
+              "unit": "10*3/uL",
+              "code": "10*3/uL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ta2SF7QbUwYc48UV97Nkr.nw89.qY6NrmzFt.zIJ47hUB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "registered",
+        "id": "Ta2SF7QbUwYc48UV97Nkr.nw89.qY6NrmzFt.zIJ47hUB",
+        "code": {
+          "text": "PLATELET MEAN VOLUME [FL] IN BLOOD BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32623-1",
+              "display": "Platelet mean volume [Entitic volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 11.2,
+          "unit": "fL",
+          "code": "fL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "7.5 - 11.5 fL",
+            "low": {
+              "value": 7.5,
+              "unit": "fL",
+              "code": "fL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 11.5,
+              "unit": "fL",
+              "code": "fL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ta2SF7QbUwYc48UV97Nkr.qYI7D5DXBSs75JZ.E-Zp4EB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "registered",
+        "id": "Ta2SF7QbUwYc48UV97Nkr.qYI7D5DXBSs75JZ.E-Zp4EB",
+        "code": {
+          "text": "ERYTHROCYTE MEAN CORPUSCULAR HEMOGLOBIN CONCENTRATION [G/DL] BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "786-4",
+              "display": "Erythrocyte mean corpuscular hemoglobin concentration [Mass/volume] by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 32,
+          "unit": "g/dL",
+          "code": "g/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "30 - 37 g/dL",
+            "low": {
+              "value": 30,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 37,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ta2SF7QbUwYc48UV97Nkr.rCJF0vit80lYaUKjdV9PIkB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "registered",
+        "id": "Ta2SF7QbUwYc48UV97Nkr.rCJF0vit80lYaUKjdV9PIkB",
+        "code": {
+          "text": "ERYTHROCYTE MEAN CORPUSCULAR HEMOGLOBIN [PG] BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "785-6",
+              "display": "Erythrocyte mean corpuscular hemoglobin [Entitic mass] by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 31,
+          "unit": "pg",
+          "code": "pg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "26.0 - 34.0 pg",
+            "low": {
+              "value": 26,
+              "unit": "pg",
+              "code": "pg",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 34,
+              "unit": "pg",
+              "code": "pg",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkkGiAfOmvHR.d9u3KSqtQWkB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkkGiAfOmvHR.d9u3KSqtQWkB",
+        "code": {
+          "text": "CALCIUM [MG/DL] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "17861-6",
+              "display": "Calcium [Mass/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.9,
+          "unit": "mg/dL",
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "8.7 - 10.7 mg/dL",
+            "low": {
+              "value": 8.7,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 10.7,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOklo50Af-U4zBCJhO9XXG67UB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOklo50Af-U4zBCJhO9XXG67UB",
+        "code": {
+          "text": "GLUCOSE [MG/DL] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2345-7",
+              "display": "Glucose [Mass/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 65,
+          "unit": "mg/dL",
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "60 - 200 mg/dL",
+            "low": {
+              "value": 60,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 200,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ta2SF7QbUwYc48UV97Nkr.kFFQctsJuhWvwoAjUJDRpcB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "registered",
+        "id": "Ta2SF7QbUwYc48UV97Nkr.kFFQctsJuhWvwoAjUJDRpcB",
+        "code": {
+          "text": "ERYTHROCYTE DISTRIBUTION WIDTH [RATIO] BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "788-0",
+              "display": "Erythrocyte distribution width [Ratio] by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 12.9,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "11.5 - 14.5 %",
+            "low": {
+              "value": 11.5,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 14.5,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Ta2SF7QbUwYc48UV97Nkr.taYT0aP8tpA6EMqwysMD-YB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "registered",
+        "id": "Ta2SF7QbUwYc48UV97Nkr.taYT0aP8tpA6EMqwysMD-YB",
+        "code": {
+          "text": "HEMATOCRIT (%) BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 49,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "41 - 53 %",
+            "low": {
+              "value": 41,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 53,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkrvrspqwsUY16P..71sL7JIB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkrvrspqwsUY16P..71sL7JIB",
+        "code": {
+          "text": "CHLORIDE [MMOL/L] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2075-0",
+              "display": "Chloride [Moles/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 101,
+          "unit": "mmol/L",
+          "code": "mmol/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "99 - 108 mmol/L",
+            "low": {
+              "value": 99,
+              "unit": "mmol/L",
+              "code": "mmol/L",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 108,
+              "unit": "mmol/L",
+              "code": "mmol/L",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkjNfEKA5NpRW-zNUTlnIyfsB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkjNfEKA5NpRW-zNUTlnIyfsB",
+        "code": {
+          "text": "SODIUM [MMOL/L] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2951-2",
+              "display": "Sodium [Moles/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 140,
+          "unit": "mmol/L",
+          "code": "mmol/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "137 - 147 mmol/L",
+            "low": {
+              "value": 137,
+              "unit": "mmol/L",
+              "code": "mmol/L",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 147,
+              "unit": "mmol/L",
+              "code": "mmol/L",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkl.BYsYedzf1YPfsGuaVPBwB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkl.BYsYedzf1YPfsGuaVPBwB",
+        "code": {
+          "text": "POTASSIUM [MMOL/L] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2823-3",
+              "display": "Potassium [Moles/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 3.7,
+          "unit": "mmol/L",
+          "code": "mmol/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "3.4 - 5.3 mmol/L",
+            "low": {
+              "value": 3.4,
+              "unit": "mmol/L",
+              "code": "mmol/L",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 5.3,
+              "unit": "mmol/L",
+              "code": "mmol/L",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkli5ueqYXIiaWHpZpIHshZ0B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkli5ueqYXIiaWHpZpIHshZ0B",
+        "code": {
+          "text": "BILIRUBIN TOTAL [MG/DL] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1975-2",
+              "display": "Bilirubin.total [Mass/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1,
+          "unit": "mg/dL",
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "0.1 - 1.4 mg/dL",
+            "low": {
+              "value": 0.1,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 1.4,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkkzFPOncRpATzFoBT-Qx1hAB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkkzFPOncRpATzFoBT-Qx1hAB",
+        "code": {
+          "text": "CREATININE [MG/DL] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2160-0",
+              "display": "Creatinine [Mass/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 0.8,
+          "unit": "mg/dL",
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "0.6 - 1.3 mg/dL",
+            "low": {
+              "value": 0.6,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 1.3,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOknKWEZhaMIRzIaJqkIMQLqsB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOknKWEZhaMIRzIaJqkIMQLqsB",
+        "code": {
+          "text": "CARBON DIOXIDE, TOTAL [MMOL/L] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2028-9",
+              "display": "Carbon dioxide, total [Moles/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 17,
+          "unit": "mmol/L",
+          "code": "mmol/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "13 - 22 mmol/L",
+            "low": {
+              "value": 13,
+              "unit": "mmol/L",
+              "code": "mmol/L",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 22,
+              "unit": "mmol/L",
+              "code": "mmol/L",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkiWW1NSaAcoag28gMuON5.QB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkiWW1NSaAcoag28gMuON5.QB",
+        "code": {
+          "text": "UREA NITROGEN [MG/DL] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "3094-0",
+              "display": "Urea nitrogen [Mass/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 14,
+          "unit": "mg/dL",
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "4 - 21 mg/dL",
+            "low": {
+              "value": 4,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 21,
+              "unit": "mg/dL",
+              "code": "mg/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkmuCKghI59q3KIjOmcjN8hkB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkmuCKghI59q3KIjOmcjN8hkB",
+        "code": {
+          "text": "ASPARTATE AMINOTRANSFERASE (SGOT) [U/L] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1920-8",
+              "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 29,
+          "unit": "U/L",
+          "code": "U/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "14 - 40 U/L",
+            "low": {
+              "value": 14,
+              "unit": "U/L",
+              "code": "U/L",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "code": "U/L",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOkn4SDbIJTt2EA469hjA7BC0B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOkn4SDbIJTt2EA469hjA7BC0B",
+        "code": {
+          "text": "ALANINE AMINOTRANSFERASE (SGPT) [U/L] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1743-4",
+              "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma by With P-5'-P"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 14,
+          "unit": "U/L",
+          "code": "U/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "10 - 40 U/L",
+            "low": {
+              "value": 10,
+              "unit": "U/L",
+              "code": "U/L",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "code": "U/L",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tl4xxjAMDmAdEfs3nmEjOksivsXarpRhwyH76PylkSWkB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-02-06T18:00:00Z",
+        "status": "final",
+        "id": "Tl4xxjAMDmAdEfs3nmEjOksivsXarpRhwyH76PylkSWkB",
+        "code": {
+          "text": "ALKALINE PHOSPHATASE [U/L] IN SER/PLAS",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6768-6",
+              "display": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 52,
+          "unit": "U/L",
+          "code": "U/L",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "25 - 125 U/L",
+            "low": {
+              "value": 25,
+              "unit": "U/L",
+              "code": "U/L",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 125,
+              "unit": "U/L",
+              "code": "U/L",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/T6GMFmFMXJRq4Ya1YJELqHPW6xq0gnN-ZAXgXVfa8.cUB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-01-28T23:12:00Z",
+        "status": "registered",
+        "id": "T6GMFmFMXJRq4Ya1YJELqHPW6xq0gnN-ZAXgXVfa8.cUB",
+        "code": {
+          "text": "HEMOGLOBIN A1C/HEMOGLOBIN TOTAL IN BLOOD",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4548-4",
+              "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 7.5,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "interpretation": {
+          "text": "Abnormal",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "4.0 - 6.0 %",
+            "low": {
+              "value": 4,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 6,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/T7ic-pwCu0k4xT0e8DsaZZsxyJRa0uXzOxWqvi9nmE8QB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-01-21T06:00:00Z",
+        "status": "registered",
+        "id": "T7ic-pwCu0k4xT0e8DsaZZsxyJRa0uXzOxWqvi9nmE8QB",
+        "code": {
+          "text": "HEMOGLOBIN A1C/HEMOGLOBIN TOTAL IN BLOOD",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4548-4",
+              "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 2,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "interpretation": {
+          "text": "Abnormal",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "4.0 - 6.0 %",
+            "low": {
+              "value": 4,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 6,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TLetOH9EC6Ioh2e13O3UW.Nvd62S6XNFVsiwC32DOjKcB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-01-21T06:00:00Z",
+        "status": "registered",
+        "id": "TLetOH9EC6Ioh2e13O3UW.Nvd62S6XNFVsiwC32DOjKcB",
+        "code": {
+          "text": "HEMOGLOBIN A1C/HEMOGLOBIN TOTAL IN BLOOD",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4548-4",
+              "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 3,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "interpretation": {
+          "text": "Abnormal",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "4.0 - 6.0 %",
+            "low": {
+              "value": 4,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 6,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TdrL2iCYfK7IMmu0DpUbcQUMwUeJ5d4aTHz61XZoflSMB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-11-08T16:18:00Z",
+        "status": "final",
+        "id": "TdrL2iCYfK7IMmu0DpUbcQUMwUeJ5d4aTHz61XZoflSMB",
+        "code": {
+          "text": "POTASSIUM BLOOD",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6298-4",
+              "display": "Potassium [Moles/volume] in Blood"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 3.1
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TDsM-v6omSaRsvT.-NvxIwKjbtmRrlcJqOBbkHd8hLDcB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:21:00Z",
+        "issued": "2015-10-03T20:21:00Z",
+        "status": "final",
+        "id": "TDsM-v6omSaRsvT.-NvxIwKjbtmRrlcJqOBbkHd8hLDcB",
+        "code": {
+          "text": "LEUKOCYTES[10*3/UL] IN BLOOD BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6690-2",
+              "display": "Leukocytes [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 5,
+          "unit": "10*3/mL",
+          "code": "10*3/mL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "3.3 - 10.0 10*3/mL",
+            "low": {
+              "value": 3.3,
+              "unit": "10*3/mL",
+              "code": "10*3/mL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 10,
+              "unit": "10*3/mL",
+              "code": "10*3/mL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TDsM-v6omSaRsvT.-NvxIwLwRuGoKSzOzTLeNuLYSCOEB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:21:00Z",
+        "issued": "2015-10-03T20:21:00Z",
+        "status": "final",
+        "id": "TDsM-v6omSaRsvT.-NvxIwLwRuGoKSzOzTLeNuLYSCOEB",
+        "code": {
+          "text": "ERYTHROCYTES [10*6/UL] IN BLOOD BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "789-8",
+              "display": "Erythrocytes [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 4.2,
+          "unit": "10*6/µL"
+        },
+        "interpretation": {
+          "text": "Low",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "L",
+              "display": "Low"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "4.50 - 5.90 10*6/µL",
+            "low": {
+              "value": 4.5,
+              "unit": "10*6/µL"
+            },
+            "high": {
+              "value": 5.9,
+              "unit": "10*6/µL"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TDsM-v6omSaRsvT.-NvxIwNyGGET1yjTq69ZsCiAeIhMB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:21:00Z",
+        "issued": "2015-10-03T20:21:00Z",
+        "status": "final",
+        "id": "TDsM-v6omSaRsvT.-NvxIwNyGGET1yjTq69ZsCiAeIhMB",
+        "code": {
+          "text": "PLATELETS [10*3/UL] IN BLOOD AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 280,
+          "unit": "10*3/uL",
+          "code": "10*3/uL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "150 - 399 10*3/uL",
+            "low": {
+              "value": 150,
+              "unit": "10*3/uL",
+              "code": "10*3/uL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 399,
+              "unit": "10*3/uL",
+              "code": "10*3/uL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TDsM-v6omSaRsvT.-NvxIwD717SSMdzOl2L54zktvtUgB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:21:00Z",
+        "issued": "2015-10-03T20:21:00Z",
+        "status": "final",
+        "id": "TDsM-v6omSaRsvT.-NvxIwD717SSMdzOl2L54zktvtUgB",
+        "code": {
+          "text": "HEMATOCRIT (%) BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 44,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "41 - 53 %",
+            "low": {
+              "value": 41,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 53,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/TDsM-v6omSaRsvT.-NvxIwEKnfOsXOrOtzmcRysvbQ6cB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:21:00Z",
+        "issued": "2015-10-03T20:21:00Z",
+        "status": "final",
+        "id": "TDsM-v6omSaRsvT.-NvxIwEKnfOsXOrOtzmcRysvbQ6cB",
+        "code": {
+          "text": "HEMOGLOBIN [G/DL] IN BLOOD",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 13,
+          "unit": "g/dL",
+          "code": "g/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "interpretation": {
+          "text": "Low",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "L",
+              "display": "Low"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "13.5 - 17.5 g/dL",
+            "low": {
+              "value": 13.5,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 17.5,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Te4K6zjiXtD2Z7Fdc.AXXODq9oPi1t8mZdPX1bqvqSN4B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:20:00Z",
+        "issued": "2015-10-03T20:20:00Z",
+        "status": "preliminary",
+        "id": "Te4K6zjiXtD2Z7Fdc.AXXODq9oPi1t8mZdPX1bqvqSN4B",
+        "code": {
+          "text": "LEUKOCYTES[10*3/UL] IN BLOOD BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6690-2",
+              "display": "Leukocytes [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8,
+          "unit": "10*3/mL",
+          "code": "10*3/mL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "3.3 - 10.0 10*3/mL",
+            "low": {
+              "value": 3.3,
+              "unit": "10*3/mL",
+              "code": "10*3/mL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 10,
+              "unit": "10*3/mL",
+              "code": "10*3/mL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Te4K6zjiXtD2Z7Fdc.AXXOH4lDpvFTdWuW4buXcQGRxsB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:20:00Z",
+        "issued": "2015-10-03T20:20:00Z",
+        "status": "preliminary",
+        "id": "Te4K6zjiXtD2Z7Fdc.AXXOH4lDpvFTdWuW4buXcQGRxsB",
+        "code": {
+          "text": "ERYTHROCYTES [10*6/UL] IN BLOOD BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "789-8",
+              "display": "Erythrocytes [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 4,
+          "unit": "10*6/µL"
+        },
+        "interpretation": {
+          "text": "Low",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "L",
+              "display": "Low"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "4.50 - 5.90 10*6/µL",
+            "low": {
+              "value": 4.5,
+              "unit": "10*6/µL"
+            },
+            "high": {
+              "value": 5.9,
+              "unit": "10*6/µL"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Te4K6zjiXtD2Z7Fdc.AXXOAZ8ETvnht0Zioxh2aGIcIUB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:20:00Z",
+        "issued": "2015-10-03T20:20:00Z",
+        "status": "preliminary",
+        "id": "Te4K6zjiXtD2Z7Fdc.AXXOAZ8ETvnht0Zioxh2aGIcIUB",
+        "code": {
+          "text": "PLATELETS [10*3/UL] IN BLOOD AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 300,
+          "unit": "10*3/uL",
+          "code": "10*3/uL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "150 - 399 10*3/uL",
+            "low": {
+              "value": 150,
+              "unit": "10*3/uL",
+              "code": "10*3/uL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 399,
+              "unit": "10*3/uL",
+              "code": "10*3/uL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Te4K6zjiXtD2Z7Fdc.AXXOK4fRc9ik5zXUAuWq9v65uAB",
+      "resource": {
+        "resourceType": "Observation",
+        "comments": "This is a corrected result. Previous result was 44 on 10/3/2015 at 1522 CDT",
+        "effectiveDateTime": "2015-10-03T20:20:00Z",
+        "issued": "2015-10-03T20:20:00Z",
+        "status": "preliminary",
+        "id": "Te4K6zjiXtD2Z7Fdc.AXXOK4fRc9ik5zXUAuWq9v65uAB",
+        "code": {
+          "text": "HEMATOCRIT (%) BY AUTOMATED COUNT",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 41,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "41 - 53 %",
+            "low": {
+              "value": 41,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 53,
+              "unit": "%",
+              "code": "%",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Te4K6zjiXtD2Z7Fdc.AXXOJEMbKy.y6IjKIGTLxjw96oB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T20:20:00Z",
+        "issued": "2015-10-03T20:20:00Z",
+        "status": "preliminary",
+        "id": "Te4K6zjiXtD2Z7Fdc.AXXOJEMbKy.y6IjKIGTLxjw96oB",
+        "code": {
+          "text": "HEMOGLOBIN [G/DL] IN BLOOD",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 16,
+          "unit": "g/dL",
+          "code": "g/dL",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "referenceRange": [
+          {
+            "text": "13.5 - 17.5 g/dL",
+            "low": {
+              "value": 13.5,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            },
+            "high": {
+              "value": 17.5,
+              "unit": "g/dL",
+              "code": "g/dL",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "category": {
+          "text": "Laboratory",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivS.wUhhZj-icES3zVWoH.3HB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivS.wUhhZj-icES3zVWoH.3HB",
+        "code": {
+          "text": "BMI (Calculated)",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "39156-5",
+              "display": "Body mass index"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 22.5
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivTQXoV99svdtfV2kP3D4SnmB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "amended",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivTQXoV99svdtfV2kP3D4SnmB",
+        "code": {
+          "text": "Head Cir",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8287-5",
+              "display": "Head Occipital-frontal circumference by Tape measure"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 57,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivQPbf8mA7yNcyo.0Wg9BNLkB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivQPbf8mA7yNcyo.0Wg9BNLkB",
+        "code": {
+          "text": "Weight",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 77.1,
+          "unit": "kg",
+          "code": "kg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivQnUE5WYIxf5J-erfYzyecCB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivQnUE5WYIxf5J-erfYzyecCB",
+        "code": {
+          "text": "Height",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 185,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivQBqWoh.8zEspC5Cwi60ulmB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivQBqWoh.8zEspC5Cwi60ulmB",
+        "code": {
+          "text": "SpO2",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2710-2",
+              "display": "Oxygen saturation in Capillary blood by Oximetry"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5",
+              "display": "Oxygen saturation in Arterial blood by Pulse oximetry"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 97,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivTMXvFRQZpLaV.gOnudSo9TB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivTMXvFRQZpLaV.gOnudSo9TB",
+        "code": {
+          "text": "Resp",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 15,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivSo4muL5ECm-bxVoSjOA0FxB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivSo4muL5ECm-bxVoSjOA0FxB",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 55,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivT3-rV2HHjSYO76FPbBHWwbB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivT3-rV2HHjSYO76FPbBHWwbB",
+        "code": {
+          "text": "Temp",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 36.7,
+          "unit": "Cel",
+          "code": "Cel",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivSPO5B-QOQJyVf7LKARsD8kB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroonALFGbtOt6b2yu6wZ4ivSPO5B-QOQJyVf7LKARsD8kB",
+        "code": {
+          "text": "BP",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 120,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 72,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwBEYxjViChC97VrtGF.dyn3B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwBEYxjViChC97VrtGF.dyn3B",
+        "code": {
+          "text": "BMI (Calculated)",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "39156-5",
+              "display": "Body mass index"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 22.8
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwDSgo6fMHlCq2OVjgKaNGIWB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwDSgo6fMHlCq2OVjgKaNGIWB",
+        "code": {
+          "text": "Head Cir",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8287-5",
+              "display": "Head Occipital-frontal circumference by Tape measure"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 57,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwAmRjUr4t.U4Lpwzs1CD.NiB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwAmRjUr4t.U4Lpwzs1CD.NiB",
+        "code": {
+          "text": "Weight",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 77.1,
+          "unit": "kg",
+          "code": "kg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwC2C0rv4mz1Yn.XbBMaol8RB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwC2C0rv4mz1Yn.XbBMaol8RB",
+        "code": {
+          "text": "Height",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 184,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwDI59ebznL1Lyh-bRqXlQJPB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwDI59ebznL1Lyh-bRqXlQJPB",
+        "code": {
+          "text": "SpO2",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2710-2",
+              "display": "Oxygen saturation in Capillary blood by Oximetry"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5",
+              "display": "Oxygen saturation in Arterial blood by Pulse oximetry"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 98,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwC-xFrBhsufKRxbYH1hARD8B",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwC-xFrBhsufKRxbYH1hARD8B",
+        "code": {
+          "text": "Resp",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 20,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwDhYlwxO1ucoOhE03Mvp5gTB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwDhYlwxO1ucoOhE03Mvp5gTB",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 70,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwC93TwE2NmYRNSmcPUkg7JsB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwC93TwE2NmYRNSmcPUkg7JsB",
+        "code": {
+          "text": "Temp",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 36.7,
+          "unit": "Cel",
+          "code": "Cel",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwDGWWlrW370Kafl38mKzQgBB",
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00Z",
+        "status": "final",
+        "id": "Tnf7t0.SP6znu2Dc1kPsrog5qrfqH33vJQOxAByVedwDGWWlrW370Kafl38mKzQgBB",
+        "code": {
+          "text": "BP",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, NICK",
+            "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 120,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 70,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Observation/Tnf7t0.SP6znu2Dc1kPsroixnQ2SilTD1-xECRAb2Tu0B",
+      "resource": {
+        "resourceType": "Observation",
+        "issued": "2015-08-27T00:00:00Z",
+        "status": "unknown",
+        "id": "Tnf7t0.SP6znu2Dc1kPsroixnQ2SilTD1-xECRAb2Tu0B",
+        "code": {
+          "text": "Smoking History",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "72166-2",
+              "display": "Tobacco smoking status NHIS"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "valueCodeableConcept": {
+          "text": "Never Assessed",
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "266927001",
+              "display": "Unknown if ever smoked"
+            }
+          ]
+        },
+        "category": {
+          "text": "Social History",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "social-history",
+              "display": "Social History"
+            }
+          ]
+        },
+        "meta": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
+              "valueUri": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "total": 69,
+  "type": "collection"
+}

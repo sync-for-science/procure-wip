@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "cross-fetch": "^3.0.1",
+    "exceljs": "^1.12.2",
     "file-saver": "^2.0.1",
     "jszip": "^3.2.1",
     "lodash": "^4.17.11",

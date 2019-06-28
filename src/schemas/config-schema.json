@@ -101,6 +101,59 @@
 				"pageLimit": { "type": "integer" }
 			},
 			"additionalProperties": false
+		},
+		"template_item": {
+			"type": "object",
+			"properties": {
+				"path": {
+					"type": ["array", "string"],
+					"items": { "type": "string" }
+				},
+				"test": { "type": "string"},
+				"id": { "type": "string"},
+				"transform": { "type": "string"},
+				"children": {
+					"type": "array",
+					"minLength": 1,
+					"items": { "$ref": "#/definitions/template_item" }
+				}
+			}
+		},
+		"spreadsheet_template": {
+			"additionalProperties": false,
+			"type": "object",
+			"required": ["name", "template"],
+			"properties": {
+				"name": { "type": "string" },
+				"extends": {
+					"type": "array",
+					"items": { "type": "string"}
+				},
+				"sortBy": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": ["name", "dir"],
+						"additionalProperties": false,
+						"properties": {
+							"name": { "type": "string" },
+							"dir": {
+								"type": "string",
+								"enum": ["asc", "desc"]
+							}
+						}
+					}
+				},
+				"template": {
+					"type": "array",
+					"minLength": 1,
+					"items": { "$ref": "#/definitions/template_item" }
+				}
+			}
+		},
+		"spreadsheet_templates": {
+			"type": "object",
+			"additionalProperties": { "$ref": "#/definitions/spreadsheet_template" }
 		}
 	},
 	"type": "object",
@@ -114,6 +167,7 @@
 			"format": "uri"
 		},
 		"endpointLists": { "$ref": "#/definitions/endpoint_lists" },
-		"queryProfiles": { "$ref": "#/definitions/query_profiles" }
+		"queryProfiles": { "$ref": "#/definitions/query_profiles" },
+		"spreadsheetTemplates": { "$ref": "#/definitions/spreadsheet_templates" }
 	}
 }

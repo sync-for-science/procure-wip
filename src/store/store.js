@@ -3,10 +3,12 @@ import FhirLoader from "./fhir-loader";
 import ConfigLoader from "./config-loader";
 import ZipExporter from "./zip-exporter";
 import GithubExporter from "./github-exporter";
+import SpreadsheetExporter from "./spreadsheet-exporter";
 
 const initialState = {
 	//modalUi
 	uiState: {mode: "loading"},
+	spreadsheetTemplates: {},
 	nonModalUi: {},
 	mimeTypeMappings: {},
 	githubConfig: {
@@ -247,6 +249,22 @@ const actions = store => {
 				store.dispatch("nonModalUi/merge", {isDownloading: false})
 			});
 	});
+	store.on("export/spreadsheet", ({ providers, spreadsheetTemplates}, params) => {
+		store.dispatch("nonModalUi/merge", {isExportingSheet: true})
+		SpreadsheetExporter.exportSpreadsheet(
+			providers, spreadsheetTemplates, params.templateId, params.format
+		)
+		.catch( e => {
+			store.dispatch("uiState/set", {
+				mode: "globalError", 
+				error: e
+			});
+		})
+		.finally( () => {
+			store.dispatch("nonModalUi/merge", {isExportingSheet: false})
+		});
+	});
+
 	store.on("export/github", ( {githubConfig, providers} ) => {
 		
 		const statusCallback = (status, statusUrl) => {
