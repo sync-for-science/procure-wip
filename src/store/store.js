@@ -148,7 +148,10 @@ const actions = store => {
 	});
 	store.on("config/load", (state) => {
 		store.dispatch("uiState/set", {mode: "loading"});
-		ConfigLoader.loadConfigFile("./config/config.json")
+		ConfigLoader.loadConfigFile(
+			"./config/config.json", 
+			"./config/config-override.json"
+		)
 			.then( config => {
 				store.dispatch("config/merge", config);
 				store.dispatch("uiState/set", {mode: "pushToGithub"});

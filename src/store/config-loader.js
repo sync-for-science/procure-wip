@@ -4,8 +4,9 @@ import tv4 from "tv4";
 import endpointListSchema from "../schemas/endpoint-list-schema.json";
 import configSchema from "../schemas/config-schema.json";
 import _ from "lodash";
+import mergeObjects from "./merge-objects.js";
 
-function loadConfigFile(path) {
+function readConfigFile(path) {
 	return fetch(path)
 		.then( response => {
 			if (!response.ok)
@@ -14,6 +15,14 @@ function loadConfigFile(path) {
 		})
 		.then( data => data.text() )
 		.then( data => JSON.parse(stripJsonComments(data)) )
+}
+
+function loadConfigFile(path, overridePath) {
+	let configReaders = [readConfigFile(path)];
+	if (overridePath) configReaders.push(readConfigFile(overridePath));
+
+	return Promise.all(configReaders)
+		.then( data => mergeObjects.merge(data) )
 		.then( data => {
 			tv4.validate(data, configSchema);
 			if (tv4.error) {

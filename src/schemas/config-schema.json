@@ -34,10 +34,11 @@
 		},
 		"endpoint_lists": {
 			"type": "object",
-			"otherProperties": { "$ref": "#/definitions/endpoint_list" }
+			"additionalProperties": { "$ref": "#/definitions/endpoint_list" }
 		},
 		"endpoint_list": {
 			"type": "object",
+			"required": [ "path" ],
 			"properties": {
 				"path": { "type": "string" },
 				"defaults": { "$ref": "#/definitions/endpoint_list_default" }
