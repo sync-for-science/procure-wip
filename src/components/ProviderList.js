@@ -9,6 +9,8 @@ export default () => {
 
 	const { providers, dispatch } = useStoreon("providers");
 
+	if (!providers.length) return null;
+
 	const handleDeleteProvider = (id, e) => {
 		e.preventDefault();
 		dispatch("providers/remove", id);

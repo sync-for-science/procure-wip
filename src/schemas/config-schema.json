@@ -49,6 +49,7 @@
 			"type": "object",
 			"properties": {
 				"clientId": { "type": "string" },
+				"clientSecret": { "type": "string" },
 				"queryProfile": { "type": "string" },
 				"isOpen": { "type": "boolean" },
 				"scope": {

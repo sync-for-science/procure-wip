@@ -14,9 +14,9 @@
 		},
 		{
 			"fileMatch": [
-				"providers.json"
+				"user-settings.json"
 			],
-			"url": "./src/schemas/providers-schema.json"
+			"url": "./src/schemas/user-settings-schema.json"
 		}
 	]
 }

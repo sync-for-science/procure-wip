@@ -4,12 +4,14 @@ import ConfigLoader from "./config-loader";
 import ZipExporter from "./zip-exporter";
 import GithubExporter from "./github-exporter";
 import SpreadsheetExporter from "./spreadsheet-exporter";
+import UserSettings from "./user-settings";
 
 const initialState = {
 	//modalUi
 	uiState: {mode: "loading"},
 	spreadsheetTemplates: {},
 	nonModalUi: {},
+	queryProfile: {},
 	mimeTypeMappings: {},
 	githubConfig: {
 		token: "19bac35872878509e973cbf017249af977176434",
@@ -301,6 +303,25 @@ const actions = store => {
 			mode: "githubExport"
 		});
 	})
+
+	store.on("export/settings", ({providers, githubConfig, redirectUri}) => {
+		UserSettings.download(providers, githubConfig, redirectUri);
+	});
+
+	store.on("import/settings", ({redirectUri, queryProfiles}, file) => {
+		UserSettings.readFromFile(file, redirectUri, queryProfiles)
+			.then( config => {
+				store.dispatch("config/merge", config);
+				store.dispatch("uiState/set", { mode: "ready" });
+			})
+			.catch( e => {
+				console.log(e)
+				store.dispatch("uiState/set", {
+					mode: "error", error: e.message
+				})
+			})
+	});
+
 }
 
 const store = createStore([actions]);

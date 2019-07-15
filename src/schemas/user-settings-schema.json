@@ -1,0 +1,51 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"definitions": {
+		"provider": {
+			"type": "object",
+			"required": [
+				"id", "fhirEndpoint", "orgId", "name", 
+				"queryProfile", "redirectUri", "scope", "clientId"
+			],
+			"properties": {
+				"id": { "type": ["string", "number"] },
+				"name": { "type": "string" },
+				"clientId": { "type": "string" },
+				"queryProfile": { "type": "string" },
+				"orgId": { "type": "string" },
+				"isOpen": { "type": "boolean" },
+				"redirectUri": { "type": "string" },
+				"scope": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^[-\\w]+/(\\*\\.)?[*-\\w+]+(\\.\\w+)?$" 
+					}
+				},
+				"fhirEndpoint": { "type": "string", "format": "uri" },
+				"patient": { "type": "string" }
+			}
+		},
+		"providers": {
+			"type": "array",
+			"items":  { "$ref": "#/definitions/provider" }
+		},
+		"github_config": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"token": { "type": "string" },
+				"owner": { "type": "string" },
+				"project": { "type": "string" }
+			}
+		}
+	},
+	"type": "object",
+	"required": [ "redirectUri", "providers", "githubConfig"],
+	"additionalProperties": false,
+	"properties": {
+		"providers": { "$ref": "#/definitions/providers" },
+		"redirectUri": { "type": "string", "format": "uri" },
+		"githubConfig": { "$ref": "#/definitions/github_config" }
+	}
+}
