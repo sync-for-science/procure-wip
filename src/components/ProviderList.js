@@ -3,13 +3,13 @@
 import React from "react";
 import useStoreon from "storeon/react";
 import TimeAgo from "./TimeAgo"
-import { Spinner } from "reactstrap";
+import { Spinner, Button } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus, faTrash, faEdit } from "@fortawesome/free-solid-svg-icons"
 
 export default () => {
 
 	const { providers, dispatch } = useStoreon("providers");
-
-	if (!providers.length) return null;
 
 	const handleDeleteProvider = (id, e) => {
 		e.preventDefault();
@@ -33,13 +33,18 @@ export default () => {
 		dispatch("fhir/loadData", id);
 	}
 
+	const handleAddProvider = (e) => {
+		e.preventDefault();
+		dispatch("uiState/set", {mode: "editProvider"});
+	}
+
 	const pluralizeEn = (text, len) => len === 1 ? text : text+"s";
 
 	const renderCard = (provider) => {
 
 		const renderDataDetails = () => <p>	
-			{ provider.data.entry.length} { pluralizeEn("resource", provider.data.entry.length) }<br />
-			<i>Loaded <TimeAgo time={provider.lastUpdated} /></i>
+			{ provider.data.entry.length} { pluralizeEn("resource", provider.data.entry.length) }
+			<span>&nbsp;(loaded <TimeAgo time={provider.lastUpdated} />)</span>
 		</p>
 
 		const renderControls = () => {
@@ -49,24 +54,28 @@ export default () => {
 			</span>
 
 			return <div>
-				<a href="#" 
-					className="card-link" 
-					onClick={e => handleDeleteProvider(provider.id, e)}>
-					delete
-				</a>
-				<span>
-					&nbsp;|&nbsp;
+				<div className="float-right">
 					<a href="#" 
-					onClick={e => handleEditProvider(provider.id, e)}>edit</a>
-				</span>
-				<span>
-					&nbsp;|&nbsp;
-					<a href="#" 
-						style={{fontWeight: !provider.lastUpdated ? "bold" : "normal"}}
-						onClick={e => handleLoadRecords(provider.id, e)}>
-						{provider.lastUpdated ? "re" : ""}load records
+						onClick={e => handleEditProvider(provider.id, e)}
+						title="Edit Provider"
+					>
+						<FontAwesomeIcon icon={faEdit} color="#6c757d" className="mx-2" />
 					</a>
-				</span>
+
+					<a href="#" 
+						onClick={e => handleDeleteProvider(provider.id, e)}
+						title="Delete Provider"
+					>
+						<FontAwesomeIcon icon={faTrash} color="#6c757d" className="mx-2" />
+					</a>
+
+				</div>
+
+				<a href="#" 
+					style={{fontWeight: !provider.lastUpdated ? "bold" : "normal"}}
+					onClick={e => handleLoadRecords(provider.id, e)}>
+					{provider.lastUpdated ? "re" : ""}load records
+				</a>
 				{ (provider.lastUpdated && provider.data.entry.length && downloadLink) || "" }
 			</div>
 		}
@@ -75,10 +84,10 @@ export default () => {
 			<Spinner size="sm" /> Generating Download
 		</div>;
 
-		return <div className="card" style={{marginBottom:"1em"}} key={provider.id}>
+		return <div className="card" style={{margin:"0 1rem 1rem 0"}} key={provider.id}>
 			<div className="card-body">
-				<h5 className="card-title">{provider.name}</h5>
-				<div className="card-text">
+				<p className="font-weight-bold" style={{marginBottom: "0.25rem"}}>{provider.name}</p>
+				<div className="">
 					{ provider.lastUpdated && renderDataDetails() }
 					{ provider.uiStatus !== "downloading" ? renderControls() : downloading }			
 				</div>
@@ -88,7 +97,15 @@ export default () => {
 	};
 
 	return <div>
-		<h3 style={{margin:"1em 0"}}>My Providers</h3>
+		<div style={{marginBottom: "1.5rem"}}>
+			<Button color="success"
+				style={{marginRight: "1rem"}}
+				onClick={handleAddProvider}
+			>
+				<FontAwesomeIcon icon={faPlus} className="mr-2" />
+				Add Provider
+			</Button>	
+		</div>
 		{ providers.map(renderCard) }
 	</div>
 

@@ -208,9 +208,8 @@ export default () => {
 	}
 
 	return <div ref={componentTopRef}>
-		<h3 style={{margin:"1em 0"}}>Browse Data</h3>
 		{ filters }
 		{ renderPositionNav() }
 		{ renderJsonTree() }
-		</div>
+	</div>
 }

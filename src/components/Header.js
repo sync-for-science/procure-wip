@@ -4,6 +4,8 @@ import React, {useRef} from "react";
 import useStoreon from "storeon/react";
 import {Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import SettingsImportDropZone from "./SettingsImportDropZone";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMedkit } from "@fortawesome/free-solid-svg-icons"
 
 export default () => {
 
@@ -35,7 +37,7 @@ export default () => {
 		if (replace) dispatch("import/settings", file);
 	}
 
-	return 	<SettingsImportDropZone fileDropHandler={readFile}>
+	return <div style={{marginBottom: "2rem"}}><SettingsImportDropZone fileDropHandler={readFile}>
 		<input ref={fileInput}
 				type="file" 
 				style={{display: 'none'}}
@@ -43,7 +45,10 @@ export default () => {
 				accept=".json, application/json"
 		/>
 		<Navbar color="light" light expand="xs">
-			<NavbarBrand href="/">Procure</NavbarBrand>
+			<NavbarBrand href="/" style={{color: "#2B6CB0"}}>
+				<FontAwesomeIcon icon={faMedkit} alt="Procure logo" className="mr-2" />
+				Procure
+			</NavbarBrand>
 			<Nav className="ml-auto" navbar>
 				<NavItem>
 					<NavLink href="#" onClick={handleImportSettings}>import settings</NavLink>
@@ -53,7 +58,7 @@ export default () => {
 				</NavItem>
 			</Nav>
 		</Navbar>
-	</SettingsImportDropZone>
+	</SettingsImportDropZone></div> 
 
 
 }

@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import useStoreon from "storeon/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTable, faFileDownload } from "@fortawesome/free-solid-svg-icons"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 export default () => {
 
@@ -12,11 +15,6 @@ export default () => {
 	);
 	
 	const [showSpreadsheetOptions, setShowSpreadsheetOptions] = useState(false);
-
-	const handleAddProvider = (e) => {
-		e.preventDefault();
-		dispatch("uiState/set", {mode: "editProvider"});
-	}
 
 	const handleExportData = (e) => {		
 		e.preventDefault();
@@ -56,17 +54,18 @@ export default () => {
 			)
 		});
 		return <Dropdown 
-			style={{display: "inline"}}
+			style={{display: "inline",}}
 			disabled={nonModalUi.isExportingSheet}
 			isOpen={showSpreadsheetOptions}
 			toggle={e => setShowSpreadsheetOptions(!showSpreadsheetOptions)}
 		>
 			<DropdownToggle 
 				color="outline-secondary" 
-				style={{marginRight: "1em", marginTop: "1em"}}
+				style={{margin: "0 1rem 1rem 0"}}
 				caret
 			>
-				Export Spreadsheet&nbsp;
+				<FontAwesomeIcon icon={faTable} className="mr-2" />
+				<span className="mr-2">Export as Spreadsheet</span>
 			</DropdownToggle>
 			<DropdownMenu>{menuItems}</DropdownMenu>
 		</Dropdown>
@@ -74,24 +73,24 @@ export default () => {
 
 	const downloadAllButton = <Button 
 		color="outline-secondary"
-		style={{marginRight: "1em", marginTop: "1em"}}
+		style={{margin: "0 1rem 1rem 0"}}
 		onClick={handleExportData}
 		disabled={nonModalUi.isDownloading}
-		> Download All Data
+		>
+			<FontAwesomeIcon icon={faFileDownload} className="mr-2" />
+			Download Data
 	</Button>;
 
 	const ghExportButton = <Button 
+		style={{margin: "0 0 1rem 0"}}
 		color="outline-secondary"
-		style={{marginTop: "1em"}}
 		onClick={handleShowGithubExport}
-		> Export to Github
+		>
+		<FontAwesomeIcon icon={faGithub} className="mr-2" />
+		Upload to Github
 	</Button>;
 
-	return <div style={{margin: "1em 0"}}>
-		<Button color="success" 
-			style={{marginRight: "1em", marginTop: "1em"}}
-			onClick={handleAddProvider}
-		>Add Provider</Button>
+	return <div style={{marginBottom: ".5rem"}}>
 		{resourceCount && downloadAllButton}
 		{resourceCount && renderSpreadsheetExport()}
 		{resourceCount && ghExportButton}
