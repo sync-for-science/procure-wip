@@ -8,17 +8,17 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 export default () => {
 
 	const { 
-		providers, spreadsheetTemplates,
+		spreadsheetTemplates,
 		nonModalUi, dispatch 
 	} = useStoreon(
-		"providers", "spreadsheetTemplates", "nonModalUi"
+		"spreadsheetTemplates", "nonModalUi"
 	);
 	
 	const [showSpreadsheetOptions, setShowSpreadsheetOptions] = useState(false);
 
 	const handleExportData = (e) => {		
 		e.preventDefault();
-		dispatch("export/downloadAll", {mode: "editProvider"});
+		dispatch("export/download");
 	}
 
 	const handleShowGithubExport = (e) => {
@@ -31,8 +31,6 @@ export default () => {
 		dispatch("export/spreadsheet", {templateId, format});
 	}
 
-	const resourceCount = providers.find(p => p.data && p.data.entry.length);
-	
 	const renderSpreadsheetExport = () => {
 		if (!Object.keys(spreadsheetTemplates||{}).length) 
 			return null;
@@ -91,9 +89,9 @@ export default () => {
 	</Button>;
 
 	return <div style={{marginBottom: ".5rem"}}>
-		{resourceCount && downloadAllButton}
-		{resourceCount && renderSpreadsheetExport()}
-		{resourceCount && ghExportButton}
+		{downloadAllButton}
+		{renderSpreadsheetExport()}
+		{ghExportButton}
 	</div>
 
 }

@@ -3,9 +3,10 @@
 import React from "react";
 import useStoreon from "storeon/react";
 import TimeAgo from "./TimeAgo"
-import { Spinner, Button } from "reactstrap";
+import { Button, CardBody, Card, Row, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus, faTrash, faEdit } from "@fortawesome/free-solid-svg-icons"
+import { faPlus, faTrash, faEdit, faCheckSquare } from "@fortawesome/free-solid-svg-icons"
+import { faSquare } from "@fortawesome/free-regular-svg-icons"
 
 export default () => {
 
@@ -23,11 +24,6 @@ export default () => {
 		});
 	}
 
-	const handleExportProvider = (id, e) => {
-		e.preventDefault();
-		dispatch("export/download", id);
-	}
-
 	const handleLoadRecords = (id, e) => {
 		e.preventDefault();
 		dispatch("fhir/loadData", id);
@@ -36,6 +32,12 @@ export default () => {
 	const handleAddProvider = (e) => {
 		e.preventDefault();
 		dispatch("uiState/set", {mode: "editProvider"});
+	}
+
+	const toggleProviderSelection = (id, newValue, e) => {
+		dispatch("providers/update", {
+			id: id, selected: newValue
+		});
 	}
 
 	const pluralizeEn = (text, len) => len === 1 ? text : text+"s";
@@ -47,52 +49,56 @@ export default () => {
 			<span>&nbsp;(loaded <TimeAgo time={provider.lastUpdated} />)</span>
 		</p>
 
-		const renderControls = () => {
-			const downloadLink = <span>
-				&nbsp;|&nbsp;
-				<a href="#" onClick={e => handleExportProvider(provider.id, e)}>download data</a>
-			</span>
-
-			return <div>
-				<div className="float-right">
-					<a href="#" 
-						onClick={e => handleEditProvider(provider.id, e)}
-						title="Edit Provider"
-					>
-						<FontAwesomeIcon icon={faEdit} color="#6c757d" className="mx-2" />
-					</a>
-
-					<a href="#" 
-						onClick={e => handleDeleteProvider(provider.id, e)}
-						title="Delete Provider"
-					>
-						<FontAwesomeIcon icon={faTrash} color="#6c757d" className="mx-2" />
-					</a>
-
-				</div>
+		const controls = <div>
+			<div className="float-right">
+				<a href="#" 
+					onClick={e => handleEditProvider(provider.id, e)}
+					title="Edit Provider"
+				>
+					<FontAwesomeIcon icon={faEdit} color="#6c757d" className="mx-2" />
+				</a>
 
 				<a href="#" 
-					style={{fontWeight: !provider.lastUpdated ? "bold" : "normal"}}
-					onClick={e => handleLoadRecords(provider.id, e)}>
-					{provider.lastUpdated ? "re" : ""}load records
+					onClick={e => handleDeleteProvider(provider.id, e)}
+					title="Delete Provider"
+				>
+					<FontAwesomeIcon icon={faTrash} color="#6c757d" className="mx-2" />
 				</a>
-				{ (provider.lastUpdated && provider.data.entry.length && downloadLink) || "" }
 			</div>
-		}
 
-		const downloading = <div>
-			<Spinner size="sm" /> Generating Download
-		</div>;
-
-		return <div className="card" style={{margin:"0 1rem 1rem 0"}} key={provider.id}>
-			<div className="card-body">
-				<p className="font-weight-bold" style={{marginBottom: "0.25rem"}}>{provider.name}</p>
-				<div className="">
-					{ provider.lastUpdated && renderDataDetails() }
-					{ provider.uiStatus !== "downloading" ? renderControls() : downloading }			
-				</div>
-			</div>
+			<a href="#" 
+				style={{fontWeight: !provider.lastUpdated ? "bold" : "normal"}}
+				onClick={e => handleLoadRecords(provider.id, e)}>
+				{provider.lastUpdated ? "re" : ""}load records
+			</a>
 		</div>
+
+		return <Card style={{margin:"0 1rem 1rem 0"}} key={provider.id}>
+			<CardBody><Row>
+				<Col xs={{size: "auto"}} className="mr-0 pr-1 text-center">
+					<div>
+						<input type="checkbox"
+							style={{visibility: "hidden", width:0, height:0}}
+							checked={!!provider.selected} 
+							id={"selection-"+ provider.id}
+							onChange={e => toggleProviderSelection(provider.id, !provider.selected)} 
+						/>
+						<label htmlFor={"selection-"+ provider.id}>
+							<FontAwesomeIcon icon={!!provider.selected ? faCheckSquare : faSquare} size="lg" color={!!provider.selected ? "green" : "black"} />
+						</label>
+					</div>
+				</Col><Col>
+					<p className="font-weight-bold" 
+						style={{marginBottom: ".25rem", cursor: "pointer", display:"inline-block"}}
+						onClick={e => toggleProviderSelection(provider.id, !provider.selected, e)}
+					>
+						{provider.name}
+					</p>
+						{ provider.lastUpdated && renderDataDetails() }
+						{ controls }
+				</Col>
+			</Row></CardBody>
+		</Card>
 
 	};
 

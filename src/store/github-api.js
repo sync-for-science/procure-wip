@@ -40,6 +40,12 @@ function getTree(config, commit) {
 				throw new Error("Unable to load entire head tree - too many files");
 			return tree;
 		})
+		//handle 404 for when tree has been deleted and repo is empty
+		.catch( e => {
+			if (e.message === "Repository not found") {
+				return {tree: []}
+			}
+		})
 }
 
 function createBlob(config, blob) {

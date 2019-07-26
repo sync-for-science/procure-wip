@@ -50,4 +50,15 @@ function exportProviders(providers, fileName="procure-data.zip") {
 	});
 }
 
-export default {exportProvider, exportProviders}
+function generateFile(providers, multiProviderFileName) {
+	const exportableProviders = _.filter(providers, p => {
+		return p.data && p.data.entry && p.data.entry.length > 0 && p.selected
+	});
+	if (exportableProviders.length > 1) {
+		return exportProviders(exportableProviders, multiProviderFileName);
+	} else {
+		return exportProvider(exportableProviders[0]);
+	}
+}
+
+export default { generateFile }

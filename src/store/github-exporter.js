@@ -80,12 +80,12 @@ export default class GithubExporter {
 	
 	buildTree(baseTree, allProviders) {
 		const providers = _.filter( allProviders, p => {
-			return p.data && p.data.entry.length
+			return p.selected && p.data && p.data.entry && p.data.entry.length
 		})
 		const folders = _.map(providers, p => {
 			return sanitizeFilename(p.name);
 		})
-		const tree = baseTree.tree.filter( item => {
+		const tree = _.filter(baseTree.tree, item => {
 			const clear = folders.find( f => item.type === "tree" && item.path === f);
 			return clear ? false : true;
 		});

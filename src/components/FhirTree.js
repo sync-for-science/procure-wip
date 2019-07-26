@@ -7,6 +7,8 @@ import JSONTree from "react-json-tree";
 import {FormGroup, Button} from "reactstrap";
 import _ from "lodash";
 import { saveAs } from "file-saver";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 
 export default () => {
 	
@@ -14,40 +16,28 @@ export default () => {
 	const { providers } = useStoreon("providers");
 
 	//component state
-	const [provider, setProvider] = useState([]);
 	const [resourceType, setResourceType] = useState();
 	const [position, setPosition] = useState(1);
 	const [overlayResources, setOverlayResources] = useState([]);
 
 	const componentTopRef = useRef();
 
-	let providerOptions = useMemo( () => {
-		return _.chain(providers)
-			.filter( p => p.data && p.data.entry.length > 0 )
-			.map( p => ({label: p.name, value: p.id}) )
-			.value();
-		}, [providers]);
-
 	let resourceTypeOptions = useMemo( () => {
 		return _.chain(providers)
-			.filter( p => p.data && (!provider.length || provider.find( p2 => p2.value === p.id )) )
+			.filter( p => p.data && p.selected )
 			.map( p => p.data.entry.map(e => e.resource.resourceType) )
 			.flatten().uniq()
 			.map(o => ({label: o, value: o}))
 			.value();
-	}, [providerOptions, provider]);
+	}, [providers]);
 
 	let resources = useMemo( () => {
 		return _.chain(providers)
-			.filter( p => {
-				return (!provider.length && p.data && p.data.entry.length) ||
-					provider.find( p2 => p2.value === p.id )
-			})
+			.filter( p => p.data && p.data.entry && p.selected )
 			.map( p => p.data.entry ).flatten()
 			.filter( e => (!resourceType || resourceType.value === e.resource.resourceType) )
 			.value();
-	}, [providers, provider, resourceType]);
-
+	}, [providers, resourceType]);
 
 	//remove leading slashes, trailing slashes and protocol
 	const simplifyUrl = (url) => url.replace(/^\/|https?:\/\/|\/*$/g, "")
@@ -65,35 +55,21 @@ export default () => {
 		return index;
 	}, [providers]);
 
-	if (!providerOptions.length) return null;
-
-
 	const handlePosChange = (dir, e) => {
 		e.preventDefault();
 		setPosition(position+dir);
 	}
 
-	const filters = <> 
-		<FormGroup>
-			<Select id="provider"
-				value={provider}
-				onChange={selection => {setProvider(selection); setPosition(1); setOverlayResources([]);} }
-				isSearchable={true}
-				options={providerOptions}
-				placeholder="Filter by Provider"
-				isMulti={true}
-			/>
-		</FormGroup><FormGroup>
-			<Select id="resourceType"
-				value={resourceType}
-				onChange={ selection => {setResourceType(selection); setPosition(1);setOverlayResources([]);} }
-				isSearchable={true}
-				options={ resourceTypeOptions }
-				placeholder="Filter by Resource Type"
-				isClearable={true}
-			/>
-		</FormGroup>
-	</>
+	const filters = <FormGroup>
+		<Select id="resourceType"
+			value={resourceType}
+			onChange={ selection => {setResourceType(selection); setPosition(1);setOverlayResources([]);} }
+			isSearchable={true}
+			options={ resourceTypeOptions }
+			placeholder="Filter by Resource Type"
+			isClearable={true}
+		/>
+	</FormGroup>
 
 	const renderPositionNav = () => {
 		const noResources = <div className="text-center">
@@ -101,16 +77,27 @@ export default () => {
 		</div>;
 				
 		const nextPrevNav = <div>
-			<Button size="sm" outline={true} color="primary" disabled={position === 1} onClick={e => handlePosChange(-1, e)}>&lt;</Button>
-			&nbsp;&nbsp;Resource {position} of {resources.length}&nbsp;&nbsp;
-			<Button size="sm" outline={true} color="primary" disabled={position === resources.length} onClick={e => handlePosChange(1, e)}>&gt;</Button>
+			<Button size="sm" outline={true} color="primary" 
+				disabled={position === 1}
+				onClick={e => handlePosChange(-1, e)} className="mr-3"
+			>
+				<FontAwesomeIcon icon={faChevronLeft} />
+			</Button>
+				Resource {position} of {resources.length}
+			<Button size="sm" outline={true} color="primary" 
+				disabled={position === resources.length} 
+				onClick={e => handlePosChange(1, e)}  className="ml-3"
+			>
+				<FontAwesomeIcon icon={faChevronRight} />
+			</Button>
 		</div>;
 
 		const overlayNav = <div>
 			<Button size="sm" outline={true} color="primary" onClick={e => {
 				setOverlayResources(_.slice(overlayResources, 0, -1))
 			}}>
-				&lt;&nbsp;Back
+				<FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
+				Back
 			</Button>
 		</div>;
 

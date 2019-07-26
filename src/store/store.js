@@ -47,14 +47,18 @@ const initialState = {
 	// 	"redirectUri": "http://localhost:3000/callback.html",
 	// 	"scope": ["patient/*.read", "launch/patient"]
 	// },{
-		// name: "SMART Sandbox - Open",
-		// id: 1,
-		// fhirEndpoint: "http://r2.smarthealthit.org",
-		// isOpen: true,
-		// queryProfile: "argonaut_spec",
-		// patient: "c7ec9560-58cd-4a08-874b-91e3429ef1d6",
-		// org: "smart_open_c7ec9560-58cd-4a08-874b-91e3429ef1d6",
-	// },{
+		name: "SMART Sandbox - Open",
+		id: 1,
+		selected: true,
+		fhirEndpoint: "http://r2.smarthealthit.org",
+		isOpen: true,
+		orgId: "http://launch.smarthealthit.org/v/r2/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6ImM3ZWM5NTYwLTU4Y2QtNGEwOC04NzRiLTkxZTM0MjllZjFkNiJ9/fhir",
+		queryProfile: "argonaut_spec",
+		"scope": ["patient/*.read", "launch/patient"],
+		redirectUri: "http://localhost:3000/callback.html",
+		patient: "c7ec9560-58cd-4a08-874b-91e3429ef1d6",
+		org: "smart_open_c7ec9560-58cd-4a08-874b-91e3429ef1d6",
+	},{
 
 
 
@@ -84,6 +88,7 @@ const initialState = {
 		clientId: "fake_client_id",
 		redirectUri: "http://localhost:3000/callback.html",
 		isOpen: false,
+		selected: true,
 		orgId: "http://launch.smarthealthit.org/v/r2/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6ImM3ZWM5NTYwLTU4Y2QtNGEwOC04NzRiLTkxZTM0MjllZjFkNiJ9/fhir",
 		queryProfile: "labs",
 		lastUpdated: new Date(),
@@ -115,6 +120,7 @@ const actions = store => {
 	});
 	store.on("providers/add", ({ providers }, provider) => {
 		if (!provider.id) provider.id = createUniqueId();
+		provider.selected = true;
 		console.log(provider)
 		return {providers: providers.concat([provider])}
 	});
@@ -142,7 +148,6 @@ const actions = store => {
 	});
 	store.on("providers/remove", ({ providers }, id) => {
 		return {
-			// uiState: {mode: "ready"},
 			providers: providers.filter( p => {
 				return p.id !== id
 			})
@@ -156,7 +161,7 @@ const actions = store => {
 		)
 			.then( config => {
 				store.dispatch("config/merge", config);
-				store.dispatch("uiState/set", {mode: "pushToGithub"});
+				store.dispatch("uiState/set", {mode: "ready"});
 			})
 			.catch( e => {
 				store.dispatch("uiState/set", {
@@ -231,23 +236,14 @@ const actions = store => {
 		fhirLoader.cancel();
 		store.dispatch("uiState/set", {mode: "ready"});
 	});
-	store.on("export/download", ({ providers }, id) => {
-		store.dispatch("providers/update", {id, uiStatus:"downloading"})
-		const provider = providers.find(p => p.id === id);
-		ZipExporter.exportProvider(provider)
-			.then( () => {
-				store.dispatch("providers/update", {
-					id, uiStatus: null
-				});
-			});
-	});
-	store.on("export/downloadAll", ({ providers }) => {
+
+	store.on("export/download", ({ providers }) => {
 		store.dispatch("nonModalUi/merge", {isDownloading: true})
-		ZipExporter.exportProviders(providers)
+		ZipExporter.generateFile(providers)
 			.catch( e => {
 				store.dispatch("uiState/set", {
-					mode: "globalError", 
-					error: e
+					mode: "ready", 
+					error: e.message
 				});
 			})
 			.finally( () => {
@@ -311,13 +307,16 @@ const actions = store => {
 	store.on("import/settings", ({redirectUri, queryProfiles}, file) => {
 		UserSettings.readFromFile(file, redirectUri, queryProfiles)
 			.then( config => {
+				//unloading data controls prior to modifying config to avoid
+				//timing error from control update and unmount at same time
+				store.dispatch("uiState/set", {mode: "loading"});
 				store.dispatch("config/merge", config);
 				store.dispatch("uiState/set", { mode: "ready" });
 			})
 			.catch( e => {
-				console.log(e)
 				store.dispatch("uiState/set", {
-					mode: "error", error: e.message
+					mode: "ready", 
+					error: e.message
 				})
 			})
 	});

@@ -3,7 +3,7 @@
 import React  from "react";
 import useStoreon from "storeon/react";
 import {Alert, Container, Row, Col} from 'reactstrap';
-
+import _ from "lodash";
 import ProviderForm from "./ProviderForm";
 import ProviderList from "./ProviderList";
 import Fetcher from "./Fetcher";
@@ -27,7 +27,8 @@ const App = () =>  {
 			<Alert color="danger">
 				<span>Failed to load configuration information.</span><br />
 				<span>{uiState.error.toString()}</span>
-			</Alert></Container>;
+			</Alert>
+		</Container>;
 	
 	const inlineError = <Col xs="12" style={{margin: "0.5rem"}}>
 		<Alert color="warning" style={{textAlign: "center"}}>{uiState.error}</Alert>
@@ -38,7 +39,7 @@ const App = () =>  {
 	</Col>
 
 	const renderData = () => <Col xs="12" md="6" lg="7" xl="8">
-		<Toolbar />
+		<Toolbar  />
 		<FhirTree />		
 	</Col>
 
@@ -47,13 +48,15 @@ const App = () =>  {
 	</Col>
 
 	const hasProviders = providers && providers.length;
-	const hasData = hasProviders && providers.find( p => p.data && p.data.entry && p.data.entry.length);
+	const hasData = hasProviders && _.find(providers, p => {
+		return p.selected && p.data && p.data.entry && p.data.entry.length
+	});
 
 	return <div>
 		<Header />
 		<Container fluid>
 			<Row className="m-2">
-				{ uiState.error && inlineError }
+				{ uiState.error && uiState.mode === "ready" && inlineError }
 				{ hasProviders ? renderProviderList() : renderBlankSlate() }
 				{ hasData ? renderData() : null }
 			</Row>

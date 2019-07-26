@@ -98,7 +98,7 @@ function flatten(element, template, helperData={}, helperFns) {
 
 function flattenProviders(providers, template, helperData={}, helperFns) {
 	return _.chain(providers)
-		.filter( p => p.data && p.data.entry && p.data.entry.length > 0)
+		.filter( p => p.selected && p.data && p.data.entry && p.data.entry.length > 0)
 		.map( p => {
 			return _.chain(p.data.entry).map( e => {
 				const providerHelperData = {...helperData, source: p.name};

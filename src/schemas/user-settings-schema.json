@@ -1,19 +1,24 @@
 {
 	"$schema": "http://json-schema.org/schema#",
 	"definitions": {
-		"provider": {
+		"provider_secure": {
 			"type": "object",
 			"required": [
 				"id", "fhirEndpoint", "orgId", "name", 
 				"queryProfile", "redirectUri", "scope", "clientId"
 			],
 			"properties": {
+				"isOpen": { 
+					"type": "boolean", 
+					"enum": [ false ]
+				},
 				"id": { "type": ["string", "number"] },
 				"name": { "type": "string" },
 				"clientId": { "type": "string" },
+				"clientSecret": { "type": "string" },
 				"queryProfile": { "type": "string" },
 				"orgId": { "type": "string" },
-				"isOpen": { "type": "boolean" },
+				"selected": {"type": "boolean" },
 				"redirectUri": { "type": "string" },
 				"scope": {
 					"type": "array",
@@ -22,13 +27,43 @@
 						"pattern": "^[-\\w]+/(\\*\\.)?[*-\\w+]+(\\.\\w+)?$" 
 					}
 				},
-				"fhirEndpoint": { "type": "string", "format": "uri" },
-				"patient": { "type": "string" }
+				"fhirEndpoint": { "type": "string", "format": "uri" }
+			}
+		},
+		"provider_open": {
+			"type": "object",
+			"required": [
+				"id", "fhirEndpoint", "orgId", "name", 
+				"queryProfile", "redirectUri", "scope", "patient"
+			],
+			"properties": {
+				"isOpen": { 
+					"type": "boolean", 
+					"enum": [ true ]
+				},
+				"id": { "type": ["string", "number"] },
+				"name": { "type": "string" },
+				"clientId": { "type": "string" },
+				"queryProfile": { "type": "string" },
+				"orgId": { "type": "string" },
+				"selected": {"type": "boolean" },
+				"patient": { "type": "string" },
+				"scope": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^[-\\w]+/(\\*\\.)?[*-\\w+]+(\\.\\w+)?$" 
+					}
+				},
+				"fhirEndpoint": { "type": "string", "format": "uri" }
 			}
 		},
 		"providers": {
 			"type": "array",
-			"items":  { "$ref": "#/definitions/provider" }
+			"items":  { "oneOf": [
+				{"$ref": "#/definitions/provider_open"},
+				{"$ref": "#/definitions/provider_secure"}
+			]}
 		},
 		"github_config": {
 			"type": "object",
