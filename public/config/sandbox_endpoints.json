@@ -32,7 +32,7 @@
 	},{
 		"name": "Sandbox - Open - SMART (Caren Towne)",
 		"clientId": "smart_open_c7ec9560-58cd-4a08-874b-91e3429ef1d6",
-		"fhirEndpoint": "http://r2.smarthealthit.org",
+		"fhirEndpoint": "https://r2.smarthealthit.org",
 		"isOpen": true,
 		"id": "smart-open-caren",
 		"patient": "c7ec9560-58cd-4a08-874b-91e3429ef1d6"

@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React, {useRef} from "react";
+import React, {useRef, useEffect} from "react";
 import useStoreon from "storeon/react";
 import {Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import SettingsImportDropZone from "./SettingsImportDropZone";
@@ -9,8 +9,12 @@ import { faMedkit } from "@fortawesome/free-solid-svg-icons"
 
 export default () => {
 
-	const { providers, dispatch } = useStoreon("providers");
+	const { providers, isDirty, warnOnPageNavigate, dispatch } = useStoreon("providers", "isDirty", "warnOnPageNavigate");
 	const fileInput = useRef();
+
+	useEffect( () => {
+		window.onbeforeunload = () => (isDirty && warnOnPageNavigate) ? true : null;
+	});
 
 	const handleImportSettings = e => {
 		e.preventDefault();
@@ -34,7 +38,10 @@ export default () => {
 		const replace = providers.length === 0 || window.confirm(
 			"Current providers in your list will be replaced. Continue?"
 		)
-		if (replace) dispatch("import/settings", file);
+		if (replace) {
+			dispatch("import/settings", file)
+			dispatch("refreshDirty", true);
+		};
 	}
 
 	return <div style={{marginBottom: "2rem"}}><SettingsImportDropZone fileDropHandler={readFile}>
@@ -45,7 +52,7 @@ export default () => {
 				accept=".json, application/json"
 		/>
 		<Navbar color="light" light expand="xs">
-			<NavbarBrand href="/" style={{color: "#2B6CB0"}}>
+			<NavbarBrand href="/">
 				<FontAwesomeIcon icon={faMedkit} alt="Procure logo" className="mr-2" />
 				Procure
 			</NavbarBrand>
@@ -54,7 +61,9 @@ export default () => {
 					<NavLink href="#" onClick={handleImportSettings}>import settings</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink href="#" onClick={handleDownloadSettings}>export settings</NavLink>
+					<NavLink href="#" onClick={handleDownloadSettings} style={{fontWeight: isDirty ? "bold" : "normal"}}>
+						export settings
+					</NavLink>
 				</NavItem>
 			</Nav>
 		</Navbar>

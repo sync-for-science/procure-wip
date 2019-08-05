@@ -56,7 +56,8 @@ export default () => {
 		dispatch("uiState/merge", {
 			status: null,
 			error: null
-		})
+		});
+		dispatch("refreshDirty");
 	}
 
 	const handleHideDialog = e => {

@@ -48,6 +48,7 @@
 			}
 		}
 	},
+	"warnOnPageNavigate": false,
 	"redirectUri": null,
 	"queryProfiles": {
 		"labs": {

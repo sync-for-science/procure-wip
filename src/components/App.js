@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React  from "react";
+import React from "react";
 import useStoreon from "storeon/react";
 import {Alert, Container, Row, Col} from 'reactstrap';
 import _ from "lodash";

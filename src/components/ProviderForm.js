@@ -60,6 +60,7 @@ export default () => {
 		} else {
 			dispatch("providers/upsertAndLoad", provider);
 		}
+		dispatch("refreshDirty");
 	}
 
 	const handleCancel = (e) => {

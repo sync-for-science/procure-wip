@@ -182,6 +182,7 @@
 		},
 		"endpointLists": { "$ref": "#/definitions/endpoint_lists" },
 		"queryProfiles": { "$ref": "#/definitions/query_profiles" },
-		"spreadsheetTemplates": { "$ref": "#/definitions/spreadsheet_templates" }
+		"spreadsheetTemplates": { "$ref": "#/definitions/spreadsheet_templates" },
+		"warnOnPageNavigate": { "type": "boolean" }
 	}
 }

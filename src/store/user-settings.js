@@ -3,15 +3,21 @@ import saveAs from "file-saver";
 import tv4 from "tv4";
 import userSettingsSchema from "../schemas/user-settings-schema.json";
 
-function download(providers, githubConfig, redirectUri, fileName="procure-settings.json") {
+function buildJSON(providers, githubConfig, redirectUri) {
 	const json = {
 		providers: _.map(providers, p => ({
 			...p, lastUpdated: null, data: null
 		}) ),
 		githubConfig, redirectUri
 	};
+	return JSON.stringify(json, null, 2);
+
+}
+
+function download(providers, githubConfig, redirectUri, fileName="procure-settings.json") {
+	const json = buildJSON(providers, githubConfig, redirectUri);
 	const blob = new Blob(
-		[JSON.stringify(json, null, 2)], 
+		[json], 
 		{type: "application/json;charset=utf-8"}
 	);
     saveAs(blob, fileName);
@@ -58,5 +64,5 @@ function readFromFile(file, redirectUri, queryProfiles) {
 }
 
 export default { 
-	download, readFromFile 
+	buildJSON, download, readFromFile 
 }

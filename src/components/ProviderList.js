@@ -15,6 +15,7 @@ export default () => {
 	const handleDeleteProvider = (id, e) => {
 		e.preventDefault();
 		dispatch("providers/remove", id);
+		dispatch("refreshDirty");
 	}
 
 	const handleEditProvider = (id, e) => {
