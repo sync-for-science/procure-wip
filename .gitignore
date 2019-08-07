@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 notes.txt
+config-override.json
+config-override-dev.json
