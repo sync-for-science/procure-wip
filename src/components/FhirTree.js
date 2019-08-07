@@ -28,6 +28,7 @@ export default () => {
 			.map( p => p.data.entry.map(e => e.resource.resourceType) )
 			.flatten().uniq()
 			.map(o => ({label: o, value: o}))
+			.sortBy(["label"])
 			.value();
 	}, [providers]);
 

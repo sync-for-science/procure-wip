@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useCallback } from "react";
 import useStoreon from "storeon/react";
 import {Button, Spinner, Modal, ModalBody, ModalFooter} from 'reactstrap';
 import { saveAs } from "file-saver";
@@ -11,7 +11,18 @@ export default () => {
 
 	const provider =  useMemo( () => {
 		return providers.find(p => p.id === uiState.id)
-	}, [uiState.id]);
+	}, [uiState.id, providers]);
+
+
+	const handleCancel = useCallback( e => {
+		e.preventDefault();
+		dispatch("fhir/cancelLoad");
+	}, [dispatch]);
+
+	const handleClose = useCallback( e => {
+		if (e) e.preventDefault();
+		dispatch("uiState/set", {mode: "ready"});
+	}, [dispatch]);
 
 	//escape key effect
 	//creates a warning due to a reactjs bug: https://github.com/facebook/react/pull/15650 
@@ -28,17 +39,7 @@ export default () => {
 		return () => {
 			window.removeEventListener("keydown", downHandler);
 		};
-	}, []);
-
-	const handleCancel = e => {
-		e.preventDefault();
-		dispatch("fhir/cancelLoad");
-	}
-
-	const handleClose = e => {
-		if (e) e.preventDefault();
-		dispatch("uiState/set", {mode: "ready"});
-	}
+	}, [handleCancel, handleClose, uiState.submode]);
 
 	const handleSave = e => {
 		e.preventDefault();

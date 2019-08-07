@@ -146,12 +146,12 @@ export default class FhirLoader {
 			})
 	}
 	
-	authAndGetFHIR(provider) {
+	authAndGetFHIR(provider, ignoreState) {
 		//make available to cancel function
 		this.popup = new SmartPopup(provider);
 		return Smart.getAuthEndpoints(provider.fhirEndpoint)
 			.then(authEndpoints => {
-				return this.popup.authorize(authEndpoints);
+				return this.popup.authorize(authEndpoints, ignoreState);
 			})
 			.then(context => {
 				this.popup = null;

@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import useStoreon from "storeon/react";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText, FormFeedback} from 'reactstrap';
 import Select, { createFilter } from "react-select";
@@ -27,6 +27,15 @@ export default () => {
 		return [{label: "Custom Endpoint", value: "custom"}].concat(orgs);
 	});
 
+	const orgRef = useRef(null)
+	useEffect(() => orgRef.current.focus(), []);
+
+
+	const handleCancel = useCallback( e => {
+		e.preventDefault();
+		dispatch("uiState/set", {mode: "ready"});
+	}, [dispatch]);
+
 	//escape key effect
 	//creates a warning due to a reactjs bug: https://github.com/facebook/react/pull/15650 
 	useEffect(() => {
@@ -37,7 +46,7 @@ export default () => {
 		return () => {
 			window.removeEventListener("keydown", downHandler);
 		};
-	}, []);
+	}, [handleCancel]);
 
 	useEffect( () => {
 		if (!provider.id && uiState.id && uiState.mode === "editProvider") {
@@ -46,7 +55,7 @@ export default () => {
 			setValidation({});
 			setShowDetails(currentProvider && currentProvider.orgId === "custom");
 		}
-	}, [uiState.id])
+	}, [uiState.id, uiState.mode, provider.id, providers])
 
 	const handleSubmit = (e, skipRefresh) => {
 		e.preventDefault();
@@ -61,11 +70,6 @@ export default () => {
 			dispatch("providers/upsertAndLoad", provider);
 		}
 		dispatch("refreshDirty");
-	}
-
-	const handleCancel = (e) => {
-		e.preventDefault();
-		dispatch("uiState/set", {mode: "ready"});
 	}
 
 	const handleOrgSelection = (selection) => {
@@ -122,7 +126,7 @@ export default () => {
 
 		return <FormGroup>
 			<Label for="organization">Healthcare Organization</Label>
-			<Select id="organization"
+			<Select id="organization" ref={orgRef}
 				//performance improvement on autocomplete
 				filterOption={createFilter({ignoreAccents: false})}
 				value={value}

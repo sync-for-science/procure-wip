@@ -27,7 +27,7 @@ export default class SmartPopup {
 		}
 	}
 
-	authorize(authEndpoints) {	
+	authorize(authEndpoints, ignoreState) {	
 		return new Promise( (resolve, reject) => {
 			this.reject = reject;
 			const stateParam = SMART.generateStateParam();
@@ -53,7 +53,7 @@ export default class SmartPopup {
 
 				if (data.error) {
 					reject(data.error);
-				} else if (data.code && data.state !== stateParam) {
+				} else if (data.code && ignoreState !== true && data.state !== stateParam) {
 					reject("Invalid state parameter returned by server");
 				} else if (data.code) {
 					resolve( 

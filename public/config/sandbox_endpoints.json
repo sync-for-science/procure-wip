@@ -2,10 +2,11 @@
 	"entry": [{
 		"name": "Sandbox - Secure - Epic",
 		// "clientId": "1f68d863-edde-4360-9732-e5e0506f6429",
-		"clientId": "8ab5bc00-5c7b-4dc4-bf2f-3eba54e3b21d",
-		//"fhirEndpoint":"https://open-ic.epic.com/argonaut/api/FHIR/Argonaut/",
+		// "clientId": "8ab5bc00-5c7b-4dc4-bf2f-3eba54e3b21d",
+		"fhirEndpoint":"https://open-ic.epic.com/argonaut/api/FHIR/Argonaut/",
 		// user: fhirjason pw: epicepic1 
-		"credentialId": "epic_sandbox_secure",
+		"id": "epic-sandbox-secure",
+		// "credentialId": "epic_sandbox_secure",
 		"scope": ["launch/patient", "patient/*.read"],
 		"queryProfile": "argonaut_epic"
 	},{

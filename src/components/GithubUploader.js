@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import useStoreon from "storeon/react";
 import {
 	Button, Spinner, Col, Row, 
@@ -15,6 +15,16 @@ export default () => {
 
 	//component state
 	const [showInstructions, setShowInstructions] = useState();
+
+	const handleHideDialog = useCallback( e => {
+		if (e) e.preventDefault()
+		dispatch("uiState/set", {state: "ready"})
+	}, [dispatch]);
+
+	const handleCancelExport = useCallback( e => {
+		e.preventDefault()
+		dispatch("export/github/cancel");
+	}, [dispatch]);
 
 	//escape key effect
 	//creates a warning due to a reactjs bug: https://github.com/facebook/react/pull/15650 
@@ -31,7 +41,7 @@ export default () => {
 		return () => {
 			window.removeEventListener("keydown", downHandler);
 		};
-	}, []);
+	}, [uiState.submode, handleCancelExport, handleHideDialog]);
 	
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -58,16 +68,6 @@ export default () => {
 			error: null
 		});
 		dispatch("refreshDirty");
-	}
-
-	const handleHideDialog = e => {
-		if (e) e.preventDefault()
-		dispatch("uiState/set", {state: "ready"})
-	}
-
-	const handleCancelExport = e => {
-		e.preventDefault()
-		dispatch("export/github/cancel");
 	}
 
 	const handleToggleInstructions = e => {

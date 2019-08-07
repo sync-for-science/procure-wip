@@ -5,7 +5,14 @@ import ZipExporter from "./zip-exporter";
 import GithubExporter from "./github-exporter";
 import SpreadsheetExporter from "./spreadsheet-exporter";
 import UserSettings from "./user-settings";
-import initialState from "./initial-state";
+
+//have to use require here since imports need to be at the top level
+let initialState;
+if (process.env.NODE_ENV !== "development") {
+	initialState = require("./initial-state");
+} else {
+	initialState =  require("./initial-state-dev");
+}
 
 const fhirLoader = new FhirLoader();
 const ghExporter = new GithubExporter();
@@ -72,10 +79,12 @@ const actions = store => {
 	});
 	store.on("config/load", (state) => {
 		store.dispatch("uiState/set", {mode: "loading"});
-		ConfigLoader.loadConfigFile(
-			"./config/config.json", 
-			"./config/config-override.json"
-		)
+		const overridePath = process.env.NODE_ENV !== "development" 
+			? "./config/config-override.json" 
+			: "./config/config-override-dev.json";
+
+		ConfigLoader
+			.loadConfigFile("./config/config.json", overridePath)
 			.then( config => {
 				store.dispatch("config/merge", config);
 				store.dispatch("uiState/set", {mode: "ready"});
@@ -92,7 +101,7 @@ const actions = store => {
 	store.on("config/merge", (state, newConfig) => {
 		return {...state, ...newConfig}
 	});
-	store.on("fhir/loadData", ({ providers, queryProfiles, mimeTypeMappings, dateSortElements }, providerId) => {
+	store.on("fhir/loadData", ({ providers, queryProfiles, mimeTypeMappings, dateSortElements, ignoreState }, providerId) => {
 		const provider = providers.find(p => p.id === providerId);
 		const queries = queryProfiles[provider.queryProfile].queries;
 
@@ -139,7 +148,7 @@ const actions = store => {
 				submode: "authorizing",
 				id: provider.id
 			});
-			fhirLoader.authAndGetFHIR(provider)
+			fhirLoader.authAndGetFHIR(provider, ignoreState)
 				.then(loadFhir)
 				.catch(handleGlobalError);
 		} else {
