@@ -1,6 +1,7 @@
 {
 	"credentials": {
-		"epic": {"clientId": "b916be73-b018-48ff-9926-1494b8dfba5e"}
+		"epic": {"clientId": "b916be73-b018-48ff-9926-1494b8dfba5e"},
+		"epic_sandbox": {"clientId": "8ab5bc00-5c7b-4dc4-bf2f-3eba54e3b21d"}
 	}
 	// ,"redirectUri": "https://joshuamandel.com/my-health-data/redirect.html"
 	// ,"ignoreState": true

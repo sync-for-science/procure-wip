@@ -6,7 +6,7 @@
 		"fhirEndpoint":"https://open-ic.epic.com/argonaut/api/FHIR/Argonaut/",
 		// user: fhirjason pw: epicepic1 
 		"id": "epic-sandbox-secure",
-		// "credentialId": "epic_sandbox_secure",
+		"credentialId": "epic_sandbox",
 		"scope": ["launch/patient", "patient/*.read"],
 		"queryProfile": "argonaut_epic"
 	},{
