@@ -10,7 +10,7 @@ const configJson = fs.readFileSync(path.join(__dirname, "../../public/config/con
 const config = JSON.parse(stripJsonComments(configJson));
 const templates = config.spreadsheetTemplates;
 
-describe("Flatten resources- based on template", () => {
+describe("Flatten resources based on template", () => {
 
 	test("flatten a path", () => {
 		const resource = { id: "123" };
@@ -572,7 +572,7 @@ describe("Flatten Observations", () => {
 				}
 			}
 		}];
-		let providers = [{data: {entry: resources}}];
+		let providers = [{selected: true, data: {entry: resources}}];
 		expect( 
 			exporter.flattenProviders(providers, templates.vitalSigns.template).length
 		).toEqual(1);

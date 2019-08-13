@@ -80,6 +80,7 @@
 		"argonaut_spec": {
 			"title": "Argonaut (DSTU2)",
 			"fhirVersion": "R2",
+			"retryLimit": 2,
 			"queries": [{
 				"resourcePath": "AllergyIntolerance",
 				"params": {"patient": "{{patientId}}"}
@@ -141,6 +142,7 @@
 		"argonaut_epic": {
 			"title": "Argonaut (Epic)",
 			"fhirVersion": "R2",
+			"retryLimit": 2,
 			"queries": [{
 				"resourcePath": "AllergyIntolerance",
 				"params": {"patient": "{{patientId}}"},
