@@ -123,6 +123,7 @@ export default class FhirLoader {
 					fhirEndpoint: provider.fhirEndpoint,
 					fhirVersion: queries.fhirVersion,
 					token: context ? context.access_token : null,
+					retryLimit,
 					mimeTypeMappings,
 					allowErrors: true,
 					statusCallback,

@@ -29,7 +29,7 @@ function fetchFHIR(url, config={}, fhirVersion="DSTU2", token=null, retryLimit=0
 		})
 		.catch( err => {
 			if (retryLimit && retries < retryLimit) {
-				return fetchFHIR(url, config, fhirVersion, toString, retryLimit, retries+1)
+				return fetchFHIR(url, config, fhirVersion, token, retryLimit, retries+1)
 			} else {
 				throw err;
 			}
@@ -269,8 +269,26 @@ function attachmentsToFilenames({ entry = [], files = [], paths }) {
 	return entry;
 }
 
-function findAndDownloadAttachments({ entry=[], paths=[], fhirEndpoint, token, allowErrors, signal, statusCallback, mimeTypeMappings={} }) {
+function findAndDownloadAttachments({ entry=[], paths=[], fhirEndpoint, token, allowErrors, retryLimit=0, signal, statusCallback, mimeTypeMappings={} }) {
+	
 	const attachmentIndex = findAttachments({ entry, paths, fhirEndpoint });
+	
+	const fetchAttachment = (url, config={}, retryLimit=0, retries=0) => {
+		return fetch(url, config)
+			.then( response => {
+				if (!response.ok)
+					throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+				return response;
+			})
+			.catch( err => {
+				if (retryLimit && retries < retryLimit) {
+					return fetchAttachment(url, config, retryLimit, retries+1)
+				} else {
+					throw err;
+				}
+			});
+	};
+
 	let i = 0;
 	return Promise.all(
 		_.map( attachmentIndex, attachment => {
@@ -279,12 +297,7 @@ function findAndDownloadAttachments({ entry=[], paths=[], fhirEndpoint, token, a
 				Accept: attachment.contentType || undefined
 			}};
 			if (statusCallback) statusCallback(attachment.url);
-			return fetch(attachment.url, config)
-				.then( response => {
-					if (!response.ok)
-						throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-					return response;
-				})
+			return fetchAttachment(attachment.url, config, retryLimit)
 				.then( data => data.blob() )
 				.then( blob => {
 					const urlExtension = attachment.url.match(/\.(.{3})$|\.(.{4})$/);

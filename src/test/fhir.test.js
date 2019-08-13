@@ -677,6 +677,65 @@ describe("Get referenced attachments", () => {
 		});
 	});
 
+	test("retry on receiving error when retryLimit is set", () => {
+		fetch.mockResponses([
+			"Not found", {status: 404}
+		],[
+			JSON.stringify(xmlDocument)
+		])
+		
+		return fhir.findAndDownloadAttachments({
+			entry: [{
+				resource: {
+					"resourceType": "DocumentReference",
+					"content": [{
+						"attachment": { 
+							"contentType": "application/xml", "url": "http://test.org/caresummary"
+						}
+					}]
+				}
+			}], 
+			paths: "content.attachment",
+			allowErrors: true,
+			retryLimit: 2
+		})
+		.then( data => {
+			expect(data.files.length).toBe(1);
+		});
+	});	
+
+	test("log error after retryLimit is hit", () => {
+		fetch.mockResponses([
+			"Not found", {status: 404}
+		],[
+			"Not found", {status: 404}
+		],[			
+			JSON.stringify(xmlDocument)
+		])
+		
+		return fhir.findAndDownloadAttachments({
+			entry: [{
+				resource: {
+					"resourceType": "DocumentReference",
+					"content": [{
+						"attachment": { 
+							"contentType": "application/xml", "url": "http://test.org/caresummary"
+						}
+					}]
+				}
+			}], 
+			paths: "content.attachment",
+			allowErrors: true,
+			retryLimit: 1
+		})
+		.then( data => {
+			expect(data.files.length).toBe(0);
+			expect(data.errorLog.length).toBe(1);
+		});
+	});	
+
+	
+
 	test("update DocumentReference resources to reflect attachment filenames", () => {	
 		const entry = fhir.attachmentsToFilenames({
 			entry:[{
@@ -707,6 +766,5 @@ describe("Get referenced attachments", () => {
 		expect(entry[0].resource.content[0].attachment.url).toBe("1.xml");
 		expect(entry[1].resource.content[0].attachment.url).toBe("2.xml");
 	});
-
 
 });
