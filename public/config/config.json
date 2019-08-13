@@ -54,6 +54,7 @@
 		"labs": {
 			"title": "Laboratory Results (DSTU2)",
 			"fhirVersion": "R2",
+			"retryLimit": 2,
 			"queries": [{
 				"title": "Laboratory Results",
 				"resourcePath": "Observation", 

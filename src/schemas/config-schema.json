@@ -73,11 +73,12 @@
 		"query_profile": {
 			"type": "object",
 			"properties": {
-				"title": {"type": "string"},
+				"title": { "type": "string" },
 				"fhirVersion": { 
 					"type": "string",
 					"enum": ["DSTU2", "STU3", "R2", "R3", "R4", "R5"]
 				},
+				"retryLimit": { "type": "integer" },
 				"queries": {
 					"type": "array",
 					"minLength": 1,

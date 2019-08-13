@@ -159,7 +159,6 @@ function getResourcesByQuery({ fhirEndpoint, query={}, retryLimit=0, token, sign
 }
 
 function getResourcesByUrl({ urls=[], fhirVersion, retryLimit, token, allowErrors, signal, statusCallback }) {
-	
 	const getResourceByUrl = (url) => {
 		if (statusCallback) statusCallback(url);
 		return fetchFHIR(url, {signal}, fhirVersion, token, retryLimit)

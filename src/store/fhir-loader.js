@@ -50,7 +50,7 @@ export default class FhirLoader {
 		return {entry, files, errorLog, errorCount}
 	}
 
-	getFHIR(provider, queries, context, allowErrors=true, mimeTypeMappings={}, dateSortElements={}, statusCallback) {
+	getFHIR(provider, queries, context, allowErrors=true, mimeTypeMappings={}, dateSortElements={}, retryLimit, statusCallback) {
 
 		const patientId = context ? context.patient : provider.patient;
 
@@ -66,6 +66,7 @@ export default class FhirLoader {
 				fhirEndpoint: provider.fhirEndpoint, 
 				query: {...query, params, resourcePath},
 				token: context ? context.access_token : null,
+				retryLimit,
 				allowErrors,
 				statusCallback
 			})
@@ -78,6 +79,7 @@ export default class FhirLoader {
 					fhirEndpoint: provider.fhirEndpoint,
 					fhirVersion: queries.fhirVersion,
 					token: context ? context.access_token : null,
+					retryLimit,
 					allowErrors,
 					statusCallback,
 					signal: this.signal
@@ -100,6 +102,7 @@ export default class FhirLoader {
 					fhirEndpoint: provider.fhirEndpoint,
 					fhirVersion: queries.fhirVersion,
 					token: context ? context.access_token : null,
+					retryLimit,
 					allowErrors,
 					statusCallback,
 					signal: this.signal
