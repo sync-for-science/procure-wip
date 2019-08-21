@@ -13,7 +13,7 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 export default () => {
 	
 	//app state
-	const { providers } = useStoreon("providers");
+	const { providers, dateSortElements } = useStoreon("providers", "dateSortElements");
 
 	//component state
 	const [resourceType, setResourceType] = useState();
@@ -37,8 +37,17 @@ export default () => {
 			.filter( p => p.data && p.data.entry && p.selected )
 			.map( p => p.data.entry ).flatten()
 			.filter( e => (!resourceType || resourceType.value === e.resource.resourceType) )
+			.sortBy( e => {
+				const sortElements = dateSortElements[e.resource.resourceType] || [];
+				const sortElement = _.find( sortElements, element => e.resource[element]);
+				const dateValue =
+					(sortElement && (e.resource[sortElement].start || e.resource[sortElement])) || 
+					(e.resource.meta && e.resource.meta.lastUpdated) || "";
+				return dateValue;
+			})
+			.reverse()
 			.value();
-	}, [providers, resourceType]);
+	}, [providers, resourceType, dateSortElements]);
 
 	//remove leading slashes, trailing slashes and protocol
 	const simplifyUrl = (url) => url.replace(/^\/|https?:\/\/|\/*$/g, "")

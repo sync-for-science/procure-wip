@@ -1,7 +1,6 @@
 import Smart from "../smart/smart-core";
 import SmartPopup from "../smart/smart-popup";
 import FHIR from "../smart/fhir";
-import _ from "lodash";
 
 export default class FhirLoader {
 	
@@ -16,18 +15,6 @@ export default class FhirLoader {
 		} else {
 			this.controller.abort();
 		}
-	}
-
-	sortResources(entry, dateSortElements) {
-		return _.chain(entry)
-			.sortBy( ent => {
-				const sortElements = dateSortElements[ent.resource.resourceType] || [];
-				const sortElement = _.find( sortElements, element => ent.resource[element]);
-				const dateValue =
-					(sortElement && (ent.resource[sortElement].start || ent.resource[sortElement])) || 
-					(ent.resource.meta && ent.resource.meta.lastUpdated) || "";
-				return dateValue;
-			}).reverse().value();
 	}
 
 	mergeAndDeDupeData(data) {
@@ -50,7 +37,7 @@ export default class FhirLoader {
 		return {entry, files, errorLog, errorCount}
 	}
 
-	getFHIR(provider, queries, context, allowErrors=true, mimeTypeMappings={}, dateSortElements={}, retryLimit, statusCallback) {
+	getFHIR(provider, queries, context, allowErrors=true, mimeTypeMappings={}, retryLimit, statusCallback) {
 
 		const patientId = context ? context.patient : provider.patient;
 
@@ -144,10 +131,6 @@ export default class FhirLoader {
 
 		return Promise.all( queries.map(fetchQuery) )
 			.then( this.mergeAndDeDupeData )
-			.then( data => {
-				data.entry = this.sortResources(data.entry, dateSortElements);
-				return data;	
-			})
 	}
 	
 	authAndGetFHIR(provider, ignoreState) {
