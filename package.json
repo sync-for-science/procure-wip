@@ -20,6 +20,7 @@
     "react-select": "^2.4.2",
     "reactstrap": "^7.1.0",
     "sanitize-filename": "^1.6.1",
+    "source-map-explorer": "^2.0.1",
     "storeon": "^0.8.3",
     "strip-json-comments": "^2.0.1",
     "timeago.js": "^4.0.0-beta.2",
@@ -28,6 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && rm -rf build/config/config-override-dev.json",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
