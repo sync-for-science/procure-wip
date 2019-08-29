@@ -95,15 +95,15 @@ Sometimes you may wish to replace the object associated with a property entirely
 
 | Property | Type | Description | 
 | --- | --- | --- |
-| `credentials` | object | SMART on FHIR OAuth credentials that can be referenced by id from one or more endpoints defined in the `endpointList` configuration item. The properties of the object are credential ids and the values are objects with a `clientId` and, optionally, a `clientSecret` property. |
-| `mineTypeMappings` | object | Specifies how to convert the mime types of downloaded attachments into file names. The properties of the object are mime type strings, and the values are file extension strings. |
-| `dateSortElements` | object | Defines which fields in each FHIR ResourceType are used when ordering the resources for a user to browse in Procure's UI. Each property is a FHIR ResourceType, with a value that's an array of FHIR elements. These are evaluated in order, and the first element name that exists is used as the sort date for a resource. All resources fall back to their FHIR `lastUpdated` date if no clinically relevant date is found. |
-| `endpointLists` | object | Populates the list of organizations a user can select from in Procure. The properties of the object are endpoint list ids and the values are endpoint list item objects. See detail below. |
+| `credentials` | object | SMART on FHIR OAuth credentials that can be referenced by id from one or more endpoints defined in the `endpointList` configuration item. The property namess of the object are credential ids and the values are objects with a `clientId` and, optionally, a `clientSecret` property. |
+| `mimeTypeMappings` | object | Specifies how to convert the mime types of downloaded attachments into file names. The property names of the object are mime type strings, and the values are file extension strings. |
+| `dateSortElements` | object | Defines which fields in each FHIR ResourceType are used when ordering the resources for a user to browse in Procure's UI. Each property name is a FHIR ResourceType, with a value that's an array of FHIR elements. These are evaluated in order, and the first element name that exists is used as the sort date for a resource. All resources fall back to their FHIR `lastUpdated` date if no clinically relevant date is found. |
+| `endpointLists` | object | Populates the list of organizations a user can select from in Procure. The property names of the object are endpoint list ids and the values are endpoint list item objects. See [details below](#endpoint-lists). |
 | `warnOnPageNavigate` | boolean | If set to true, a dialog box will be shown when a user tries to navigate away from the Procure webpage without first exporting modified settings. |
 | `redirectUri` | string | Advanced - overrides the redirectUri Procure builds based on the page URL. You probably don't need to change this. |
-| `queryProfiles` | object | Defines the set of queries Procure runs against a FHIR server to download FHIR resources. The supported FHIR resources and search parameters vary by vendor and creating tailored query profiles for different endpoints accommodates this. The properties of the object are query profile ids and the values are query profile objects. See details below. |
+| `queryProfiles` | object | Defines the set of queries Procure runs against a FHIR server to download FHIR resources. The supported FHIR resources and search parameters vary by vendor and creating tailored query profiles for different endpoints accommodates this. The property names of the object are query profile ids and the values are query profile objects. See [details below](#query-profiles). |
 | `ignoreState` | boolean | Advanced - if set to `true`, will prevent the validation of the state parameter as part of the OAuth flow. Should never be set to `true` in production deployments. |
-| `spreadsheetTemplates` | object | Defines transforms to "flatten" FHIR Resources and represent them as spreadsheets. Drives the items that appear in the "Export as Spreadsheet" menu in Procure. The properties of the object are spreadsheet template ids and the values are template objects . See detail below. |
+| `spreadsheetTemplates` | object | Defines transforms to "flatten" FHIR Resources and represent them as spreadsheets. Drives the items that appear in the "Export as Spreadsheet" menu in Procure. The property names of the object are spreadsheet template ids and the values are template objects . See [details below](#spreadsheet-templates). |
 
 
 ### Endpoint Lists 
@@ -132,14 +132,14 @@ Default values for these properties may be included in the `config` or `config-o
 
 ### Query Profiles
 
-Query Profiles defines the set of FHIR endpoints and parameters that Procure uses to retrieve an entire patient record. The FHIR capabilities exposed by each vendor vary, so in general, each vendor will need a custom query profile. Additionally, query profiles can be used to restrict the data retrieved to a subset of a patient's record (for example, by only query Observations with a category of "vital-sign" if other data aren't needed).
+Query Profiles defines the set of FHIR endpoints and parameters that Procure uses to retrieve an entire patient record. The FHIR capabilities exposed by each vendor vary, so in general, each vendor will need a custom query profile. Additionally, query profiles can be used to restrict the data retrieved to a subset of a patient's record (for example, by only querying Observations with a category of "vital-sign" if other data aren't needed).
 
 | Property | Type | Description | 
 | --- | --- | --- |
 | `title` | string, optional | Informational - useful for administrators reviewing configurations and used in error messages. |
 | `fhirVersion` | string, optional | Defaults to `R2`, but values of `R3` and `R4` are also valid. |
 | `retryLimit` | integer, optional | Sets how many times Procure retries a single query before failing and reporting an error. Defaults to 0. |
-| `queries` | array of query objects | See details below |  
+| `queries` | array of query objects | See [details below](#query-object) |  
 
 
 #### Query Object
@@ -169,7 +169,7 @@ Each property in the spreadsheetTemplates configuration object represents a tran
 
 | Property | Type | Description | 
 | --- | --- | --- |
-| `path` | string or array of strings, required | Limited FHIR path expression (only dot delimited values are supported), or array of such expressions, that identifies the element that will be mapped to a spreadsheet field. Paths that result in an array of values will be spread across multiple rows in the output spreadsheet, with other fields being repeated on each row. If multiple paths are listed, they will be tested in sequence and the first path that results in a value will be used. A path value of "*" indicates that the item should match the root of the resource when no other path matches. |
+| `path` | string or array of strings, required | Limited FHIR path expression (only dot delimited values are supported), or array of such expressions, that identifies the element that will be mapped to a spreadsheet field. Paths that result in an array of values will be spread across multiple rows in the output spreadsheet, with other fields being repeated on each row. If multiple paths are listed, they will be tested in sequence and the first path that results in a value will be used. A path value of `"*"` indicates that the item should match the root of the resource when no other path matches. |
 | `name` | string, optional | Column heading for this field. If omitted, field will not be included in output spreadsheet, but can still be used to filter rows. |
 | `test` | string, optional | Name of built-in function that is used to evaluate if this row should be included in the output spreadsheet, filtering the row if the test function does not return `true`. See Test Functions section below for available options. |
 | `id` | string, optional | Identifier for this field, used for template inheritance. See Template Inheritance below. |
