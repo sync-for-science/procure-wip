@@ -95,7 +95,7 @@ Sometimes you may wish to replace the object associated with a property entirely
 
 | Property | Type | Description | 
 | --- | --- | --- |
-| `credentials` | object | SMART on FHIR OAuth credentials that can be referenced by id from one or more endpoints defined in the `endpointList` configuration item. The property namess of the object are credential ids and the values are objects with a `clientId` and, optionally, a `clientSecret` property. |
+| `credentials` | object | SMART on FHIR OAuth credentials that can be referenced by id from one or more endpoints defined in the `endpointList` configuration item. The property names of the object are credential ids and the values are objects with a `clientId` and, optionally, a `clientSecret` property. |
 | `mimeTypeMappings` | object | Specifies how to convert the mime types of downloaded attachments into file names. The property names of the object are mime type strings, and the values are file extension strings. |
 | `dateSortElements` | object | Defines which fields in each FHIR ResourceType are used when ordering the resources for a user to browse in Procure's UI. Each property name is a FHIR ResourceType, with a value that's an array of FHIR elements. These are evaluated in order, and the first element name that exists is used as the sort date for a resource. All resources fall back to their FHIR `lastUpdated` date if no clinically relevant date is found. |
 | `endpointLists` | object | Populates the list of organizations a user can select from in Procure. The property names of the object are endpoint list ids and the values are endpoint list item objects. See [details below](#endpoint-lists). |
