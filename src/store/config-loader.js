@@ -6,20 +6,38 @@ import configSchema from "../schemas/config-schema.json";
 import _ from "lodash";
 import mergeObjects from "./merge-objects.js";
 
-function readConfigFile(path) {
-	return fetch(path)
+function readConfigFile(path, isOverride) {
+	return fetch(path, { headers: {'Accept': 'application/json'} })
 		.then( response => {
-			if (!response.ok)
+			if (!response.ok && isOverride) {
+				throw new Error("no_override");
+			} else if (!response.ok) {
 				throw new Error(`${path} - HTTP ${response.status} - ${response.statusText}`);
+			}
 			return response;
 		})
 		.then( data => data.text() )
-		.then( data => JSON.parse(stripJsonComments(data)) )
+		.then( data => {
+			let json;
+			try {
+				json = JSON.parse(stripJsonComments(data));
+				return json;
+			} catch {
+				throw new Error(`${path} is not valid JSON.`);
+			}
+		})
+		.catch( e => {
+			if (e.message === "no_override") {
+				return {};
+			} else {
+				throw e;
+			}
+		})
 }
 
 function loadConfigFile(path, overridePath) {
 	let configReaders = [readConfigFile(path)];
-	if (overridePath) configReaders.push(readConfigFile(overridePath));
+	if (overridePath) configReaders.push(readConfigFile(overridePath, true));
 
 	return Promise.all(configReaders)
 		.then( data => mergeObjects.merge(data) )
@@ -94,7 +112,7 @@ function loadEndpointLists(config) {
 	const getEndpointList = (endpointList, id) => {
 		if (!endpointList.path) return;
 
-		return fetch(endpointList.path)
+		return fetch(endpointList.path, { headers: {'Accept': 'application/json'} })
 			.then( response => {
 				if (!response.ok)
 					throw new Error(`${endpointList.path} - HTTP ${response.status} - ${response.statusText}`);
