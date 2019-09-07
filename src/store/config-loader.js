@@ -9,30 +9,23 @@ import mergeObjects from "./merge-objects.js";
 function readConfigFile(path, isOverride) {
 	return fetch(path, { headers: {'Accept': 'application/json'} })
 		.then( response => {
-			if (!response.ok && isOverride) {
-				throw new Error("no_override");
-			} else if (!response.ok) {
-				throw new Error(`${path} - HTTP ${response.status} - ${response.statusText}`);
-			}
+			if (!response.ok && !isOverride)
+				throw new Error(`${path} - HTTP ${response.status} - ${response.statusText}`);				
+			
+			if (!response.ok && isOverride)
+				response = { text: () => "{}" };
+
 			return response;
 		})
 		.then( data => data.text() )
 		.then( data => {
-			let json;
 			try {
-				json = JSON.parse(stripJsonComments(data));
-				return json;
+				return JSON.parse(stripJsonComments(data));
 			} catch {
 				throw new Error(`${path} is not valid JSON.`);
 			}
 		})
-		.catch( e => {
-			if (e.message === "no_override") {
-				return {};
-			} else {
-				throw e;
-			}
-		})
+
 }
 
 function loadConfigFile(path, overridePath) {
