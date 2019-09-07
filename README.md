@@ -204,6 +204,8 @@ If a template has one or more template id values in its `extends` property (desc
 - [Font Awesome Free](https://fontawesome.com) - UI icons, MIT License (code), CC BY 4.0 License (icons)
 - [React Select](https://react-select.com/home) - Searchable dropdown list, MIT License
 - [React JSON Tree](https://github.com/reduxjs/redux-devtools/tree/master/packages/react-json-tree) - Tree widget from Redux Dev Tools, MIT License
+- [Reactstrap](https://github.com/reactstrap/reactstrap) - Simple React Bootstrap 4 components, MIT License
+
 ### Misc
 - [Lodash](https://lodash.com/) - Functional programming utilities, MIT License
 - [TV4](https://github.com/geraintluff/tv4) - JSON schema validation, Public Domain License
