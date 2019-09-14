@@ -103,7 +103,7 @@ const actions = store => {
 	});
 	store.on("fhir/loadData", ({ providers, queryProfiles, mimeTypeMappings, ignoreState }, providerId) => {
 		const provider = providers.find(p => p.id === providerId);
-		const queries = queryProfiles[provider.queryProfile].queries;
+		const queryProfile = queryProfiles[provider.queryProfile];
 		const retryLimit = queryProfiles[provider.queryProfile].retryLimit || 0;
 		
 		const handleLoadDone = (data) => {
@@ -125,7 +125,7 @@ const actions = store => {
 		
 		const loadFhir = (context) => {
 			store.dispatch("uiState/merge", {submode: "loading"});
-			fhirLoader.getFHIR(provider, queries, context, true, mimeTypeMappings, retryLimit, handleStatusUpdate)
+			fhirLoader.getFHIR(provider, queryProfile, context, true, mimeTypeMappings, retryLimit, handleStatusUpdate)
 				.then(handleLoadDone)
 				.catch(handleGlobalError);
 		}

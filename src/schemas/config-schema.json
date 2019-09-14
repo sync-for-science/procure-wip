@@ -56,7 +56,7 @@
 					"type": "array",
 					"items": {
 						"type": "string",
-						"pattern": "^[-\\w]+/(\\*\\.)?[*-\\w+]+(\\.\\w+)?$" 
+						"pattern": "^(([-\\w]+/(\\*\\.)?[*-\\w+]+(\\.\\w+)?)|profile|openid|fhirUser|launch|offline_access|online_access)$" 
 					}
 				},
 				"fhirEndpoint": { 

@@ -114,14 +114,14 @@ function exchangeCodeForToken(tokenEndpoint, code, redirectUri, clientId, client
 		body: [
 			"grant_type=authorization_code",
 			"code=" + encodeURIComponent(code),
-			"redirect_uri=" + encodeURIComponent(redirectUri)
+			"redirect_uri=" + encodeURIComponent(redirectUri),
+			"&client_id=" + encodeURIComponent(clientId)
 		].join("&")
 	}
 
 	if (clientSecret) {
 		config.auth = {username: clientId, password: clientSecret}
-	} else {
-		config.body += "&client_id=" + encodeURIComponent(clientId)
+		config.body += "&client_id=" + encodeURIComponent(clientId) + "&client_secret=" + encodeURIComponent(clientSecret);
 	}
 
 	return fetch(tokenEndpoint, config)

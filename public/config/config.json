@@ -46,6 +46,13 @@
 				"queryProfile": "argonaut_spec",
 				"scope": ["patient/*.read", "launch/patient"]
 			}
+		},
+		"blue_button_endpoints": {
+			"path": "./config/bluebutton_endpoints.json",
+			"defaults": {
+				"queryProfile": "blue_button_r4",
+				"scope": ["profile", "patient/Patient.read", "patient/ExplanationOfBenefit.read", "patient/Coverage.read"]
+			}
 		}
 	},
 	"warnOnPageNavigate": false,
@@ -64,6 +71,23 @@
 			},{
 				"title": "Demographics",
 				"resourcePath": "Patient/{{patientId}}"
+			}]
+		},
+		"blue_button_r4": {
+			"title": "Blue Button R4",
+			"fhirVersion": "R4",
+			"retryLimit": 2,
+			"queries": [{
+				"title": "Explanation of Benefit",
+				"resourcePath": "ExplanationOfBenefit",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "Patient",
+				"resourcePath": "Patient/{{patientId}}"
+			},{
+				"title": "Coverage",
+				"resourcePath": "Coverage",
+				"params": {"patient": "{{patientId}}"}			
 			}]
 		},
 		"documents": {

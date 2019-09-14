@@ -37,7 +37,7 @@ export default class FhirLoader {
 		return {entry, files, errorLog, errorCount}
 	}
 
-	getFHIR(provider, queries, context, allowErrors=true, mimeTypeMappings={}, retryLimit, statusCallback) {
+	getFHIR(provider, queryProfile, context, allowErrors=true, mimeTypeMappings={}, retryLimit, statusCallback) {
 
 		const patientId = context ? context.patient : provider.patient;
 
@@ -51,7 +51,7 @@ export default class FhirLoader {
 
 			return FHIR.getResourcesByQuery({
 				fhirEndpoint: provider.fhirEndpoint, 
-				query: {...query, params, resourcePath},
+				query: {...query, params, resourcePath, fhirVersion: queryProfile.fhirVersion},
 				token: context ? context.access_token : null,
 				retryLimit,
 				allowErrors,
@@ -64,7 +64,7 @@ export default class FhirLoader {
 					entry: data.entry,
 					paths: query.containReferences,
 					fhirEndpoint: provider.fhirEndpoint,
-					fhirVersion: queries.fhirVersion,
+					fhirVersion: queryProfile.fhirVersion,
 					token: context ? context.access_token : null,
 					retryLimit,
 					allowErrors,
@@ -87,7 +87,7 @@ export default class FhirLoader {
 					entry: data.entry,
 					paths: query.retrieveReferences,
 					fhirEndpoint: provider.fhirEndpoint,
-					fhirVersion: queries.fhirVersion,
+					fhirVersion: queryProfile.fhirVersion,
 					token: context ? context.access_token : null,
 					retryLimit,
 					allowErrors,
@@ -108,7 +108,7 @@ export default class FhirLoader {
 					entry: data.entry,
 					paths: query.downloadAttachments,
 					fhirEndpoint: provider.fhirEndpoint,
-					fhirVersion: queries.fhirVersion,
+					fhirVersion: queryProfile.fhirVersion,
 					token: context ? context.access_token : null,
 					retryLimit,
 					mimeTypeMappings,
@@ -129,7 +129,7 @@ export default class FhirLoader {
 			})
 		}
 
-		return Promise.all( queries.map(fetchQuery) )
+		return Promise.all( queryProfile.queries.map(fetchQuery) )
 			.then( this.mergeAndDeDupeData )
 	}
 	
