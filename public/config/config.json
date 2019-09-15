@@ -37,7 +37,7 @@
 				"queryProfile": "argonaut_epic",
 				"isOpen": false,
 				"credentialId": "epic",
-				"scope": ["patient/launch", "patient/*.read"]
+				"scope": ["launch/patient", "patient/*.read"]
 			}
 		},
 		"sandbox_endpoints": {
@@ -51,7 +51,7 @@
 			"path": "./config/bluebutton_endpoints.json",
 			"defaults": {
 				"queryProfile": "blue_button_r4",
-				"scope": ["profile", "patient/Patient.read", "patient/ExplanationOfBenefit.read", "patient/Coverage.read"]
+				"scope": ["launch/patient", "patient/Patient.read", "patient/ExplanationOfBenefit.read", "patient/Coverage.read"]
 			}
 		}
 	},
