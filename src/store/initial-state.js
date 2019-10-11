@@ -6,5 +6,6 @@ module.exports = {
 	queryProfile: {},
 	mimeTypeMappings: {},
 	githubConfig: {},
+	upload: {},
 	providers: []
 }

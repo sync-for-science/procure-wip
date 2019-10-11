@@ -13,6 +13,7 @@ import Header from "./Header";
 import FhirTree from "./FhirTree";
 import Toolbar from "./Toolbar";
 import BlankSlate from "./BlankSlate";
+import FileUploader from "./FileUploader";
 
 const App = () =>  {
 
@@ -63,6 +64,7 @@ const App = () =>  {
 			{ uiState.mode === "editProvider" && <ProviderForm /> }
 			{ uiState.mode === "loadData" && <Fetcher /> }
 			{ uiState.mode === "githubExport" && <GithubUploader /> }
+			{ uiState.mode === "fileUpload" && <FileUploader /> }
 		</Container>
 	</div>
 }

@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"type": "object",
+	"required": [ "name", "uploadUrl", "infoUrl" ],
+	"additionalProperties": false,
+	"properties": {
+		"name": { "type": "string" },
+		"uploadUrl": {
+			"type": "string", 
+			"format": "uri"
+		},
+		"infoUrl": {
+			"type": "string", 
+			"format": "uri"
+		},
+		"successMessage": { "type": "string" },
+		"continueLabel": { "type": "string" },
+		"continueUrl": {
+			"type": "string", 
+			"format": "uri"
+		}
+	}
+
+}

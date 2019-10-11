@@ -6,6 +6,29 @@ import configSchema from "../schemas/config-schema.json";
 import _ from "lodash";
 import mergeObjects from "./merge-objects.js";
 
+function getUrlParameter(name) {
+    name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(window.location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+function overlayQsValues(config) {
+	const manifestUrl = getUrlParameter("upload_manifest_url");
+	if (manifestUrl) {
+		config.upload = config.upload || {};
+		config.upload.manifestUrl = manifestUrl;
+		config.upload.qsManifestUrl = true;
+	}
+	const label = getUrlParameter("upload_label");
+	if (label) {
+		config.upload = config.upload || {};
+		config.upload.label = label;
+	}
+	return config;
+}
+
+
 function readConfigFile(path, isOverride) {
 	return fetch(path, { headers: {'Accept': 'application/json'} })
 		.then( response => {
@@ -97,6 +120,13 @@ function loadConfigFile(path, overridePath) {
 				window.location.href.split(/\?|#/)[0].replace(/\/*$/, "/callback.html");
 			return config;
 		})
+		.then( config => {
+			return overlayQsValues(config);
+		})
+		// .then( config => {
+		// 	console.log(config);
+		// 	return config;
+		// })
 
 }
 

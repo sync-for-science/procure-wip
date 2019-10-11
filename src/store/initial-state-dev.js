@@ -5,6 +5,7 @@ module.exports = {
 	isDirty: false,
 	nonModalUi: {},
 	queryProfile: {},
+	upload: {},
 	mimeTypeMappings: {},
 	githubConfig: {
 		token: "19bac35872878509e973cbf017249af977176434",

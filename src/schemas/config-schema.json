@@ -22,6 +22,43 @@
 				}
 			}
 		},
+		"upload": {
+			"type": "object",
+			"anyOf": [
+				{ "required": ["whitelist"] },
+				{ "required": ["manifestUrl"] },
+				{ "required": ["name", "uploadUrl", "infoUrl"] }
+			],
+			"properties": {
+				"whitelist":  {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^https?:\/\/.+"
+					}
+				},
+				"name": { "type": "string" },
+				"label": { "type": "string" },
+				"manifestUrl": {
+					"type": "string", 
+					"format": "uri"
+				},
+				"uploadUrl": {
+					"type": "string", 
+					"format": "uri"
+				},
+				"infoUrl": {
+					"type": "string", 
+					"format": "uri"
+				},
+				"successMessage": { "type": "string" },
+				"continueLabel": { "type": "string" },
+				"continueUrl": {
+					"type": "string", 
+					"format": "uri"
+				}
+			}
+		},
 		"date_sort_elements": {
 			"type": "object",
 			"additionalProperties": { 
@@ -177,6 +214,7 @@
 		"credentials": { "$ref": "#/definitions/credentials" },
 		"mimeTypeMappings": { "$ref": "#/definitions/mime_type_mappings" },
 		"dateSortElements": { "$ref": "#/definitions/date_sort_elements" },
+		"upload": { "$ref": "#/definitions/upload" },
 		"redirectUri": { 
 			"type": ["string", "null"],
 			"format": "uri"

@@ -17,6 +17,13 @@
 				"user-settings.json"
 			],
 			"url": "./src/schemas/user-settings-schema.json"
-		}
-	]
+		},
+		{
+			"fileMatch": [
+				"upload-manifest.json"
+			],
+			"url": "./src/schemas/upload-manifest-schema.json"
+		},
+	],
+	"git.ignoreLimitWarning": true
 }

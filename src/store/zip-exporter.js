@@ -37,14 +37,18 @@ function exportProvider(provider) {
 }
 
 function exportProviders(providers, fileName="procure-data.zip") {
+	return exportProvidersAsBlob(providers)
+		.then( blob => saveAs(blob, fileName) );
+}
+
+function exportProvidersAsBlob(providers) {
 	return new Promise( (resolve, reject) => {
 		const zip = new jszip();
-		providers.filter( p => p.data && p.data.entry.length).forEach( provider => {
+		providers.filter( p => p.data && p.data.entry.length && p.selected).forEach( provider => {
 			const folder = zip.folder( sanitizeFilename(provider.name) );
 			addProviderToZip(folder, provider);
 		});
 		zip.generateAsync({type: "blob"})
-			.then( blob => saveAs(blob, fileName) )
 			.then( resolve )
 			.catch( reject );
 	});
@@ -61,4 +65,4 @@ function generateFile(providers, multiProviderFileName) {
 	}
 }
 
-export default { generateFile }
+export default { generateFile, exportProvidersAsBlob }

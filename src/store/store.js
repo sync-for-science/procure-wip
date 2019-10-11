@@ -5,6 +5,8 @@ import ZipExporter from "./zip-exporter";
 import GithubExporter from "./github-exporter";
 import SpreadsheetExporter from "./spreadsheet-exporter";
 import UserSettings from "./user-settings";
+import FileExporter from "./file-exporter";
+import zipExporter from "./zip-exporter";
 
 //have to use require here since imports need to be at the top level
 let initialState;
@@ -16,6 +18,7 @@ if (process.env.NODE_ENV !== "development") {
 
 const fhirLoader = new FhirLoader();
 const ghExporter = new GithubExporter();
+const fileExporter = new FileExporter();
 
 const createUniqueId = () => Math.random().toString(36);
 const actions = store => {
@@ -87,7 +90,9 @@ const actions = store => {
 			.loadConfigFile("./config/config.json", overridePath)
 			.then( config => {
 				store.dispatch("config/merge", config);
+
 				store.dispatch("uiState/set", {mode: "ready"});
+
 				//initialize content for refresh
 				store.dispatch("refreshDirty", true);
 			})
@@ -222,12 +227,86 @@ const actions = store => {
 			});
 
 	})
+
 	store.on("export/github/cancel", () => {
 		ghExporter.cancel();
 		store.dispatch("uiState/set", { 
 			mode: "githubExport"
 		});
-	})
+	});
+
+	store.on("export/upload", ({upload})  => {
+		store.dispatch("uiState/set", { 
+			mode: "fileUpload",
+			submode: "getManifest",
+			status: "Retrieving Upload Details"
+		});
+
+		//check whitelist if url doesn't come from config file
+		if (upload.qsManifestUrl) {
+			const isValidUrl = fileExporter.isValidUrl(upload.manifestUrl, upload.whitelist);
+			if (!isValidUrl) return store.dispatch("uiState/merge", {
+				error: "Url manifest location not in whitelist: " + upload.manifestUrl
+			});
+		}
+
+		//if upload url is in config and no overriding manifest url, don't fetch manifest
+		if (upload.uploadUrl && !upload.manifestUrl) {
+			return store.dispatch("uiState/merge", {
+				submode: "preUpload"
+			});
+		}
+
+		//fetch manifest to get upload info
+		fileExporter.getManifest(upload.manifestUrl)
+			.then( data => {
+				store.dispatch("config/merge", {
+					upload: {
+						manifestUrl: upload.manifestUrl,
+						label: upload.label,
+						...data
+					}
+				});
+				store.dispatch("uiState/merge", {
+					submode: "preUpload"
+				});
+			})
+			.catch( err => {
+				store.dispatch("uiState/merge", {
+					error: err.message
+				});
+			});
+	});
+	
+	store.on("export/upload/cancel", () => {
+		fileExporter.cancel();
+		store.dispatch("uiState/merge", {
+			submode: "preUpload"
+		});
+	});
+
+	store.on("export/upload/send", ({upload, providers}) => {
+		store.dispatch("uiState/merge", { 
+			submode: "uploading",
+			status: "Uploading Data"
+		});
+
+		zipExporter.exportProvidersAsBlob(providers)
+			.then( file => {
+				return fileExporter.putFile(upload.uploadUrl, file)
+			})
+			.then( () => {
+				store.dispatch("uiState/merge", {
+					submode: "postUpload"
+				});
+			})
+			.catch( err => {
+				store.dispatch("uiState/merge", {
+					error: err.message
+				});
+			})
+
+	});
 
 	store.on("export/settings", ({providers, githubConfig, redirectUri}) => {
 		UserSettings.download(providers, githubConfig, redirectUri);

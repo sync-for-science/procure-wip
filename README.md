@@ -104,6 +104,7 @@ Sometimes you may wish to replace the object associated with a property entirely
 | `queryProfiles` | object | Defines the set of queries Procure runs against a FHIR server to download FHIR resources. The supported FHIR resources and search parameters vary by vendor and creating tailored query profiles for different endpoints accommodates this. The property names of the object are query profile ids and the values are query profile objects. See [details below](#query-profiles). |
 | `ignoreState` | boolean | Advanced - if set to `true`, will prevent the validation of the state parameter as part of the OAuth flow. Should never be set to `true` in production deployments. |
 | `spreadsheetTemplates` | object | Defines transforms to "flatten" FHIR Resources and represent them as spreadsheets. Drives the items that appear in the "Export as Spreadsheet" menu in Procure. The property names of the object are spreadsheet template ids and the values are template objects . See [details below](#spreadsheet-templates). |
+| `upload` | object | Identifies a web based endpoint and related information to enable users to upload their data, for example, to share it with a research study. See [details below](#upload-endpoint). |
 
 
 ### Endpoint Lists 
@@ -129,6 +130,47 @@ Endpoint list files are structured as an JSON object with a single `Entry` (or `
 | `clientSecret` | string | OAuth client_secret for the endpoint. Ignored for open endpoints and not applicable to many secure endpoints. Will override a clientId referenced through the `credentialId` property. |
 
 Default values for these properties may be included in the `config` or `config-override` files in the `endpointLists` > `[id]` > `defaults` object, however, properties in the endpoint list files will take precedence.
+
+### Upload Endpoint
+
+Optionally, Procure can be configured to enable users to share their data by uploading a file containing the FHIR resources and related attachments to a web server, (for example, to share their data with a research study they're participating in). The upload endpoint and related information can be specified directly in Procure's configuration file through the `upload` key. Alternatively, the `upload` key can be used to provide a URL that points to a manifest file that contains this information (for example, if the upload location URL needs to be generated dynamically, as is the case for a signed AWS S3 endpoint). Lastly, the `upload` key can be used provide a whitelist of valid manifest URL patterns and the actual manifest location can be passed to the app as a querystring url parameter.
+
+Example backend servers that can generate manifests and receive uploads are in the `upload-backends` folder.
+
+#### Pre-Configured Upload Settings
+The `upload` property object has the following properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `uploadUrl` | string, required | HTTP URL or HTTPS URL supporting CORS and PUT operation. |
+| `name` | string, required | Name for the project accepting the upload. Displayed in the upload dialog box before the user initiates the transfer. |
+| `infoUrl` | string, required | URL to web page describing the project accepting the upload. This page should incorporate or link to the project's privacy policy and terms of use. Displayed in the upload dialog box before the user initiates the transfer. |
+| `successMessage` | string, optional | Text displayed to the user after an upload successfully completes. |
+| `continueUrl` | string, optional | URL that will be opened in a new window following a successful transfer. May be used to support having the user log in and link the uploaded data to an existing account, review the uploaded data for accuracy, configure granular access permissions, etc. |
+| `continueLabel` | string, optional | Label for the button that triggers launch of the continue URL following a successful upload. |
+| `label` | string, optional | Label for upload button in UI. Defaults to "Share Data". |
+
+#### Pre-Configured Manifest Location
+The `upload` property object has the following properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `manifestUrl` | string, required | HTTP URL or HTTPS URL supporting CORS that returns a JSON manifest object containing the `uploadUrl`, `name` and `infoUrl` properties described above. The manifest may also contain the optional `successMessage`, `continueUrl` and `continueLabel` properties described above. |
+| `label` | string, optional | Label for upload button in UI. Defaults to "Share Data". |
+
+#### Dynamic Manifest Location
+The `upload` property object has the following properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `whitelist` | array, required | Array of URL patterns (indicate wildcard segments with an `*`) . Used to evaluate the manifestUrl being passed in to Procure as a querystring parameter. |
+| `label` | string, optional | Label for upload button in UI. Defaults to "Share Data". |
+
+URL querystring parameters:
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `upload_manifest_url` | string, required | HTTP URL or HTTPS URL supporting CORS that returns a JSON manifest object containing the `uploadUrl`, `name` and `infoUrl` properties described above. The manifest may also contain the optional `successMessage`, `continueUrl` and `continueLabel` properties described above. |
+| `upload_label` | string, optional | Label for upload button in UI. Defaults to "Share Data". |
 
 ### Query Profiles
 
