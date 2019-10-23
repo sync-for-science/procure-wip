@@ -28,7 +28,7 @@ Procure runs entirely as a web page in the user's browser and can be hosted from
 	git clone [github path]/procure
 	cd procure
 	curl https://open.epic.com/MyApps/EndpointsJson -o ./public/config/epic_endpoints.json
-	npm i
+	npm ci
 	```
 
 3. Start the Procure development server  
