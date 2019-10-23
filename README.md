@@ -167,6 +167,7 @@ The `upload` property object has the following properties:
 | `label` | string, optional | Label for upload button in UI. Defaults to "Share Data". |
 
 URL querystring parameters:
+
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `upload_manifest_url` | string, required | HTTP URL or HTTPS URL supporting CORS that returns a JSON manifest object containing the `uploadUrl`, `name` and `infoUrl` properties described above. The manifest may also contain the optional `successMessage`, `continueUrl` and `continueLabel` properties described above. |
