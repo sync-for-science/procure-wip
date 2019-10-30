@@ -4,9 +4,9 @@ import FHIR from "../smart/fhir";
 
 export default class FhirLoader {
 	
-	constructor() {
+	resetAbortController() {
 		this.controller = new AbortController();
-		this.signal = this.controller.signal;		
+		this.signal = this.controller.signal;	
 	}
 
 	cancel() {
@@ -38,7 +38,6 @@ export default class FhirLoader {
 	}
 
 	getFHIR(provider, queryProfile, context, allowErrors=true, mimeTypeMappings={}, retryLimit, statusCallback) {
-
 		const patientId = context ? context.patient : provider.patient;
 
 		const fetchQuery = (query) => {
@@ -55,7 +54,8 @@ export default class FhirLoader {
 				token: context ? context.access_token : null,
 				retryLimit,
 				allowErrors,
-				statusCallback
+				statusCallback,
+				signal: this.signal
 			})
 			.then( data => {
 				if (!query.containReferences) return data;
@@ -129,6 +129,19 @@ export default class FhirLoader {
 			})
 		}
 
+		this.resetAbortController();
+
+		//sequential query
+		// return queryProfile.queries.reduce((promiseChain, currentQuery) => {
+		// 	return promiseChain.then( chainResults =>
+		// 		fetchQuery(currentQuery) .then( currentResult =>
+		// 			[ ...chainResults, currentResult ]
+		// 		)
+		// 	);
+		// }, Promise.resolve([]))
+		// 	.then( this.mergeAndDeDupeData )
+
+		//parallel (moderated by browser)
 		return Promise.all( queryProfile.queries.map(fetchQuery) )
 			.then( this.mergeAndDeDupeData )
 	}

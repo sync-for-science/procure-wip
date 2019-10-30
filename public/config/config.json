@@ -2,6 +2,7 @@
 	"credentials": {
 		"epic_sandbox_secure": {"clientId": "8ab5bc00-5c7b-4dc4-bf2f-3eba54e3b21d" },
 		"smart_sandbox_secure": {"clientId": "fake_client_id"},
+		"cerner_sandbox_secure": {"clientId": "9342771e-969a-413a-b70c-7909ce8d7c1d"},
 		"epic": {"clientId": "tbd"}
 	},
 	"mimeTypeMappings": {
@@ -73,6 +74,7 @@
 				"resourcePath": "Patient/{{patientId}}"
 			}]
 		},
+
 		"blue_button_r4": {
 			"title": "Blue Button R4",
 			"fhirVersion": "R4",
@@ -90,6 +92,7 @@
 				"params": {"patient": "{{patientId}}"}			
 			}]
 		},
+
 		"documents": {
 			"title": "Documents (DSTU2)",
 			"fhirVersion": "R2",
@@ -101,6 +104,7 @@
 				"pageLimit": 2
 			}]
 		},
+
 		"argonaut_spec": {
 			"title": "Argonaut (DSTU2)",
 			"fhirVersion": "R2",
@@ -163,6 +167,7 @@
 				"params": {"patient": "{{patientId}}", "category": "vital-signs"}
 			}]
 		},
+
 		"argonaut_epic": {
 			"title": "Argonaut (Epic)",
 			"fhirVersion": "R2",
@@ -222,98 +227,162 @@
 				"params": {"patient": "{{patientId}}"}
 			}]
 		},
+
+		"argonaut_meditech": {
+			"title": "Argonaut (Meditech)",
+			"fhirVersion": "R2",
+			"retryLimit": 2,
+			"queries": [{
+				"resourcePath": "AllergyIntolerance",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "CarePlan",
+				"params": {"patient": "{{patientId}}", "category": "assess-plan"}
+			},{
+				"resourcePath": "CarePlan",
+				"params": {"patient": "{{patientId}}", "category": "careteam", "status": "active"}
+			},{
+				"resourcePath": "Condition",
+				"params": {
+					"patient": "{{patientId}}",
+					"category": "condition" //no support for multiple categories in a single request
+				}
+			},{
+				"resourcePath": "Condition",
+				"params": {
+					"patient": "{{patientId}}",
+					"category": "health-concern"
+				}
+			},{
+				"resourcePath": "Device",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "DiagnosticReport",
+				"params": {"patient": "{{patientId}}", "category": "LAB"}
+			},{
+				"resourcePath": "DocumentReference",
+				"params": {"patient": "{{patientId}}"},
+				"downloadAttachments": "content.attachment" //attachments seem to 404
+			},{				
+				"title": "Laboratory Results",
+				"resourcePath": "Observation",
+				"params": {"patient": "{{patientId}}", "category": "laboratory"}
+			},{
+				"resourcePath": "Goal",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "Immunization",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "MedicationOrder",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "prescriber"
+			},{
+				"resourcePath": "MedicationStatement",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "Patient/{{patientId}}"
+			},{
+				"resourcePath": "Procedure",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "Smoking Status",
+				"resourcePath": "Observation",
+				"params": {"patient": "{{patientId}}", "code": "72166-2"}
+			},{
+				"title": "Vital Signs",
+				"resourcePath": "Observation",
+				"params": {"patient": "{{patientId}}", "category": "vital-signs"}
+			}]
+		},
+
+		"demographics": {
+			"title": "Demographics",
+			"fhirVersion": "R2",
+			"retryLimit": 2,
+			"queries": [{
+				"resourcePath": "Patient/{{patientId}}"
+			}]
+		},
+
 		"argonaut_cerner": {
 			"title": "Argonaut (Cerner)",
 			"fhirVersion": "R2",
 			"queries": [{
-				
+				//may require user/Practitioner.read scope to work properly - unclear
+				"resourcePath": "CarePlan",
+				"params": {"patient": "{{patientId}}", "category": "assess-plan",  "_count": 100},
+			 	"retrieveReferences": "author"
+			},{
 				"resourcePath": "Patient/{{patientId}}"
-				
-				// "resourcePath": "CarePlan",
-				// "params": {"patient": "{{patientId}}", "category": "assess-plan",  "_count": 100},
-				// "retrieveReferences": "author"
-			// },{
-				// "resourcePath": "CarePlan",
-				// "params": {"patient": "{{patientId}}", "category": "careteam", "_count": 100},
-				// "containReferences": "participant.member"
-			// },{
-			// 	"resourcePath": "Goal",
-			// 	"params": {"patient": "{{patientId}}"}
-			// },{
-			// 	"resourcePath": "ProcedureRequest",
-			// 	"params": {"patient": "{{patientId}}", "_count": 100}				
-			// },{
-
-
-				// "resourcePath": "DiagnosticReport",
-				// "params": {"patient": "{{patientId}}",  "_count": 100},
-				// "retrieveReferences": "performer",
-				// "downloadAttachments": "presentedForm"
-
-
-
-
+			},{
+				"resourcePath": "CarePlan",
+				"params": {"patient": "{{patientId}}", "category": "careteam", "_count": 100},
+				"containReferences": "participant.member"
+			},{
+				"resourcePath": "Goal",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "ProcedureRequest",
+				"params": {"patient": "{{patientId}}", "_count": 100}				
+			},{
+				"resourcePath": "DiagnosticReport",
+				"params": {"patient": "{{patientId}}",  "_count": 100},
+				"retrieveReferences": "performer",
+				"downloadAttachments": "presentedForm"
 			},{
 				"resourcePath": "Observation",
 				"params": {"patient": "{{patientId}}", "_count": 100}
-			// },{
-				// "resourcePath": "Device",
-				// "params": {"patient": "{{patientId}}"}
-			// },{
-				// "resourcePath": "Encounter",
-				// "params": {"patient": "{{patientId}}", "_count": 100},
-				// "containReferences": "participant.individual"
-			// },{
-				// //requires RelatedPerson.read scope
-				// "resourcePath": "Contract",
-				// "params": {"subject": "Patient/{{patientId}}", "_include": "Contract:actor"}
-			// },{			
-				
-				
-			// 	"resourcePath": "AllergyIntolerance",
-			// 	"params": {"patient": "{{patientId}}"},
-			// 	"retrieveReferences": "recorder"
-			// },{
-			// 	"resourcePath": "Condition",
-			// 	"params": {"patient": "{{patientId}}"},
-			// 	"retrieveReferences": "asserter"
-			// },{
-			// 	"resourcePath": "Procedure",
-			// 	"params": {"patient": "{{patientId}}"},
-			// 	"retrieveReferences": "performer"
-
-
 			},{
-				"resourcePath": "DocumentReference",
-				"params": {"patient": "{{patientId}}", "_count": 10},
-				"downloadAttachments": "content.attachment",
-				"pageLimit": 2
-
-				// },{
-				// "resourcePath": "RelatedPerson",
-				// "params": {"patient": "{{patientId}}"}
+				"resourcePath": "Device",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "Encounter",
+				"params": {"patient": "{{patientId}}", "_count": 100},
+				"containReferences": "participant.individual"
+			},{
+				//requires RelatedPerson.read scope
+				"resourcePath": "Contract",
+				"params": {"subject": "Patient/{{patientId}}", "_include": "Contract:actor"}
+			},{			
+				"resourcePath": "AllergyIntolerance",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "recorder"
+			},{
+				"resourcePath": "Condition",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "asserter"
+			},{
+				"resourcePath": "Procedure",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "performer"
+			},{
+				"resourcePath": "RelatedPerson",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "Immunization",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "perfomer" 
+				//["performer", "location"] //location looks like a FHIR resource, but isn't exposed
+			},{
+				"resourcePath": "MedicationAdministration",
+				"params": {"patient": "{{patientId}}", "_count": 100},
+				"retrieveReferences": "practitioner"
+			},{
+				"resourcePath": "MedicationStatement",
+				"params": {
+					"patient": "{{patientId}}",
+					"status": ["active", "completed"],
+					"_count": 100
+				},
+				"retrieveReferences": "informationSource"
 			// },{
-
-			// 	"resourcePath": "Immunization",
-			// 	"params": {"patient": "{{patientId}}"},
-			// 	"retrieveReferences": "perfomer" 
-			// 	//["performer", "location"] //location looks like a FHIR resource, but isn't exposed
-			// },{
-			// 	"resourcePath": "MedicationAdministration",
+			// 	"resourcePath": "DocumentReference",
 			// 	"params": {"patient": "{{patientId}}", "_count": 100},
-			// 	"retrieveReferences": "practitioner"
-			// },{
-			// 	"resourcePath": "MedicationAdministration",
-			// 	"params": {"patient": "{{patientId}}", "_count": 100},
-			// 	"retrieveReferences": "prescriber"
-			// },{
-			// 	"resourcePath": "MedicationStatement",
-			// 	"params": {
-			// 		"patient": "{{patientId}}",
-			// 		"status": ["active", "intended"],
-			// 		"_count": 100
-			// 	},
-			// 	"retrieveReferences": "informationSource"
+			// 	"downloadAttachments": "content.attachment",
+			// 	//note that page limit is set due to bugs in the Cerner sandbox
+			// 	//this should be removed for production implementations!
+			// 	"pageLimit": 1
 			}]
 		}
 	},

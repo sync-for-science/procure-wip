@@ -56,16 +56,22 @@ export default class SmartPopup {
 				} else if (data.code && ignoreState !== true && data.state !== stateParam) {
 					reject("Invalid state parameter returned by server");
 				} else if (data.code) {
-					resolve( 
-						SMART.exchangeCodeForToken(
-							authEndpoints.tokenEndpoint,
-							data.code,
-							this.provider.redirectUri,
-							this.provider.clientId,
-							this.provider.clientSecret
-						)
-						.then( data => data.json() )
-					);
+					SMART.exchangeCodeForToken(
+						authEndpoints.tokenEndpoint,
+						data.code,
+						this.provider.redirectUri,
+						this.provider.clientId,
+						this.provider.clientSecret
+					)
+					.then( data => data.json() )
+					.then( data => {
+						if (data.access_token) {
+							resolve(data);
+						} else {
+							console.log(data);
+							reject("No access token in server token response");
+						}
+					})
 				} else {
 					reject("Failed to retrieve code parameter");
 				}

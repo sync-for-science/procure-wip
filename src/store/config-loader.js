@@ -44,7 +44,8 @@ function readConfigFile(path, isOverride) {
 		.then( data => {
 			try {
 				return JSON.parse(stripJsonComments(data));
-			} catch {
+			} catch (e) {
+				console.log(e);
 				throw new Error(`${path} is not valid JSON.`);
 			}
 		})
@@ -142,7 +143,14 @@ function loadEndpointLists(config) {
 				return response;
 			})		
 			.then( data => data.text() )
-			.then( data => JSON.parse(stripJsonComments(data)) )
+			.then( data => {
+				try {
+					return JSON.parse(stripJsonComments(data));
+				} catch (e) {
+					console.log(e);
+					throw new Error(`${endpointList.path} is not valid JSON.`);
+				}
+			})
 			.then( data => {
 				tv4.validate(data, endpointListSchema);
 				if (tv4.error) {

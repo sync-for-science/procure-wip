@@ -203,6 +203,7 @@ export default () => {
 		{ openCheckbox }
 		{ renderProfileSelector() }
 		{ renderTextInput("Client Id", "clientId", "text", true) }
+		{ renderTextInput("Client Secret (if applicable)", "clientSecret", "text", true) }
 		{ renderTextInput("Redirect URL", "redirectUri", "url", true) }
 		{ renderTextInput(
 			"Scope", "scope", "text", true,  "separate scopes with spaces",

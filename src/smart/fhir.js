@@ -110,7 +110,6 @@ function addProvenance(resource, fhirEndpoint, fhirVersion="R2") {
 function getResourcesByQuery({ fhirEndpoint, query={}, retryLimit=0, token, signal, allowErrors, statusCallback }) {
 	let entry = [];
 	return new Promise( (resolve, reject) => {
-
 		const fetchResources = (url, retries=0, page=1) => {
 			if (statusCallback) statusCallback(url);
 			fetchFHIR(url, {signal}, query.fhirVersion, token, retryLimit)
@@ -281,6 +280,8 @@ function findAndDownloadAttachments({ entry=[], paths=[], fhirEndpoint, token, a
 				return response;
 			})
 			.catch( err => {
+				//Note that CORS errors for any reason even due to a 401 will not have an error code
+				//in logs. See https://github.com/github/fetch/issues/201
 				if (retryLimit && retries < retryLimit) {
 					return fetchAttachment(url, config, retryLimit, retries+1)
 				} else {

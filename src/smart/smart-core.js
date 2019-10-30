@@ -114,18 +114,17 @@ function exchangeCodeForToken(tokenEndpoint, code, redirectUri, clientId, client
 		body: [
 			"grant_type=authorization_code",
 			"code=" + encodeURIComponent(code),
-			"redirect_uri=" + encodeURIComponent(redirectUri),
-			"&client_id=" + encodeURIComponent(clientId)
+			"redirect_uri=" + encodeURIComponent(redirectUri)
 		].join("&")
 	}
 
 	if (clientSecret) {
-		config.auth = {username: clientId, password: clientSecret}
-		config.body += "&client_id=" + encodeURIComponent(clientId) + "&client_secret=" + encodeURIComponent(clientSecret);
+		config.headers.Authorization = `Basic ${btoa(`${clientId}:${clientSecret}`)}`;
+	} else {
+		config.body += "&client_id=" + encodeURIComponent(clientId);
 	}
 
 	return fetch(tokenEndpoint, config)
-		// .then( response => response.data )
 
 }
 
