@@ -1,5 +1,8 @@
 # Procure
 
+|Procure is early stage software and should not be deployed for broad production use at this time. Health records or information accessed using the software may not reflect a complete or accurate medical history and should not be used as a substitute for seeking official health records or professional medical judgment. The software may contain viruses, worms, spyware or other malware or defects that may alter health information or cause it to be inaccurate or incomplete. Individuals accessing their health records should consult with their health care provider prior to making any decisions related to their health.| 
+|:-|
+
 ## Overview
 
 Procure is an open source, web based application that enables users to retrieve their clinical data from their healthcare providers, browse the data, download it as structured files in [JSON FHIR format](https://hl7.org/fhir), download a subset of the data in Excel or CSV format, and upload the data to a public or private [Github](https://github.com) repository. Patients can use the app to review their medical records for accuracy, perform analysis to obtain insights, or share their information with a research project. Unlike many apps that retrieve medical data, such as Apple Health, Procure does not store or interpret the data, instead acting as a conduit to empower patients with direct access to their raw data. Future releases will incorporate functionality for researchers to more directly integrate with the software.
@@ -12,7 +15,7 @@ You can follow the instructions below to run a local copy of the app on your mac
 
 Procure is compatible with the latest versions of Google Chrome, IE Edge, Safari and Firefox. 
 
-**Note that as early stage software, Procure has bugs. If you run into an issue, please review the "issues" tab on Github and, if the problem isn't listed, open a new issue ticket to let us know! Also, if you're a software developer and are able to fix the code, git pull requests are very welcome, but please get in touch before coding large changes.**
+**As early stage software, Procure has bugs. If you run into an issue, please review the "issues" tab on Github and, if the problem isn't listed, open a new issue ticket to let us know! Also, if you're a software developer and are able to fix the code, git pull requests are very welcome, but please get in touch before coding large changes.**
 
 ## Installing and Running Procure
 
@@ -235,6 +238,7 @@ If a template has one or more template id values in its `extends` property (desc
 
 
 ## Third Party Libraries Used
+
 ### Core
 - [React](https://reactjs.org/) - UI framework, MIT License
 - [Create React App](https://facebook.github.io/create-react-app/) - Build framework, MIT License
@@ -243,15 +247,16 @@ If a template has one or more template id values in its `extends` property (desc
 - [ExcelJs](https://github.com/exceljs/exceljs) - Spreadsheet and CSV generation,  MIT License
 - [JSZip](https://stuk.github.io/jszip) - Zip generation, MIT License
 - [FileSaver](https://github.com/eligrey/FileSaver.js) - Browser file download, MIT License
+- [Sanitize Filename](https://github.com/parshap/node-sanitize-filename) - ISC License
 ### UI
 - [Font Awesome Free](https://fontawesome.com) - UI icons, MIT License (code), CC BY 4.0 License (icons)
 - [React Select](https://react-select.com/home) - Searchable dropdown list, MIT License
 - [React JSON Tree](https://github.com/reduxjs/redux-devtools/tree/master/packages/react-json-tree) - Tree widget from Redux Dev Tools, MIT License
 - [Reactstrap](https://github.com/reactstrap/reactstrap) - Simple React Bootstrap 4 components, MIT License
-
 ### Misc
 - [Lodash](https://lodash.com/) - Functional programming utilities, MIT License
 - [TV4](https://github.com/geraintluff/tv4) - JSON schema validation, Public Domain License
 - [JSON Strip Comments](https://github.com/sindresorhus/strip-json-comments) - MIT License
 - [Time Ago](https://timeago.org/) - MIT License
 - [Cross Fetch](https://github.com/lquixada/cross-fetch) - MIT License
+- [Match Url Wildcard](https://github.com/AlexKamaev/match-url-wildcard) - MIT License

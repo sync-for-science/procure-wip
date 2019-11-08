@@ -52,9 +52,9 @@
 		//username: bill.aaron@open.allscripts.com, password: Password#1
 		// "name": "Sandbox - Secure - Allscripts Prof (FMH)",
 		// "fhirEndpoint": "https://pro171fmh.open.allscripts.com/open",
-		// "scope": ["patient/*.read"],
+		// "scope": ["launch/patient", "openid", "profile", "patient/*.read"],
 		// "credentialId": "allscripts_sandbox_secure",
-		// "queryProfile": "argonaut_allscripts"
+		// "queryProfile": "argonaut_spec"
 	},{
 		"name": "Sandbox - Open - Epic (Jason Argonaut)",
 		"fhirEndpoint": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/",
