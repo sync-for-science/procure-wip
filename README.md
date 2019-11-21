@@ -49,7 +49,7 @@ To build a production version of Procure, run the following command from the Pro
 
 ### Epic
 
-Visit https://open.epic.com and navigate to the My Apps > Create App item in the top menu bar (you'll need to register and verify your identity first). Complete the create app form, making sure that the `Redirect Url` field is set to the URL where you'll be hosting Procure followed by `/callback.html` (eg. `https://example.com/callback.html`). Once approved, Epic will generate a `client id` value for your instance of the app. You'll want to add this value to the `public/config-override.json` file in Procure, so it looks something like this:
+Visit https://open.epic.com and navigate to the My Apps > Create App item in the top menu bar (you'll need to register and verify your identity first). Complete the create app form, making sure that the `Redirect Url` field is set to the URL where you'll be hosting Procure followed by `/callback.html` (eg. `https://example.com/callback.html`). Once approved, Epic will generate a `client id` value for your instance of the app. You'll want to add this value to the `public/config/config-override.json` file in Procure, so it looks something like this:
 
 ```json
 {
@@ -65,9 +65,9 @@ Much of Procure's functionality can be customized by changing or overriding valu
 
 ### Overriding Configuration Properties
 
-You can modify Procure's settings by altering values in the `public/config.json` file. However, this file may be updated in new releases of Procure, requiring you to re-apply your changes. A better approach is to override specific configuration properties by adding them to the `public/config-overrides.json` file, which is unique to your Procure deployment. When Procure is run in development mode, the file `public/config-overrides-dev.json` is loaded instead. 
+You can modify Procure's settings by altering values in the `public/config/config.json` file. However, this file may be updated in new releases of Procure, requiring you to re-apply your changes. A better approach is to override specific configuration properties by adding them to the `public/config/config-override.json` file, which is unique to your Procure deployment. When Procure is run in development mode, the file `public/config/config-override-dev.json` is loaded instead. 
 
-The root structure in the `overrides.json` or `overrides-dev.json` file must be a JSON object. At runtime, the properties of this object are merged with those in the `config.json` file. Additional properties will be added, and altered values will be replaced. For example, to change the title of the `Argonaut (Epic)` query profile, you would create the following object in your override file that mirrors the structure of the config file, setting a new title property. None of the other properties in the object hierarchy will be altered.
+The root structure in the `config-override.json` or `config-override-dev.json` file must be a JSON object. At runtime, the properties of this object are merged with those in the `config.json` file. Additional properties will be added, and altered values will be replaced. For example, to change the title of the `Argonaut (Epic)` query profile, you would create the following object in your override file that mirrors the structure of the config file, setting a new title property. None of the other properties in the object hierarchy will be altered.
 
 ```json
 {
