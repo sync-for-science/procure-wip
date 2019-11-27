@@ -30,14 +30,14 @@
 		"name": "Sandbox - Secure - SMART",
 		"fhirEndpoint": "http://launch.smarthealthit.org/v/r2/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6ImM3ZWM5NTYwLTU4Y2QtNGEwOC04NzRiLTkxZTM0MjllZjFkNiJ9/fhir",
 		"credentialId": "smart_sandbox_secure"
-	},{
+	// },{
 		//login info is tied to user's google account and is restricted by contract, so requires sign up to get a client id
-		"name": "Sandbox - Secure - Meditech",
-		"fhirEndpoint": "https://greenfield-apis.meditech.com/v1/argonaut/v1/",
-		"queryProfile": "argonaut_meditech",
-		"scope": ["launch/patient", "openid", "profile", "patient/*.read"],
-		"credentialId": "meditech_sandbox_secure"
-	},{
+		// "name": "Sandbox - Secure - Meditech",
+		// "fhirEndpoint": "https://greenfield-apis.meditech.com/v1/argonaut/v1/",
+		// "queryProfile": "argonaut_meditech",
+		// "scope": ["launch/patient", "openid", "profile", "patient/*.read"],
+		// "credentialId": "meditech_sandbox_secure"
+	// },{
 		//Getting 504 error when retrieving resources. 
 		//see: https://groups.google.com/forum/#!category-topic/nextgenapiusers/application-questions--issues/wPmbUIaflPM
 		//username: wwrist, password: wwrist!123
