@@ -61,6 +61,15 @@ export default class GithubExporter {
 			)
 		}
 
+		const buildErrorLogTree = (errorLog) => {
+			return !errorLog.length 
+				? Promise.resolve([])
+				: createBlob(
+						JSON.stringify(errorLog, null, 2),
+						"error_log.json"
+					).then( blob => [blob] );
+		}
+
 		const bundles = _.chain(provider.data.entry)
 			.groupBy(e => e.resource.resourceType)
 			.mapValues(entry => {
@@ -73,14 +82,15 @@ export default class GithubExporter {
 
 		return Promise.all([
 			buildResourceTree(bundles),
-			buildFileTree(provider.data.files)
+			buildFileTree(provider.data.files),
+			buildErrorLogTree(provider.data.errorLog)
 		]).then( trees => _.flatten(trees) );
 
 	}
 	
 	buildTree(baseTree, allProviders) {
 		const providers = _.filter( allProviders, p => {
-			return p.selected && p.data && p.data.entry && p.data.entry.length
+			return p.selected && p.data && p.data.entry && (p.data.entry.length || p.data.errorLog.length)
 		})
 		const folders = _.map(providers, p => {
 			return sanitizeFilename(p.name);

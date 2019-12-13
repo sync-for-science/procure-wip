@@ -45,9 +45,12 @@ export default () => {
 
 	const renderCard = (provider) => {
 
+
 		const renderDataDetails = () => <p>	
-			{ provider.data.entry.length} { pluralizeEn("resource", provider.data.entry.length) }
-			<span>&nbsp;(loaded <TimeAgo time={provider.lastUpdated} />)</span>
+			{ provider.data.entry.length} { pluralizeEn("resource", provider.data.entry.length) }{" | "}
+			{ provider.data.files.length} { pluralizeEn("file", provider.data.files.length) }{" | "}
+			{ provider.data.errorLog.length} { pluralizeEn("error", provider.data.errorLog.length) }
+			<br />loaded <TimeAgo time={provider.lastUpdated} />
 		</p>
 
 		const controls = <div>

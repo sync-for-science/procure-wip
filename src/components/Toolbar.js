@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTable, faFileDownload, faFileUpload } from "@fortawesome/free-solid-svg-icons"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
-export default () => {
+export default (props) => {
 
 	const { 
 		spreadsheetTemplates,
@@ -108,7 +108,7 @@ export default () => {
 	return <div style={{marginBottom: ".5rem"}}>
 		{upload && (upload.manifestUrl || upload.uploadUrl) && uploadButton}
 		{downloadAllButton}
-		{renderSpreadsheetExport()}
+		{props.hasResources && renderSpreadsheetExport()}
 		{ghExportButton}
 	</div>
 

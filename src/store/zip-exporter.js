@@ -22,6 +22,8 @@ function addProviderToZip(zipFolder, provider) {
 	_.each(provider.data.files, f => {
 		zipFolder.file(f.fileName, f.blob, {type: "blob"});
 	});
+	if (provider.data.errorLog.length)
+		zipFolder.file("error_log.json", JSON.stringify(provider.data.errorLog, null, 2));
 }
 
 function exportProvider(provider) {
@@ -44,7 +46,7 @@ function exportProviders(providers, fileName="procure-data.zip") {
 function exportProvidersAsBlob(providers) {
 	return new Promise( (resolve, reject) => {
 		const zip = new jszip();
-		providers.filter( p => p.data && p.data.entry.length && p.selected).forEach( provider => {
+		providers.filter( p => p.data && p.selected).forEach( provider => {
 			const folder = zip.folder( sanitizeFilename(provider.name) );
 			addProviderToZip(folder, provider);
 		});
@@ -56,7 +58,7 @@ function exportProvidersAsBlob(providers) {
 
 function generateFile(providers, multiProviderFileName) {
 	const exportableProviders = _.filter(providers, p => {
-		return p.data && p.data.entry && p.data.entry.length > 0 && p.selected
+		return p.data && p.data.entry && p.selected && (p.data.entry.length || p.data.errorLog.length)
 	});
 	if (exportableProviders.length > 1) {
 		return exportProviders(exportableProviders, multiProviderFileName);

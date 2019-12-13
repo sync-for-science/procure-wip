@@ -39,9 +39,9 @@ const App = () =>  {
 		<ProviderList />
 	</Col>
 
-	const renderData = () => <Col xs="12" md="6" lg="7" xl="8">
-		<Toolbar  />
-		<FhirTree />		
+	const renderData = (hasResources) => <Col xs="12" md="6" lg="7" xl="8">
+		<Toolbar hasResources={hasResources} />
+		{ hasResources && <FhirTree />	}	
 	</Col>
 
 	const renderBlankSlate = () => <Col sm={{size: 4, offset: 4}}>
@@ -50,8 +50,12 @@ const App = () =>  {
 
 	const hasProviders = providers && providers.length;
 	const hasData = hasProviders && _.find(providers, p => {
+		return p.selected && p.data && p.data.entry && (p.data.entry.length || p.data.errorLog.length);
+	});
+	const hasResources = hasProviders && _.find(providers, p => {
 		return p.selected && p.data && p.data.entry && p.data.entry.length
 	});
+
 
 	return <div>
 		<Header />
@@ -59,7 +63,7 @@ const App = () =>  {
 			<Row className="m-2">
 				{ uiState.error && uiState.mode === "ready" && inlineError }
 				{ hasProviders ? renderProviderList() : renderBlankSlate() }
-				{ hasData ? renderData() : null }
+				{ hasData ? renderData(hasResources) : null }
 			</Row>
 			{ uiState.mode === "editProvider" && <ProviderForm /> }
 			{ uiState.mode === "loadData" && <Fetcher /> }
