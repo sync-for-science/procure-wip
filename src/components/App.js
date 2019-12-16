@@ -14,6 +14,7 @@ import FhirTree from "./FhirTree";
 import Toolbar from "./Toolbar";
 import BlankSlate from "./BlankSlate";
 import FileUploader from "./FileUploader";
+import Wizard from "./Wizard/";
 
 const App = () =>  {
 
@@ -56,8 +57,7 @@ const App = () =>  {
 		return p.selected && p.data && p.data.entry && p.data.entry.length
 	});
 
-
-	return <div>
+	const fullUi = <div>
 		<Header />
 		<Container fluid>
 			<Row className="m-2">
@@ -71,5 +71,17 @@ const App = () =>  {
 			{ uiState.mode === "fileUpload" && <FileUploader /> }
 		</Container>
 	</div>
+
+	const wizardUi = <div>
+		<Container fluid>
+			<Row className="m-2">
+				{ uiState.error && uiState.mode === "ready" && inlineError }
+				<Wizard />
+			</Row>
+		</Container>
+	</div>
+
+	// return fullUi
+	return wizardUi
 }
 export default App;

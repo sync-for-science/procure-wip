@@ -164,7 +164,7 @@ export default () => {
 		return <FormGroup>
 			<Label for="profile">Profile</Label>
 			<Input type="select"
-				value={provider.queryProfile || "argonaut_r2"}
+				value={provider.queryProfile || "argonaut_spec"}
 				onChange={ e=> setProvider({...provider, queryProfile: e.target.value}) }
 				name="profile"
 			> {profileOptions} </Input>
