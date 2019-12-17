@@ -3,13 +3,15 @@
 import React, { useEffect, useCallback } from "react";
 import useStoreon from "storeon/react";
 import {
-	Button, Spinner, Modal, ModalHeader, 
-	ModalBody, ModalFooter, Container, Alert
+	Button, Spinner, Container, Alert
 } from 'reactstrap';
 
 export default () => {
 	//app state
 	const {uiState, upload, dispatch} = useStoreon("uiState", "upload");
+
+	if (uiState.submode === "preUpload")
+		dispatch("export/upload/send");
 
 	const handleHideDialog = useCallback( e => {
 		if (e) e.preventDefault()
@@ -32,11 +34,6 @@ export default () => {
 			dispatch("uiState/set", {state: "ready"})
 	}, [dispatch, uiState.submode]);
 
-	const handleUploadFile = useCallback( e => {
-		e.preventDefault()	
-		dispatch("export/upload/send");
-	}, [dispatch]);
-
 	//escape key effect
 	//creates a warning due to a reactjs bug: https://github.com/facebook/react/pull/15650 
 	useEffect(() => {
@@ -54,7 +51,7 @@ export default () => {
 		};
 	}, [uiState.submode, handleCancelExport, handleHideDialog]);
 
-	const renderLoading = () => <ModalBody className="text-center">
+	const renderLoading = () => <div className="text-center">
 		<h5>
 			{uiState.status}
 		</h5>
@@ -64,56 +61,30 @@ export default () => {
 		<div>
 			<Button className="btn-primary" onClick={handleCancelExport}>Cancel</Button>
 		</div>
-	</ModalBody>
+	</div>
 
 	const renderError = () => <div>
-		<ModalBody>
 			<Container>
 				<Alert color="danger">
 					<span>{uiState.error.toString()}</span>
 				</Alert>
 			</Container>
-		</ModalBody>
-		<ModalFooter>
-			<Button color="secondary" onClick={handleHideDialog}>Close</Button>
-		</ModalFooter>
+			<Button color="secondary" onClick={handleHideDialog}>Back</Button>
 	</div>
 
-	const renderUploadDetails = () => <div>
-		<ModalBody>
-			<p>
-				Clicking the <b>upload</b> button below will share your medical record 
-			information with <b>{upload.name}</b> and indicates your agreement to the 
-			terms of use, privacy policy and other information outlined at 
-				<b>&nbsp;<a href={upload.infoUrl} target="_blank" rel="noopener noreferrer">
-					{upload.infoUrl}
-				</a></b>.
-			</p>
-		</ModalBody>
-		<ModalFooter>
-			<Button color="success" onClick={handleUploadFile}>Upload</Button>
-			<Button color="secondary" onClick={handleHideDialog}>Cancel</Button>
-		</ModalFooter>
+	const renderPostUpload = () => <div className="text-center">
+		<h5>{upload.successMessage || "Your information has been transmitted!"}</h5>
+		<Button color="primary" onClick={handleDone}>
+			{upload.continueUrl ? (upload.continueLabel || "Continue") : "Close"}
+		</Button>
 	</div>
 
-	const renderPostUpload = () => <div>
-		<ModalBody className="text-center">
-			<h5>{upload.successMessage || "Your information has been transmitted!"}</h5>
-		</ModalBody>
-		<ModalFooter>
-			<Button color="primary" onClick={handleDone}>
-				{upload.continueUrl ? (upload.continueLabel || "Continue") : "Close"}
-			</Button>
-		</ModalFooter>
-	</div>
-
-	return  <Modal isOpen={true} fade={false} backdrop={true}>
-		<ModalHeader>Share My Data</ModalHeader>
+	return  <div>
+		<h5>Share My Data</h5>
 		{uiState.error && renderError()}
 		{uiState.submode === "getManifest" && !uiState.error && renderLoading()}
-		{uiState.submode === "preUpload" && !uiState.error && renderUploadDetails()}
 		{uiState.submode === "uploading" && !uiState.error && renderLoading()}
 		{uiState.submode === "postUpload" && !uiState.error && renderPostUpload()}
-	</Modal>
+	</div>
 
 }

@@ -1,6 +1,6 @@
 module.exports = {
 	//modalUi
-	uiState: {mode: "fileUpload"},
+	uiState: {mode: "ready"},
 	spreadsheetTemplates: {},
 	isDirty: false,
 	nonModalUi: {},

@@ -72,16 +72,21 @@ const App = () =>  {
 		</Container>
 	</div>
 
-	const wizardUi = <div>
-		<Container fluid>
-			<Row className="m-2">
-				{ uiState.error && uiState.mode === "ready" && inlineError }
-				<Wizard />
-			</Row>
-		</Container>
-	</div>
+	const wizardUi = <Container>
+		{ uiState.error && uiState.mode === "ready" && 
+			<Row className="m-2">{inlineError}</Row>
+		}	
+		<Wizard />
+	</Container>
 
-	// return fullUi
-	return wizardUi
+	const uiType = "wizard";
+	if (uiType === "wizard") {
+		document.body.classList.add("bg-light");
+		return wizardUi;
+	} else {
+		document.body.classList = "";
+		return fullUi;
+	}
+
 }
 export default App;
