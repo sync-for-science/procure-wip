@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import useStoreon from "storeon/react";
-import {Button} from 'reactstrap';
+import { Button } from 'reactstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import Select, { createFilter } from "react-select";
 
 export default () => {
@@ -73,16 +75,21 @@ export default () => {
 			/>
 	}
 
-	const value = provider.orgId ? orgOptions.find(o => o.value === provider.orgId) : null;
-
-	return <div>
-		<h3>Select Your Healthcare Provider</h3>
+	return <div className="p-2">
+		<h4 className="mb-4">Select Your Provider</h4>
 		<p>
 			Choose a healthcare institution where you've received care from the list below.
 		</p><p>
 			If you've been to multiple healthcare providers, after retrieving your records you'll have the option to return to this screen to select another institution.
 		</p>
 		{ renderOrgSelector() }
-		<Button onClick={ handleSubmit } disabled={provider.orgId ? false :true}>Login to Patient Portal</Button>
+		<Button color="success" className="float-right mt-4"
+			onClick={ handleSubmit } 
+			disabled={provider.orgId ? false :true}
+		>
+			<span className="mr-2">Login to Patient Portal</span>
+			<FontAwesomeIcon icon={faChevronRight} className="mr-2" />
+		</Button>
+		<div className="clearfix"></div>
 	</div>
 }

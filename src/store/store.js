@@ -80,7 +80,7 @@ const actions = store => {
 			})
 		}
 	});
-	store.on("config/load", (state) => {
+	store.on("config/load", ({}, endState="ready") => {
 		store.dispatch("uiState/set", {mode: "loading"});
 		const overridePath = process.env.NODE_ENV !== "development" 
 			? "./config/config-override.json" 
@@ -91,7 +91,7 @@ const actions = store => {
 			.then( config => {
 				store.dispatch("config/merge", config);
 
-				store.dispatch("uiState/set", {mode: "ready"});
+				store.dispatch("uiState/set", {mode: endState});
 
 				//initialize content for refresh
 				store.dispatch("refreshDirty", true);
@@ -166,9 +166,9 @@ const actions = store => {
 			loadFhir()
 		}
 	});
-	store.on("fhir/cancelLoad", () =>  {
+	store.on("fhir/cancelLoad", ({}, endState="ready") =>  {
 		fhirLoader.cancel();
-		store.dispatch("uiState/set", {mode: "ready"});
+		store.dispatch("uiState/set", {mode: endState});
 	});
 
 	store.on("export/download", ({ providers }) => {
