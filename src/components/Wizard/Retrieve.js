@@ -3,7 +3,8 @@
 import React, { useMemo, useEffect, useCallback } from "react";
 import useStoreon from "storeon/react";
 import {Button, Spinner} from 'reactstrap';
-import { saveAs } from "file-saver";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 
 export default () => {
 
@@ -13,32 +14,13 @@ export default () => {
 		return providers.find(p => p.id === uiState.id)
 	}, [uiState.id, providers]);
 
-
 	const handleCancel = useCallback( e => {
 		e.preventDefault();
 		dispatch("fhir/cancelLoad");
 	}, [dispatch]);
 
-	const handleLogDownload = e => {
-		e.preventDefault();
-		const blob = new Blob(
-			[JSON.stringify(uiState.data.errorLog, null, 2)], 
-			{type: "application/json"}
-		);
-		saveAs(blob, "errors.json");
-	}
-
-	const handleContinue = e => {
-		e.preventDefault();
-		dispatch("providers/update", {
-			id: provider.id,
-			lastUpdated: new Date(),
-			data: uiState.data
-		});
-		dispatch("uiState/set", {mode: "fileUpload"});
-	}
-
-	const handleAddProvider = e => {
+	const handleBack = e => {
+		dispatch("providers/remove", provider.id)
 		dispatch("uiState/set", {mode: "editProvider"});
 	}
 
@@ -57,63 +39,44 @@ export default () => {
 		};
 	}, [handleCancel, uiState.submode]);
 
-	const renderAuthorizing = () => <div>
-		<h5>Waiting for authorization...</h5>
-		<div>
-			<Button className="btn-primary" onClick={handleCancel}>Cancel</Button>
-		</div>
-	</div>
+	//TODO: this is kind of a hack to build on non-wizard modes (need to restructure modes to work with both)
+	if (uiState.mode !== "loadData") return null;
+	if (uiState.submode === "loaded") {
+		dispatch("providers/update", {
+			id: provider.id,
+			lastUpdated: new Date(),
+			data: uiState.data
+		});
+		dispatch("uiState/set", {mode: "review"});
+	};
 
-	const pluralizeEn = (text, len) => len === 1 ? text : text+"s";
-
-	const renderLoading = () => <div>
-		<h5>
-			{uiState.requestCount} {pluralizeEn("request", uiState.requestCount)} 
-			&nbsp; / &nbsp;
-			{uiState.errorCount} {pluralizeEn("error", uiState.errorCount)}
-		</h5>
-		<div style={{padding: "1rem 0rem"}}>
-			<Spinner color="primary" style={{ width: '3rem', height: '3rem' }} />
+	const renderWorking = (status) => <div className="p-4 text-center">
+		<h5 className="mb-4">{status}</h5>
+		<div className="my-4">
+			<Spinner color="primary" style={{ width: "3rem", height: "3rem" }} />
 		</div>
 		<div>
-			<Button className="btn-primary" onClick={handleCancel}>Cancel</Button>
+			<Button color="outline-primary" onClick={handleCancel}>Cancel</Button>
 		</div>
 	</div>
 
-	const renderLoaded = () => <div>
-		<h5>
-			{uiState.data.entry.length} {pluralizeEn("resource", uiState.data.entry.length)} retrieved<br/>
-			{uiState.data.files.length || "No"} {pluralizeEn("attachment", uiState.data.files.length)} downloaded<br/>
-			{uiState.data.errorLog.length || "No"} {pluralizeEn("error", uiState.data.errorLog.length)} occurred
-			{uiState.data.errorLog.length > 0 && 
-				<span> (<a href="#" onClick={handleLogDownload}>download</a>)</span>
-			}
-		</h5>
-	</div>
-
-	const renderGlobalError = () => <div>
-		<h5 style={{padding: "1rem 0", color: "red"}}>An error occurred: { uiState.status }</h5>
+	const renderGlobalError = () => <div className="p-2">
+		<h5>Error</h5>
+		<p>An error occurred loading your record: {uiState.status}</p>
 		<div>
-			<Button className="btn-primary" onClick={ e => handleAddProvider() }>Back</Button>
+			<Button color="primary" className="mt-4" onClick={handleBack}>
+			<FontAwesomeIcon icon={faChevronLeft} className="mr-2" />
+				<span className="mr-2">Back</span>
+			</Button>
 		</div>
 	</div>
-
-	const renderLoadedButtons = () => {
-	 	return <div>
-			<Button color="primary" style={{marginLeft: "1em"}} onClick={handleAddProvider}>Get records from another site</Button>
-			<span style={{marginLeft: "1em"}}>or</span>		
-			<Button color="primary" style={{marginLeft: "1em"}} onClick={handleContinue}>Continue</Button>
-		</div>
-	}
 
 	return <div>
-		<h3>{provider.name}</h3>
-			{ uiState.submode === "authorizing" && renderAuthorizing() }
-			{ uiState.submode === "loading" && renderLoading() }
-			{ uiState.submode === "loaded" && renderLoaded() }
-			{ uiState.submode === "error" && renderGlobalError() }
-			{ uiState.submode === "loaded" && renderLoadedButtons() }	
-		</div>
+		<h4>{provider.name}</h4>
+		{ uiState.submode === "authorizing" && renderWorking("Waiting for Portal Login...") }
+		{ uiState.submode === "loading" && renderWorking("Retrieving Healthcare Records...") }
+		{ uiState.submode === "error" && renderGlobalError() }
+	</div>
 
 
 }

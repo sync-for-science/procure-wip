@@ -35,6 +35,9 @@ const actions = store => {
 		});	
 		return {uiState: {...uiState, ...counts}}
 	})
+	store.on("wizard/hide", () => {
+		return {showWizard: false, uiState: {mode: "ready"}}
+	})
 	store.on("nonModalUi/merge", ({ nonModalUi }, newState) => {
 		return {nonModalUi: {...(nonModalUi ||{}), ...newState}}
 	});
@@ -80,7 +83,7 @@ const actions = store => {
 			})
 		}
 	});
-	store.on("config/load", ({}, endState="ready") => {
+	store.on("config/load", (state, endState="ready") => {
 		store.dispatch("uiState/set", {mode: "loading"});
 		const overridePath = process.env.NODE_ENV !== "development" 
 			? "./config/config-override.json" 
@@ -166,7 +169,7 @@ const actions = store => {
 			loadFhir()
 		}
 	});
-	store.on("fhir/cancelLoad", ({}, endState="ready") =>  {
+	store.on("fhir/cancelLoad", (state, endState="ready") =>  {
 		fhirLoader.cancel();
 		store.dispatch("uiState/set", {mode: endState});
 	});
@@ -239,14 +242,15 @@ const actions = store => {
 		store.dispatch("uiState/set", { 
 			mode: "fileUpload",
 			submode: "getManifest",
-			status: "Retrieving Upload Details"
+			status: "Preparing to send data"
 		});
 
 		//check whitelist if url doesn't come from config file
 		if (upload.qsManifestUrl) {
 			const isValidUrl = fileExporter.isValidUrl(upload.manifestUrl, upload.whitelist);
 			if (!isValidUrl) return store.dispatch("uiState/merge", {
-				error: "Url manifest location not in whitelist: " + upload.manifestUrl
+				submode: "error",
+				status: "Url manifest location not in whitelist: " + upload.manifestUrl
 			});
 		}
 
@@ -273,20 +277,19 @@ const actions = store => {
 			})
 			.catch( err => {
 				store.dispatch("uiState/merge", {
-					error: err.message
+					submode: "error",
+					status: "Unable to load manifest at " + upload.manifestUrl
 				});
 			});
 	});
 	
 	store.on("export/upload/cancel", () => {
 		fileExporter.cancel();
-		store.dispatch("uiState/merge", {
-			submode: "preUpload"
-		});
 	});
 
 	store.on("export/upload/send", ({upload, providers}) => {
-		store.dispatch("uiState/merge", { 
+		store.dispatch("uiState/set", {
+			mode: "fileUpload", 
 			submode: "uploading",
 			status: "Uploading Data"
 		});
@@ -301,8 +304,10 @@ const actions = store => {
 				});
 			})
 			.catch( err => {
+				if (err.name === "AbortError") return;
 				store.dispatch("uiState/merge", {
-					error: err.message
+					submode: "error",
+					status: err.message.toString()
 				});
 			})
 

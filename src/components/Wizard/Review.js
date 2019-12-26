@@ -1,18 +1,16 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React, {useState} from "react";
-import {Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import React from "react";
+import { Button } from 'reactstrap';
 import useStoreon from "storeon/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import DownloadButton from "./DownloadButton";
 import _ from "lodash";
 
-export default (props) => {
+export default () => {
 
 	const {providers, upload, dispatch} = useStoreon("providers", "upload");
-
-	const [showDownloadOptions, setShowDownloadOptions] = useState(false);
 
 	const handleAddProvider = e => {
 		e.preventDefault();
@@ -20,7 +18,7 @@ export default (props) => {
 	}
 	const handleFileUpload = e => {
 		e.preventDefault()
-		dispatch("export/upload");
+		dispatch("export/upload/send");
 	}
 
 	const handleDeleteProvider = (id, e) => {
@@ -45,9 +43,7 @@ export default (props) => {
 	return <div className="p-2">
 		<h4 className="mb-4">Review Data to Share</h4>
 		<p>You have collected records from the following healthcare providers:</p>
-		<ul>
-		</ul>
-		{ providerList }
+		<ul>{ providerList }</ul>
 		<DownloadButton className="float-left mt-4" />
 		<Button color="success" className="float-right mt-4" 
 			disabled={providerList.length === 1}

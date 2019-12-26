@@ -18,10 +18,10 @@ export default () => {
 
 	//component state
 	const [provider, setProvider] = useState({});	
-	const [orgOptions] = useState( () => organizations
+
+	const orgOptions = organizations
 		.map( o => ({label: o.name, value: o.orgId || o.fhirEndpoint}) )
-		.sort( o => o.label )
-	);
+		.sort( o => o.label );
 
 	const orgRef = useRef(null)
 	useEffect(() => orgRef.current.focus(), []);
@@ -57,7 +57,6 @@ export default () => {
 			queryProfile: orgConfig.queryProfile || "argonaut_spec"
 		});
 	}
-
 
 	const renderOrgSelector = () => {
 

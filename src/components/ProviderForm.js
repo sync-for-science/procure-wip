@@ -20,12 +20,12 @@ export default () => {
 	const [provider, setProvider] = useState({});
 	const [validation, setValidation] = useState({});
 	const [showDetails, setShowDetails] = useState(false);
-	const [orgOptions] = useState( () => {
-		let orgs = organizations
+	
+	const orgOptions = [{label: "Custom Endpoint", value: "custom"}].concat(
+		organizations
 			.map( o => ({label: o.name, value: o.orgId || o.fhirEndpoint}) )
-			.sort( o => o.label );
-		return [{label: "Custom Endpoint", value: "custom"}].concat(orgs);
-	});
+			.sort( o => o.label )
+	);
 
 	const orgRef = useRef(null)
 	useEffect(() => orgRef.current.focus(), []);

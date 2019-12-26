@@ -5,13 +5,15 @@ import _ from "lodash";
 
 export default class FileExporter {
 
-	constructor() {
-		this.controller = new AbortController();
-		this.signal = this.controller.signal;		
+	cancel() {
+		this.isCancelled = true;
+		this.controller.abort();
 	}
 
-	cancel() {
-		this.controller.abort();
+	resetCancelled() {
+		this.controller = new AbortController();
+		this.signal = this.controller.signal;
+		this.isCancelled = false;
 	}
 
 	isValidUrl(url, whitelist) {
@@ -19,6 +21,7 @@ export default class FileExporter {
 	}
 
 	getManifest(url) {
+		this.resetCancelled();
 		const config = {
 			signal: this.signal,
 			accept: "application/json"
@@ -41,6 +44,7 @@ export default class FileExporter {
 	}
 	
 	putFile(url, file) {
+		this.resetCancelled()
 		const config = {
 			signal: this.signal,
 			method: "PUT",
@@ -68,7 +72,11 @@ export default class FileExporter {
 			})
 			.catch( error => {	
 				console.log(error);
-				throw new Error(`An error occurred sending your data: ${error.message}`);
+				if (error.name === "AbortError") {
+					throw(error);
+				} else {
+					throw new Error(`An error occurred sending your data: ${error.message}`);
+				}
 			})
 	}
 

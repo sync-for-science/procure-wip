@@ -219,6 +219,7 @@
 			"type": ["string", "null"],
 			"format": "uri"
 		},
+		"showWizard": { "type": "boolean" },
 		"endpointLists": { "$ref": "#/definitions/endpoint_lists" },
 		"queryProfiles": { "$ref": "#/definitions/query_profiles" },
 		"spreadsheetTemplates": { "$ref": "#/definitions/spreadsheet_templates" },

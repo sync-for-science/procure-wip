@@ -13,7 +13,7 @@ export default () => {
 
 	const handleHideDialog = useCallback( e => {
 		if (e) e.preventDefault()
-		dispatch("uiState/set", {state: "ready"})
+		dispatch("uiState/set", {mode: "ready"})
 	}, [dispatch]);
 
 	const handleDone = useCallback( e => {
@@ -26,10 +26,12 @@ export default () => {
 	}, [handleHideDialog, upload]);
 
 	const handleCancelExport = useCallback( e => {
-		e.preventDefault()	
+		e.preventDefault()
+		const endState = uiState.submode === "getManifest"
+			? {mode: "ready"}
+			: {mode: "fileUpload", submode: "preUpload"}
 		dispatch("export/upload/cancel");
-		if (uiState.submode === "getManifest")
-			dispatch("uiState/set", {state: "ready"})
+		dispatch("uiState/set", endState)
 	}, [dispatch, uiState.submode]);
 
 	const handleUploadFile = useCallback( e => {
@@ -70,7 +72,7 @@ export default () => {
 		<ModalBody>
 			<Container>
 				<Alert color="danger">
-					<span>{uiState.error.toString()}</span>
+					<span>{uiState.status}</span>
 				</Alert>
 			</Container>
 		</ModalBody>
@@ -109,11 +111,11 @@ export default () => {
 
 	return  <Modal isOpen={true} fade={false} backdrop={true}>
 		<ModalHeader>Share My Data</ModalHeader>
-		{uiState.error && renderError()}
-		{uiState.submode === "getManifest" && !uiState.error && renderLoading()}
-		{uiState.submode === "preUpload" && !uiState.error && renderUploadDetails()}
-		{uiState.submode === "uploading" && !uiState.error && renderLoading()}
-		{uiState.submode === "postUpload" && !uiState.error && renderPostUpload()}
+		{uiState.submode === "error" && renderError()}
+		{uiState.submode === "getManifest" && renderLoading()}
+		{uiState.submode === "preUpload" && renderUploadDetails()}
+		{uiState.submode === "uploading" && renderLoading()}
+		{uiState.submode === "postUpload" && renderPostUpload()}
 	</Modal>
 
 }

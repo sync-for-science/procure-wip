@@ -1,3 +1,5 @@
+/* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
+
 import React from "react";
 import useStoreon from "storeon/react";
 import Start from "./Start";
@@ -12,18 +14,29 @@ import {Row, Col} from "reactstrap";
 export default() => {
 	
 	//app state
-	const {uiState} = useStoreon("uiState");
+	const {uiState, dispatch} = useStoreon("uiState");
+
+	const handleSwitchMode = () => dispatch("wizard/hide");
 
 	const numberStyle = {
 		active: {background: "#3182CE", border: "1px solid white", color: "white"},
 		inactive: {color: "#3182CE", border: "1px solid #3182CE", background: "white"}
 	};
 
+	const switchToFull = uiState.mode !== "loadData" && 
+		(uiState.mode !== "upload" || uiState.submode === "loaded") &&
+		<Row><Col className="text-center">
+			<small className="mt-4 float-right d-none d-sm-block"><a href="#" onClick={handleSwitchMode} className="text-muted">switch to full version of Procure</a></small>
+		</Col></Row>;
+
 	return <div>
-		<Row><Col><h2 style={{color: "#3182CE", padding: "1em 0", textAlign: "center"}}>
-			<FontAwesomeIcon icon={faMedkit} alt="Procure logo" className="mr-2" />
-			<span>Procure</span>
-		</h2></Col></Row>
+		{switchToFull}
+		<Row><Col>
+			<h2 style={{color: "#3182CE", padding: "1em 0", textAlign: "center"}}>
+				<FontAwesomeIcon icon={faMedkit} alt="Procure logo" className="mr-2" />
+				<span>Procure</span>
+			</h2>
+		</Col></Row>
 		<Row><Col md={{size:10, offset: 1}} lg={{size:8, offset: 2}}>
 			<div className="shadow p-4 mb-5 bg-white rounded">
 
@@ -37,7 +50,7 @@ export default() => {
 							<FontAwesomeIcon icon={faChevronRight} alt="arrow right" className="m-2" />
 						</div>
 						<div className="p-2 text-center">
-							<div style={{...numberStyle[uiState.mode === "editProvider" ? "active" : "inactive"], display:"inline-block", minWidth: "2em", minHeight: "2em"}} className="m-1 p-1">2</div>
+							<div style={{...numberStyle[uiState.mode === "editProvider" || uiState.mode ==="loadData" ? "active" : "inactive"], display:"inline-block", minWidth: "2em", minHeight: "2em"}} className="m-1 p-1">2</div>
 							<div>Retrieve Records</div>
 						</div>
 						<div className="my-auto">
@@ -51,7 +64,7 @@ export default() => {
 							<FontAwesomeIcon icon={faChevronRight} alt="arrow right" className="mr-2" />
 						</div>
 						<div className="p-2 text-center">
-							<div style={{...numberStyle[uiState.mode === "upload" ? "active" : "inactive"], display:"inline-block", minWidth: "2em", minHeight: "2em"}} className="m-1 p-1">4</div>
+							<div style={{...numberStyle[uiState.mode === "fileUpload" ? "active" : "inactive"], display:"inline-block", minWidth: "2em", minHeight: "2em"}} className="m-1 p-1">4</div>
 							<div>Share Records</div>
 						</div>
 					</div>
@@ -61,7 +74,7 @@ export default() => {
 				{ uiState.mode === "editProvider" && <SelectProvider /> }
 				{ uiState.mode === "loadData" && <Retrieve /> }
 				{ uiState.mode === "review" && <Review />}
-				{ uiState.mode === "upload" && <Upload />}
+				{ uiState.mode === "fileUpload" && <Upload />}
 
 			</div>
 

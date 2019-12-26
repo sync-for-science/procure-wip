@@ -19,7 +19,7 @@ import Wizard from "./Wizard/";
 const App = () =>  {
 
 	//global state
-	const { uiState, providers } = useStoreon("uiState", "providers");
+	const { uiState, showWizard, upload, providers } = useStoreon("uiState", "upload", "showWizard", "providers");
 
 	if (uiState.mode === "loading") 
 		return <Loader />;
@@ -72,15 +72,16 @@ const App = () =>  {
 		</Container>
 	</div>
 
-	const wizardUi = <Container>
-		{ uiState.error && uiState.mode === "ready" && 
-			<Row className="m-2">{inlineError}</Row>
-		}	
-		<Wizard />
-	</Container>
+	const wizardUi = showWizard && 
+		upload && (upload.manifestUrl || upload.uploadUrl) &&
+			<Container>
+			{ uiState.error && uiState.mode === "ready" && 
+				<Row className="m-2">{inlineError}</Row>
+			}	
+			<Wizard />
+		</Container>
 
-	const uiType = "wizard";
-	if (uiType === "wizard") {
+	if (wizardUi) {
 		document.body.classList.add("bg-light");
 		return wizardUi;
 	} else {
