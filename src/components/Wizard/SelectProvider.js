@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import Select, { createFilter } from "react-select";
+import _ from "lodash";
 
 export default () => {
 
@@ -19,9 +20,10 @@ export default () => {
 	//component state
 	const [provider, setProvider] = useState({});	
 
-	const orgOptions = organizations
+	const orgOptions = _.chain(organizations)
 		.map( o => ({label: o.name, value: o.orgId || o.fhirEndpoint}) )
-		.sort( o => o.label );
+		.sortBy( o => o.label )
+		.value();
 
 	const orgRef = useRef(null)
 	useEffect(() => orgRef.current.focus(), []);

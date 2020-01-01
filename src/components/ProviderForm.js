@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import useStoreon from "storeon/react";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText, FormFeedback} from 'reactstrap';
 import Select, { createFilter } from "react-select";
+import _ from "lodash";
 
 export default () => {
 
@@ -22,9 +23,10 @@ export default () => {
 	const [showDetails, setShowDetails] = useState(false);
 	
 	const orgOptions = [{label: "Custom Endpoint", value: "custom"}].concat(
-		organizations
+		_.chain(organizations)
 			.map( o => ({label: o.name, value: o.orgId || o.fhirEndpoint}) )
-			.sort( o => o.label )
+			.sortBy( o => o.label )
+			.value()
 	);
 
 	const orgRef = useRef(null)
