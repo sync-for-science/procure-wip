@@ -18,7 +18,7 @@ export default () => {
 
 	const handleHideDialog = useCallback( e => {
 		if (e) e.preventDefault()
-		dispatch("uiState/set", {state: "ready"})
+		dispatch("uiState/set", {mode: "ready"})
 	}, [dispatch]);
 
 	const handleCancelExport = useCallback( e => {

@@ -7,7 +7,7 @@ import store from "./store/store";
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
-store.dispatch("config/load");
+store.dispatch("config/load", "ready");
 
 ReactDOM.render(
 	<StoreContext.Provider value={store}><App /></StoreContext.Provider>,

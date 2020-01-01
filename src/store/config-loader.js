@@ -3,6 +3,7 @@ import stripJsonComments from "strip-json-comments";
 import tv4 from "tv4";
 import endpointListSchema from "../schemas/endpoint-list-schema.json";
 import configSchema from "../schemas/config-schema.json";
+import FileExporter from "./file-exporter";
 import _ from "lodash";
 import mergeObjects from "./merge-objects.js";
 
@@ -25,6 +26,8 @@ function overlayQsValues(config) {
 		config.upload = config.upload || {};
 		config.upload.label = label;
 	}
+	const wizard = getUrlParameter("wizard");
+	if (wizard) config.showWizard = true;
 	return config;
 }
 
@@ -123,6 +126,35 @@ function loadConfigFile(path, overridePath) {
 		})
 		.then( config => {
 			return overlayQsValues(config);
+		})
+		//preload manifest if in wizard mode.
+		//manifest is loaded on-demand when in full mode so as not to display 
+		//unnecessary errors to the user if it fails to load.
+		.then( config => {
+
+			if (!config.showWizard || (config.upload && !config.upload.manifestUrl)) 
+				return config;
+			
+			if (!config.upload || (!config.upload.manifestUrl && !config.upload.uploadUrl))
+				throw new Error("Upload configuration required for wizard mode");
+			
+			const fileExporter = new FileExporter();
+			if (config.upload.qsManifestUrl) {
+				const isValidUrl = fileExporter.isValidUrl(config.upload.manifestUrl, config.upload.whitelist);
+				if (!isValidUrl) 
+					throw new Error("Url manifest location not in whitelist: " + config.upload.manifestUrl);
+			}
+
+			return fileExporter.getManifest(config.upload.manifestUrl)
+				.then( manifest => {
+					config.upload = {...config.upload, ...manifest}
+					return config;
+				})
+				.catch(e => {
+					throw new Error("Unable to load manifest at " + config.upload.manifestUrl);
+				});
+	
+
 		})
 		// .then( config => {
 		// 	console.log(config);

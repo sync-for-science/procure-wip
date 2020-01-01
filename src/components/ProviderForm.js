@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import useStoreon from "storeon/react";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText, FormFeedback} from 'reactstrap';
 import Select, { createFilter } from "react-select";
+import _ from "lodash";
 
 export default () => {
 
@@ -20,12 +21,13 @@ export default () => {
 	const [provider, setProvider] = useState({});
 	const [validation, setValidation] = useState({});
 	const [showDetails, setShowDetails] = useState(false);
-	const [orgOptions] = useState( () => {
-		let orgs = organizations
+	
+	const orgOptions = [{label: "Custom Endpoint", value: "custom"}].concat(
+		_.chain(organizations)
 			.map( o => ({label: o.name, value: o.orgId || o.fhirEndpoint}) )
-			.sort( o => o.label );
-		return [{label: "Custom Endpoint", value: "custom"}].concat(orgs);
-	});
+			.sortBy( o => o.label )
+			.value()
+	);
 
 	const orgRef = useRef(null)
 	useEffect(() => orgRef.current.focus(), []);
@@ -164,7 +166,7 @@ export default () => {
 		return <FormGroup>
 			<Label for="profile">Profile</Label>
 			<Input type="select"
-				value={provider.queryProfile || "argonaut_r2"}
+				value={provider.queryProfile || "argonaut_spec"}
 				onChange={ e=> setProvider({...provider, queryProfile: e.target.value}) }
 				name="profile"
 			> {profileOptions} </Input>

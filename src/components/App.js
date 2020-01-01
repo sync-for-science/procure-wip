@@ -14,11 +14,12 @@ import FhirTree from "./FhirTree";
 import Toolbar from "./Toolbar";
 import BlankSlate from "./BlankSlate";
 import FileUploader from "./FileUploader";
+import Wizard from "./Wizard/";
 
 const App = () =>  {
 
 	//global state
-	const { uiState, providers } = useStoreon("uiState", "providers");
+	const { uiState, showWizard, upload, providers } = useStoreon("uiState", "upload", "showWizard", "providers");
 
 	if (uiState.mode === "loading") 
 		return <Loader />;
@@ -56,8 +57,7 @@ const App = () =>  {
 		return p.selected && p.data && p.data.entry && p.data.entry.length
 	});
 
-
-	return <div>
+	const fullUi = <div>
 		<Header />
 		<Container fluid>
 			<Row className="m-2">
@@ -71,5 +71,23 @@ const App = () =>  {
 			{ uiState.mode === "fileUpload" && <FileUploader /> }
 		</Container>
 	</div>
+
+	const wizardUi = showWizard && 
+		upload && (upload.manifestUrl || upload.uploadUrl) &&
+			<Container>
+			{ uiState.error && uiState.mode === "ready" && 
+				<Row className="m-2">{inlineError}</Row>
+			}	
+			<Wizard />
+		</Container>
+
+	if (wizardUi) {
+		document.body.classList.add("bg-light");
+		return wizardUi;
+	} else {
+		document.body.classList = "";
+		return fullUi;
+	}
+
 }
 export default App;

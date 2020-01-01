@@ -7,12 +7,13 @@ const path = require("path");
 
 const config = {
 	port: 8000,
+	speed: 3000,
 	destinationDir: "uploaded_files",
 	name: "Test research project",
 	infoUrl: "http://google.com",
-	successMessage: "Thank you - your information has been transmitted!"
-	// continueLabel: "Link records with your account" ,
-	// continueUrl:  "http://google.com"
+	successMessage: "Thank you - your information has been transmitted!",
+	continueLabel: "Link records with your account",
+	continueUrl:  "http://google.com"
 };
 
 app.use(cors());
@@ -38,7 +39,10 @@ app.put("/:fileName", bodyParser.raw({inflate:false, limit: "5mb"}), (req, res) 
 			res.status(500).send("An error occurred saving the file on the server.")
 		} else {
 			console.log(`Saved upload to ${filePath}`)
-			res.sendStatus(200);
+			setTimeout( () => {
+				res.sendStatus(200);
+
+			}, config.speed);
 		}
 	});
 });
