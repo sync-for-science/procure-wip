@@ -6,14 +6,12 @@ import _ from "lodash";
 export default class FileExporter {
 
 	cancel() {
-		this.isCancelled = true;
 		this.controller.abort();
 	}
 
 	resetCancelled() {
 		this.controller = new AbortController();
 		this.signal = this.controller.signal;
-		this.isCancelled = false;
 	}
 
 	isValidUrl(url, whitelist) {
