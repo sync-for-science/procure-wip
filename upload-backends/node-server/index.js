@@ -12,7 +12,7 @@ const config = {
 	name: "Test research project",
 	infoUrl: "http://google.com",
 	successMessage: "Thank you - your information has been transmitted!",
-	continueLabel: "Link records with your account",
+	continueLabel: "Return to research portal",
 	continueUrl:  "http://google.com"
 };
 
