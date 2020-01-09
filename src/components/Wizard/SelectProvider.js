@@ -11,10 +11,10 @@ export default () => {
 	//app state
 	const {
 		uiState, providers, credentials,
-		organizations, redirectUri, dispatch
+		organizations, orgDefaults, redirectUri, dispatch
 	 } = useStoreon(
 		"uiState", "providers", "credentials",
-		"organizations", "redirectUri"
+		"organizations", "orgDefaults", "redirectUri"
 	 );
 
 	//component state
@@ -45,6 +45,10 @@ export default () => {
 		let orgConfig = organizations.find( 
 			o => selection.value === o.orgId || selection.value === o.fhirEndpoint
 		);
+
+		const defaults = orgDefaults[orgConfig.defaultId] || {};
+		if (orgConfig.defaultId !== undefined) 
+			orgConfig = {...defaults, ...orgConfig};
 
 		//get credential details if included by reference
 		if (orgConfig.credentialId)
