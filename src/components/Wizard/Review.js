@@ -37,22 +37,38 @@ export default () => {
 	const providerList = _.chain(providers)
 		.sortBy( p => p.lastUpdated)
 		.map(renderProvider)
-		.concat(<li key="add"><a href="#" onClick={handleAddProvider}>Add another provider</a></li>)
 		.value();
 
 	return <div className="p-2">
 		<h4 className="mb-4">Review Data to Share</h4>
 		<p>You have collected records from the following healthcare providers:</p>
 		<ul>{ providerList }</ul>
-		<DownloadButton className="float-left mt-4" />
-		<Button color="success" className="float-right mt-4" 
-			disabled={providerList.length === 1}
-			onClick={handleFileUpload}
-		>
-			<span className="mr-2">Share with {upload.name}</span>
-			<FontAwesomeIcon icon={faChevronRight} className="mr-2" />
-		</Button>
-		<div className="clearfix"></div>
+
+		<div className="d-md-flex">
+			<div className="align-self-end flex-grow-1 mt-4">
+				<DownloadButton />
+			</div>
+			<div>
+				<Button color="success" 
+					onClick={handleAddProvider}
+					className="btn-block text-left mt-4"
+				>
+					<span className="mr-2">Add another provider</span>
+					<FontAwesomeIcon icon={faChevronRight} className="mr-2" />
+				</Button>
+				<Button color="success" 
+					className="btn-block text-left mt-2"
+					disabled={providerList.length === 0}
+					onClick={handleFileUpload}
+				>
+					<span className="mr-2">Share with {upload.name}</span>
+					<FontAwesomeIcon icon={faChevronRight} className="mr-2" />
+				</Button>
+			</div>
+			<div className="clear"></div>
+		</div>
+
+
 	</div>
 
 }

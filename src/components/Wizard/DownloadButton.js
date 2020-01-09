@@ -54,7 +54,7 @@ export default (props) => {
 	>
 		<DropdownToggle 
 			color="outline-secondary" 
-			style={{margin: "0 1rem 1rem 0"}}
+			style={{margin: "0 1rem 0 0"}}
 			caret
 		>
 		<FontAwesomeIcon icon={faFileDownload} className="mr-2" />
