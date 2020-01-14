@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import useStoreon from "storeon/react";
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -24,9 +24,6 @@ export default () => {
 		.map( o => ({label: o.name, value: o.orgId || o.fhirEndpoint}) )
 		.sortBy( o => o.label )
 		.value();
-
-	const orgRef = useRef(null)
-	useEffect(() => orgRef.current.focus(), []);
 
 	useEffect( () => {
 		if (!provider.id && uiState.id && uiState.mode === "editProvider") {
@@ -69,7 +66,7 @@ export default () => {
 		//workaround since component uses both the value and label to match and we just want to store the value
 		const value = provider.orgId ? orgOptions.find(o => o.value === provider.orgId) : null;
 
-		return <Select id="organization" ref={orgRef}
+		return <Select id="organization" autoFocus
 				//performance improvement on autocomplete
 				filterOption={createFilter({ignoreAccents: false})}
 				value={value}

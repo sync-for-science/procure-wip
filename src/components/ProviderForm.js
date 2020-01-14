@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import useStoreon from "storeon/react";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText, FormFeedback} from 'reactstrap';
 import Select, { createFilter } from "react-select";
@@ -29,9 +29,8 @@ export default () => {
 			.value()
 	);
 
-	const orgRef = useRef(null)
-	useEffect(() => orgRef.current.focus(), []);
-
+	// const orgRef = useRef(null)
+	// useEffect(() => orgRef.current.focus(), []);
 
 	const handleCancel = useCallback( e => {
 		e.preventDefault();
@@ -128,13 +127,14 @@ export default () => {
 
 		return <FormGroup>
 			<Label for="organization">Healthcare Organization</Label>
-			<Select id="organization" ref={orgRef}
+			<Select id="organization" autoFocus
 				//performance improvement on autocomplete
 				filterOption={createFilter({ignoreAccents: false})}
 				value={value}
 				onChange={handleOrgSelection}
 				isSearchable={true}
 				options={orgOptions}
+				defaultMenuIsOpen={provider.id ? false : true}
 			/>
 		</FormGroup>
 	}
@@ -214,7 +214,7 @@ export default () => {
 		)}
 	</>
 
-	return  <Modal isOpen={true} fade={false} backdrop={true}>
+	return  <Modal isOpen={true} fade={false} backdrop={true} autoFocus={false}>
 		<ModalHeader>{provider.id ? "Update Provider" : "Add Provider"} </ModalHeader>
 		<ModalBody><Form onSubmit={handleSubmit} className="needs-validation" noValidate>
 			{ shortForm }
