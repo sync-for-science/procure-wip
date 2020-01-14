@@ -1,3 +1,5 @@
+/* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
+
 import React, { useState, useEffect } from "react";
 import useStoreon from "storeon/react";
 import { Button } from 'reactstrap';
@@ -36,6 +38,11 @@ export default () => {
 		e.preventDefault();
 		dispatch("providers/upsertAndLoad", provider);
 		dispatch("refreshDirty");
+	}
+
+	const handleSkip = e => {
+		e.preventDefault();
+		dispatch("uiState/set", {mode: "review"});
 	}
 
 	const handleOrgSelection = (selection) => {
@@ -85,13 +92,21 @@ export default () => {
 			If you've been to multiple healthcare providers, after retrieving your records you'll have the option to return to this screen to select another institution.
 		</p>
 		{ renderOrgSelector() }
-		<Button color="success" className="float-right mt-4"
-			onClick={ handleSubmit } 
-			disabled={provider.orgId ? false :true}
-		>
-			<span className="mr-2">Login to Patient Portal</span>
-			<FontAwesomeIcon icon={faChevronRight} className="mr-2" />
-		</Button>
-		<div className="clearfix"></div>
+
+		<div className="d-flex">
+			<div className="align-self-end flex-grow-1 mt-4 pl-1">
+				{providers.length > 0 && <a href="#" onClick={handleSkip}>skip</a>}
+			</div>
+			<div>
+				<Button color="success" className="mt-4"
+					onClick={ handleSubmit } 
+					disabled={provider.orgId ? false :true}
+				>
+					<span className="mr-2">Login to Patient Portal</span>
+					<FontAwesomeIcon icon={faChevronRight} className="mr-2" />
+				</Button>
+			</div>
+		</div>
+
 	</div>
 }

@@ -53,19 +53,29 @@ export default () => {
 					onClick={handleAddProvider}
 					className="btn-block text-left mt-4"
 				>
-					<span className="mr-2">Add another provider</span>
-					<FontAwesomeIcon icon={faChevronRight} className="mr-2" />
+					<div className="d-flex">
+						<div className="mr-2 align-self-center flex-grow-1">Add another provider</div>
+						<div className="mr-2 align-self-center">
+							<FontAwesomeIcon icon={faChevronRight} />
+						</div>
+					</div>
+
 				</Button>
 				<Button color="success" 
 					className="btn-block text-left mt-2"
 					disabled={providerList.length === 0}
 					onClick={handleFileUpload}
 				>
-					<span className="mr-2">Share with {upload.name}</span>
-					<FontAwesomeIcon icon={faChevronRight} className="mr-2" />
+					<div className="d-flex">
+						<div className="mr-2 align-self-center flex-grow-1">
+							Share with {upload.name}
+						</div>
+						<div className="mr-2 align-self-center">
+							<FontAwesomeIcon icon={faChevronRight} />
+						</div>
+					</div>
 				</Button>
 			</div>
-			<div className="clear"></div>
 		</div>
 
 
