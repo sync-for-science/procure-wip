@@ -20,7 +20,6 @@
     "react-select": "^3.0.8",
     "reactstrap": "^8.2.0",
     "sanitize-filename": "^1.6.1",
-    "source-map-explorer": "^2.0.1",
     "storeon": "^0.8.3",
     "strip-json-comments": "^2.0.1",
     "timeago.js": "^4.0.0-beta.2",
@@ -47,6 +46,7 @@
     "jest-fetch-mock": "^2.1.1",
     "react-scripts": "^3.3.0",
     "react-test-renderer": "^16.8.6",
+    "source-map-explorer": "^2.2.2",
     "workbox-build": "^4.3.1"
   }
 }
