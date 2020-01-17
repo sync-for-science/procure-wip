@@ -1,8 +1,9 @@
 import _ from "lodash";
-import Excel from "exceljs";
+import XlsxPopulate from "xlsx-populate";
 import saveAs from "file-saver";
 import sanitizeFilename from "sanitize-filename";
 import mergeObjects from "./merge-objects.js";
+import csvWriter from "./csv-writer";
 
 const defaultHelperFns = {
 	validateExists: v => {
@@ -129,23 +130,44 @@ function getTemplateColumns(template) {
 // https://github.com/egeriis/zipcelx (MIT, very light weight, currently no date support)
 // https://en.wikipedia.org/wiki/Microsoft_Office_XML_formats#Excel_XML_Spreadsheet_example (Excel 2003, seems to not require zip)
 
-function exportFlatData(flatData, template, name, format) {
-	let workbook = new Excel.Workbook();
-	let worksheet = workbook.addWorksheet(name);
-	worksheet.columns = _.map(getTemplateColumns(template), c => {
-		return {header: c, key: c};
-	})
-	_.each( flatData, item => worksheet.addRow(item) )
-	
-	const type = format === "xlsx"
-		? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-		: "text/csv";
-	const options = {};
-
-	return workbook[format].writeBuffer(options).then( data => {
-		var blob = new Blob([data], { type });
-		saveAs(blob, sanitizeFilename(name) + "." + format);
+function exportFlatDataCSV(flatData, template, name) {
+	const columns = getTemplateColumns(template);
+	const data = flatData.map( row => {
+		return columns.map( col =>  row[col] );
 	});
+	const blob = csvWriter([columns].concat(data));
+	return new Promise( (resolve) => {
+		saveAs(blob, sanitizeFilename(name) + ".csv")
+		resolve();
+	})
+}
+
+function exportFlatDataExcel(flatData, template, name) {
+	const columns = getTemplateColumns(template);
+	let dateCols = [];
+	const data = flatData.map( row => {
+		return columns.map( (col, i) => {
+			if (row[col] instanceof Date && dateCols.indexOf(i+1) === -1)
+				dateCols.push(i+1);
+			return row[col] 
+		});
+	});
+
+	return XlsxPopulate.fromBlankAsync()
+    	.then( workbook => {
+			workbook.sheet(0).name(name)
+				.cell("A1").value(
+					[columns].concat(data)
+				)
+			dateCols.forEach( dateCol => {
+				workbook.sheet(0).column(dateCol)
+					.style("numberFormat", "dddd, mmmm dd, yyyy");
+			});
+			return workbook.outputAsync()
+		})
+		.then( blob => {
+			saveAs(blob, sanitizeFilename(name) + ".xlsx");
+		});
 }
 
 function exportSpreadsheet(providers, spreadsheetTemplates, templateId, format) {
@@ -163,12 +185,15 @@ function exportSpreadsheet(providers, spreadsheetTemplates, templateId, format) 
 		const sortDir = _.map(mergedTemplateDefinition.sortBy, s => s.dir || "desc");
 		flatData = _.orderBy(flatData, sortBy, sortDir);
 	}
-
-	return exportFlatData(flatData, mergedTemplateDefinition.template, mergedTemplateDefinition.name, format);
+	if (format === "xlsx") {
+		return exportFlatDataExcel(flatData, mergedTemplateDefinition.template, mergedTemplateDefinition.name)
+	} else {
+		return exportFlatDataCSV(flatData, mergedTemplateDefinition.template, mergedTemplateDefinition.name)
+	}
 }
 
 
 export default { 
 	flatten, flattenProviders, 
-	exportFlatData, defaultHelperFns, exportSpreadsheet
+	defaultHelperFns, exportSpreadsheet
 }
