@@ -245,7 +245,7 @@ If a template has one or more template id values in its `extends` property (desc
 - [Create React App](https://facebook.github.io/create-react-app/) - Build framework, MIT License
 - [Storeon](https://github.com/storeon/storeon) - State management, MIT License
 ### Export
-- [ExcelJs](https://github.com/exceljs/exceljs) - Spreadsheet and CSV generation,  MIT License
+- [XLSX Populate](https://github.com/dtjohnson/xlsx-populate) - Spreadsheet generation,  MIT License
 - [JSZip](https://stuk.github.io/jszip) - Zip generation, MIT License
 - [FileSaver](https://github.com/eligrey/FileSaver.js) - Browser file download, MIT License
 - [Sanitize Filename](https://github.com/parshap/node-sanitize-filename) - ISC License
