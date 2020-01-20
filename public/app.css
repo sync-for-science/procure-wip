@@ -17,3 +17,17 @@
 .navbar .nav-item:hover .nav-link {
 	color: #ffffff !important;
 }
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    .unbox-sm {
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+	}
+}
+@media (min-width: 768px) {
+	.bg-light-md {
+		background: #f8f9fa !important;
+	}
+}

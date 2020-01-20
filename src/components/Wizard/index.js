@@ -38,7 +38,7 @@ export default() => {
 			</h2>
 		</Col></Row>
 		<Row><Col md={{size:10, offset: 1}} lg={{size:8, offset: 2}}>
-			<div className="shadow p-4 mb-5 bg-white rounded">
+			<div className="shadow p-4 mb-5 bg-white rounded unbox-sm">
 
 				<div className="d-none d-sm-block">
 					<div className="d-none d-flex flex-row justify-content-around mb-4" style={{borderBottom: "1px solid #3182CE"}}>

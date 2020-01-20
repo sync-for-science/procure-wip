@@ -82,7 +82,7 @@ const App = () =>  {
 		</Container>
 
 	if (wizardUi) {
-		document.body.classList.add("bg-light");
+		document.body.classList.add("bg-light-md");
 		return wizardUi;
 	} else {
 		document.body.classList = "";
