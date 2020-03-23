@@ -1,0 +1,101 @@
+{
+	"entry": [{
+		//username: fhirjason, password: epicepic1
+		"name": "Sandbox - Secure - Epic",
+		"fhirEndpoint":"https://open-ic.epic.com/argonaut/api/FHIR/Argonaut/",
+		"id": "epic-sandbox-secure",
+		"credentialId": "epic_sandbox_secure",
+		"scope": ["launch/patient", "patient/*.read"],
+		"queryProfile": "argonaut_epic"
+	},{
+		//open issues: can't read practitioner references even with correct scopes
+		//also, in general, sandbox server token times out on large requests, so can only test a few
+		//queries at a time.
+		//username: nancy_smart, password: Cerner01
+		//see full list at: https://docs.google.com/document/d/1yQXPHs5cqFuoBg6A1SW0495lUpNHb5cPoRlX28TRcck/edit
+		"name": "Sandbox - Secure - Cerner",
+		"fhirEndpoint": "https://fhir-myrecord.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/",
+		"queryProfile": "argonaut_cerner",
+		"credentialId": "cerner_sandbox_secure",
+		"scope": [
+			"launch/patient", "profile", "openid", "patient/AllergyIntolerance.read", 
+			"patient/Appointment.read", "patient/Binary.read", "patient/CarePlan.read", "patient/Condition.read", 
+			"patient/Contract.read", "patient/Device.read", "patient/DiagnosticReport.read",
+			"patient/DocumentReference.read", "patient/Encounter.read", "patient/Goal.read", "patient/Immunization.read",
+			"patient/MedicationAdministration.read", "patient/MedicationOrder.read", "patient/MedicationStatement.read",
+			"patient/Observation.read", "patient/Patient.read", "patient/Person.read", "patient/Procedure.read",
+			"patient/ProcedureRequest.read", "patient/RelatedPerson.read", "user/Practitioner.read", "user/Binary.read"
+		]
+	},{
+		"name": "Sandbox - Secure - SMART",
+		"fhirEndpoint": "http://launch.smarthealthit.org/v/r2/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6ImM3ZWM5NTYwLTU4Y2QtNGEwOC04NzRiLTkxZTM0MjllZjFkNiJ9/fhir",
+		"credentialId": "smart_sandbox_secure"
+	// },{
+		//login info is tied to user's google account and is restricted by contract, so requires sign up to get a client id
+		// "name": "Sandbox - Secure - Meditech",
+		// "fhirEndpoint": "https://greenfield-apis.meditech.com/v1/argonaut/v1/",
+		// "queryProfile": "argonaut_meditech",
+		// "scope": ["launch/patient", "openid", "profile", "patient/*.read"],
+		// "credentialId": "meditech_sandbox_secure"
+	// },{
+		//Getting 504 error when retrieving resources. 
+		//see: https://groups.google.com/forum/#!category-topic/nextgenapiusers/application-questions--issues/wPmbUIaflPM
+		//username: wwrist, password: wwrist!123
+		// "name": "Sandbox - Secure - NextGen",
+		// "fhirEndpoint": "https://apigw-west.nextgen.com/nge/staging/fhirapi/dstu2/v1.0",
+		// "scope": ["launch/patient", "openid", "profile", "patient/*.read"],
+		// "credentialId": "nextgen_sandbox_secure",
+		// "queryProfile": "demographics"
+	// },{
+		//Allscripts does not seem to support CORS see issue:
+		//https://developer.allscripts.com/Forums#/discussion/2665/cors-error-in-patient-facing-app/p1?new=1
+		//username: bill.aaron@open.allscripts.com, password: Password#1
+		// "name": "Sandbox - Secure - Allscripts Prof (FMH)",
+		// "fhirEndpoint": "https://pro171fmh.open.allscripts.com/open",
+		// "scope": ["launch/patient", "openid", "profile", "patient/*.read"],
+		// "credentialId": "allscripts_sandbox_secure",
+		// "queryProfile": "argonaut_spec"
+	},{
+		"name": "Sandbox - Open - Epic (Jason Argonaut)",
+		"fhirEndpoint": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/",
+		"patient": "Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB",
+		"id": "epic-open-jason",
+		"isOpen": true,
+		"queryProfile": "argonaut_epic"
+	},{
+		"name": "Sandbox - Open - Epic (James Kirk)",
+		"fhirEndpoint": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/",
+		"patient": "ToHDIzZiIn5MNomO309q0f7TCmnOq6fbqOAWQHA1FRjkB",
+		"id": "epic-open-james",
+		"isOpen": true,
+		"queryProfile": "argonaut_epic"
+	},{
+		"name": "Sandbox - Open - Epic (Emily Williams)",
+		"fhirEndpoint": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/",
+		"patient": "TwncfOQytqCYtmJKvdpDOSU7U1upj6s9crg-PFHQgSO0B",
+		"id": "epic-open-emily",
+		"isOpen": true,
+		"queryProfile": "argonaut_epic"
+	},{
+		"name": "Sandbox - Open - SMART (Caren Towne)",
+		"clientId": "smart_open_c7ec9560-58cd-4a08-874b-91e3429ef1d6",
+		"fhirEndpoint": "https://r2.smarthealthit.org",
+		"isOpen": true,
+		"id": "smart-open-caren",
+		"patient": "c7ec9560-58cd-4a08-874b-91e3429ef1d6"
+	},{
+		"name": "Sandbox - Open - Cerner (Joe)",
+		"fhirEndpoint": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/",
+		"patient": "4342010",
+		"isOpen": true,
+		"id": "cerner-open-joe",
+		"queryProfile": "argonaut_cerner"
+	},{
+		"name": "Sandbox - Open - Cerner (Jake)",
+		"fhirEndpoint": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/",
+		"patient": "1316020",
+		"isOpen": true,
+		"id": "cerner-open-jake",
+		"queryProfile": "argonaut_cerner"
+	}]
+}
