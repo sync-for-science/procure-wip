@@ -14,7 +14,7 @@
 		},
 		{
 			"fileMatch": [
-				"user-settings.json"
+				"procure-settings.json"
 			],
 			"url": "./src/schemas/user-settings-schema.json"
 		},

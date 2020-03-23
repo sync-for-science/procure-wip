@@ -1,4 +1,5 @@
 {
+	"appName": "Procure",
 	"credentials": {
 		"epic_sandbox_secure": {"clientId": "8ab5bc00-5c7b-4dc4-bf2f-3eba54e3b21d" },
 		"smart_sandbox_secure": {"clientId": "fake_client_id"},

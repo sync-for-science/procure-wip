@@ -16,8 +16,9 @@ export default () => {
 
 	const handleCancel = useCallback( e => {
 		e.preventDefault();
-		dispatch("fhir/cancelLoad");
-	}, [dispatch]);
+		dispatch("fhir/cancelLoad", "editProvider");
+		dispatch("providers/remove", provider.id)
+	}, [dispatch, provider]);
 
 	const handleBack = e => {
 		dispatch("providers/remove", provider.id)

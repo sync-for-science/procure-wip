@@ -1,0 +1,22 @@
+{
+	"appName": "Procure Demo",
+	"noCustomEndpoints": true,
+	"upload": {
+		"simulate": true
+		, "label": "Share with Test Project"
+		, "name": "Test Project"
+		, "uploadUrl":"http://localhost:8000/123-1570639420963.zip"
+		, "infoUrl":"http://google.com"
+		, "successMessage":"Thank you - your information has been transmitted!"
+		, "continueUrl": "http://www.google.com"
+	},
+	"_endpointLists": {
+		"sandbox_endpoints": {
+			"path": "./config/sandbox_endpoints.json",
+			"defaults": {
+				"queryProfile": "argonaut_spec",
+				"scope": ["patient/*.read", "launch/patient"]
+			}
+		}
+	}
+}

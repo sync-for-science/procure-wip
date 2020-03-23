@@ -19,6 +19,7 @@ if (process.env.NODE_ENV !== "development") {
 const fhirLoader = new FhirLoader();
 const ghExporter = new GithubExporter();
 const fileExporter = new FileExporter();
+let simulateTimer;
 
 const createUniqueId = () => Math.random().toString(36);
 const actions = store => {
@@ -85,12 +86,13 @@ const actions = store => {
 	});
 	store.on("config/load", (state, endState="ready") => {
 		store.dispatch("uiState/set", {mode: "loading"});
-		const overridePath = process.env.NODE_ENV !== "development" 
-			? "./config/config-override.json" 
-			: "./config/config-override-dev.json";
+		const isDev = process.env.NODE_ENV === "development";
+		const overridePath = isDev
+			? "./config/config-override-dev.json" 
+			: "./config/config-override.json";
 
 		ConfigLoader
-			.loadConfigFile("./config/config.json", overridePath)
+			.loadConfigFile("./config/config.json", overridePath, isDev)
 			.then( config => {
 				store.dispatch("config/merge", config);
 
@@ -283,7 +285,9 @@ const actions = store => {
 			});
 	});
 	
-	store.on("export/upload/cancel", () => {
+	store.on("export/upload/cancel", ({upload}) => {
+		if (upload.simulate)
+			return window.clearTimeout(simulateTimer);
 		fileExporter.cancel();
 	});
 
@@ -293,6 +297,14 @@ const actions = store => {
 			submode: "uploading",
 			status: "Uploading Data"
 		});
+
+		if (upload.simulate) {
+			return simulateTimer = window.setTimeout(() => {
+				store.dispatch("uiState/merge", {
+					submode: "postUpload"
+				});
+			}, 2000);
+		}
 
 		zipExporter.exportProvidersAsBlob(providers)
 			.then( file => {
@@ -317,9 +329,10 @@ const actions = store => {
 		UserSettings.download(providers, githubConfig, redirectUri);
 	});
 
-	store.on("import/settings", ({redirectUri, queryProfiles}, file) => {
+	store.on("import/settings", ({redirectUri, queryProfiles, noCustomEndpoints}, file) => {
 		UserSettings.readFromFile(file, redirectUri, queryProfiles)
 			.then( config => {
+				if (noCustomEndpoints) config.providers = [];
 				//unloading data controls prior to modifying config to avoid
 				//timing error from control update and unmount at same time
 				store.dispatch("uiState/set", {mode: "loading"});

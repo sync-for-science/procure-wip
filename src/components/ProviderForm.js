@@ -11,10 +11,10 @@ export default () => {
 	//app state
 	const {
 		uiState, providers, queryProfiles, credentials,
-		organizations, orgDefaults, redirectUri, dispatch
+		organizations, orgDefaults, redirectUri, noCustomEndpoints, dispatch
 	 } = useStoreon(
 		"uiState", "providers", "queryProfiles", "credentials",
-		"organizations", "orgDefaults", "redirectUri"
+		"organizations", "orgDefaults", "redirectUri", "noCustomEndpoints"
 	 );
 
 	//component state
@@ -22,7 +22,9 @@ export default () => {
 	const [validation, setValidation] = useState({});
 	const [showDetails, setShowDetails] = useState(false);
 	
-	const orgOptions = [{label: "Custom Endpoint", value: "custom"}].concat(
+	const orgOptions = (
+		noCustomEndpoints ? [] : [{label: "Custom Endpoint", value: "custom"}] 
+	).concat(
 		_.chain(organizations)
 			.map( o => ({label: o.name, value: o.orgId || o.fhirEndpoint}) )
 			.sortBy( o => o.label )
@@ -182,7 +184,7 @@ export default () => {
 		<Label for="isOpen">Open Endpoint</Label>
 	</FormGroup>
 
-	const detailsLink = <FormGroup>
+	const detailsLink = !noCustomEndpoints && <FormGroup>
 		<a href="#" onClick={e => setShowDetails(true)} >
 			{"Show Configuration Details"}
 		</a>

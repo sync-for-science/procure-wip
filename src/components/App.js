@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */ //disable to support bootstrap link styling
 
-import React from "react";
+import React, {useEffect} from "react";
 import useStoreon from "storeon/react";
 import {Alert, Container, Row, Col} from 'reactstrap';
 import _ from "lodash";
@@ -19,7 +19,11 @@ import Wizard from "./Wizard/";
 const App = () =>  {
 
 	//global state
-	const { uiState, showWizard, upload, providers } = useStoreon("uiState", "upload", "showWizard", "providers");
+	const { uiState, showWizard, upload, providers, appName } = useStoreon("uiState", "upload", "showWizard", "providers", "appName");
+
+	useEffect(() => {
+		document.title = appName || "Procure";
+	}, [appName]);
 
 	if (uiState.mode === "loading") 
 		return <Loader />;

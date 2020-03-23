@@ -23,7 +23,7 @@ export default () => {
 	}, [upload]);
 
 	const handleCancel = useCallback( e => {
-		e.preventDefault()	
+		e.preventDefault();
 		dispatch("export/upload/cancel");
 		dispatch("uiState/set", {mode: "review"});
 	}, [dispatch]);

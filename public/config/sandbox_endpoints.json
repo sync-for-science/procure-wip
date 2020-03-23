@@ -60,21 +60,21 @@
 		"fhirEndpoint": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/",
 		"patient": "Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB",
 		"id": "epic-open-jason",
-		"isOpen": "true",
+		"isOpen": true,
 		"queryProfile": "argonaut_epic"
 	},{
 		"name": "Sandbox - Open - Epic (James Kirk)",
 		"fhirEndpoint": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/",
 		"patient": "ToHDIzZiIn5MNomO309q0f7TCmnOq6fbqOAWQHA1FRjkB",
 		"id": "epic-open-james",
-		"isOpen": "true",
+		"isOpen": true,
 		"queryProfile": "argonaut_epic"
 	},{
 		"name": "Sandbox - Open - Epic (Emily Williams)",
 		"fhirEndpoint": "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/",
 		"patient": "TwncfOQytqCYtmJKvdpDOSU7U1upj6s9crg-PFHQgSO0B",
 		"id": "epic-open-emily",
-		"isOpen": "true",
+		"isOpen": true,
 		"queryProfile": "argonaut_epic"
 	},{
 		"name": "Sandbox - Open - SMART (Caren Towne)",

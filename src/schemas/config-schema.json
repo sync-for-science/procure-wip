@@ -51,6 +51,7 @@
 					"type": "string", 
 					"format": "uri"
 				},
+				"simulate": {"type": "boolean"},
 				"successMessage": { "type": "string" },
 				"continueLabel": { "type": "string" },
 				"continueUrl": {
@@ -211,6 +212,8 @@
 	"required": [ "queryProfiles" ],
 	"additionalProperties": false,
 	"properties": {
+		"appName": {"type": "string"},
+		"noCustomEndpoints": {"type": "boolean"},
 		"credentials": { "$ref": "#/definitions/credentials" },
 		"mimeTypeMappings": { "$ref": "#/definitions/mime_type_mappings" },
 		"dateSortElements": { "$ref": "#/definitions/date_sort_elements" },

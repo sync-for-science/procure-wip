@@ -9,7 +9,7 @@ import { faMedkit } from "@fortawesome/free-solid-svg-icons"
 
 export default () => {
 
-	const { providers, isDirty, warnOnPageNavigate, dispatch } = useStoreon("providers", "isDirty", "warnOnPageNavigate");
+	const { providers, isDirty, warnOnPageNavigate, appName, dispatch } = useStoreon("providers", "isDirty", "warnOnPageNavigate", "appName");
 	const fileInput = useRef();
 
 	useEffect( () => {
@@ -54,7 +54,7 @@ export default () => {
 		<Navbar color="light" light expand="xs">
 			<NavbarBrand href="/">
 				<FontAwesomeIcon icon={faMedkit} alt="Procure logo" className="mr-2" />
-				Procure
+				{appName || "Procure"}
 			</NavbarBrand>
 			<Nav className="ml-auto" navbar>
 				<NavItem>

@@ -55,9 +55,15 @@ function readConfigFile(path, isOverride) {
 
 }
 
-function loadConfigFile(path, overridePath) {
+function loadConfigFile(path, overridePath, allowQsOverride) {
 	let configReaders = [readConfigFile(path)];
-	if (overridePath) configReaders.push(readConfigFile(overridePath, true));
+	const qsOverridePath = getUrlParameter("config");
+
+	if (qsOverridePath && allowQsOverride) {
+		configReaders.push(readConfigFile(qsOverridePath, true));
+	} else if (overridePath) {
+		configReaders.push(readConfigFile(overridePath, true));
+	}
 
 	return Promise.all(configReaders)
 		.then( data => mergeObjects.merge(data) )
