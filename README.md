@@ -65,7 +65,7 @@ Much of Procure's functionality can be customized by changing or overriding valu
 
 ### Overriding Configuration Properties
 
-You can modify Procure's settings by altering values in the `public/config/config.json` file. However, this file may be updated in new releases of Procure, requiring you to re-apply your changes. A better approach is to override specific configuration properties by adding them to the `public/config/config-override.json` file, which is unique to your Procure deployment. When Procure is run in development mode, the file `public/config/config-override-dev.json` is loaded instead. 
+You can modify Procure's settings by altering values in the `public/config/config.json` file. However, this file may be updated in new releases of Procure, requiring you to re-apply your changes. A better approach is to override specific configuration properties by adding them to the `public/config/config-override.json` file, which is unique to your Procure deployment. When Procure is run in development mode, the path to a config override file can be specified in the `config` querystring parameter. If this parameter isn't populated, the file `public/config/config-override-dev.json` will be loaded instead. 
 
 The root structure in the `config-override.json` or `config-override-dev.json` file must be a JSON object. At runtime, the properties of this object are merged with those in the `config.json` file. Additional properties will be added, and altered values will be replaced. For example, to change the title of the `Argonaut (Epic)` query profile, you would create the following object in your override file that mirrors the structure of the config file, setting a new title property. None of the other properties in the object hierarchy will be altered.
 
@@ -98,6 +98,7 @@ Sometimes you may wish to replace the object associated with a property entirely
 
 | Property | Type | Description | 
 | --- | --- | --- |
+| `appName` | string | Text to show in title bar and header. |
 | `credentials` | object | SMART on FHIR OAuth credentials that can be referenced by id from one or more endpoints defined in the `endpointList` configuration item. The property names of the object are credential ids and the values are objects with a `clientId` and, optionally, a `clientSecret` property. |
 | `mimeTypeMappings` | object | Specifies how to convert the mime types of downloaded attachments into file names. The property names of the object are mime type strings, and the values are file extension strings. |
 | `dateSortElements` | object | Defines which fields in each FHIR ResourceType are used when ordering the resources for a user to browse in Procure's UI. Each property name is a FHIR ResourceType, with a value that's an array of FHIR elements. These are evaluated in order, and the first element name that exists is used as the sort date for a resource. All resources fall back to their FHIR `lastUpdated` date if no clinically relevant date is found. |
@@ -109,6 +110,7 @@ Sometimes you may wish to replace the object associated with a property entirely
 | `ignoreState` | boolean | Advanced - if set to `true`, will prevent the validation of the state parameter as part of the OAuth flow. Should never be set to `true` in production deployments. |
 | `spreadsheetTemplates` | object | Defines transforms to "flatten" FHIR Resources and represent them as spreadsheets. Drives the items that appear in the "Export as Spreadsheet" menu in Procure. The property names of the object are spreadsheet template ids and the values are template objects . See [details below](#spreadsheet-templates). |
 | `upload` | object | Identifies a web based endpoint and related information to enable users to upload their data, for example, to share it with a research study. See [details below](#upload-endpoint). |
+|`noCustomEndpoints` | boolean | Prevents users from specifying an endpoint that is not in a pre-defined endpoint list, editing a pre-defined endpoint, or importing saved settings with an endpoint. |
 
 
 ### Endpoint Lists 
@@ -153,6 +155,7 @@ The `upload` property object has the following properties:
 | `continueUrl` | string, optional | URL that will be opened in a new window following a successful transfer. May be used to support having the user log in and link the uploaded data to an existing account, review the uploaded data for accuracy, configure granular access permissions, etc. |
 | `continueLabel` | string, optional | Label for the button that triggers launch of the continue URL following a successful upload. |
 | `label` | string, optional | Label for upload button in UI. Defaults to "Share Data". |
+| `simulate` | boolean | When set to true, the upload will appear to take place, but no file will be PUT to the upload server. Useful for demos.|
 
 #### Pre-Configured Manifest Location
 The `upload` property object has the following properties:
