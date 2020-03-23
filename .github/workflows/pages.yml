@@ -1,0 +1,24 @@
+name: github pages
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build 
+      run: npm install && npm run-script build
+
+    - run: mv $GITHUB_WORKSPACE/build/config/config-override-demo.json $GITHUB_WORKSPACE/build/config/config-override.json
+      shell: bash
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
