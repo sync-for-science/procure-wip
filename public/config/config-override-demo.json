@@ -6,9 +6,9 @@
 		, "label": "Share with Test Project"
 		, "name": "Test Project"
 		, "uploadUrl":"http://localhost:8000/123-1570639420963.zip"
-		, "infoUrl":"http://google.com"
+		, "infoUrl":"http://example.com"
 		, "successMessage":"Thank you - your information has been transmitted!"
-		, "continueUrl": "http://www.google.com"
+		, "continueUrl": "http://example.com"
 	},
 	"_endpointLists": {
 		"sandbox_endpoints": {
