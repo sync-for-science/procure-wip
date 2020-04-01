@@ -34,7 +34,7 @@ export default() => {
 		<Row><Col>
 			<h2 style={{color: "#3182CE", padding: "1em 0", textAlign: "center"}}>
 				<FontAwesomeIcon icon={faMedkit} alt="Procure logo" className="mr-2" />
-				<span>{appName} || "Procure"</span>
+				<span>{appName || "Procure"}</span>
 			</h2>
 		</Col></Row>
 		<Row><Col md={{size:10, offset: 1}} lg={{size:8, offset: 2}}>
