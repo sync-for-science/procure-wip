@@ -111,6 +111,8 @@
 			"fhirVersion": "R2",
 			"retryLimit": 2,
 			"queries": [{
+				"resourcePath": "metadata"
+			},{
 				"resourcePath": "AllergyIntolerance",
 				"params": {"patient": "{{patientId}}"}
 			},{
@@ -174,6 +176,8 @@
 			"fhirVersion": "R2",
 			"retryLimit": 2,
 			"queries": [{
+				"resourcePath": "metadata"
+			},{
 				"resourcePath": "AllergyIntolerance",
 				"params": {"patient": "{{patientId}}"},
 				"retrieveReferences": "recorder"
@@ -234,6 +238,8 @@
 			"fhirVersion": "R2",
 			"retryLimit": 2,
 			"queries": [{
+				"resourcePath": "metadata"
+			},{
 				"resourcePath": "AllergyIntolerance",
 				"params": {"patient": "{{patientId}}"}
 			},{
@@ -310,6 +316,8 @@
 			"title": "Argonaut (Cerner)",
 			"fhirVersion": "R2",
 			"queries": [{
+				"resourcePath": "metadata"
+			},{
 				//may require user/Practitioner.read scope to work properly - unclear
 				"resourcePath": "CarePlan",
 				"params": {"patient": "{{patientId}}", "category": "assess-plan",  "_count": 100},
