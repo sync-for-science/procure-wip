@@ -18,5 +18,111 @@
 				"scope": ["patient/*.read", "launch/patient"]
 			}
 		}
+	},
+	"credentials": {
+		"epic_sandbox_secure": {"clientId": "8ab5bc00-5c7b-4dc4-bf2f-3eba54e3b21d" },
+		"cerner_sandbox_secure": {"clientId": "49ddec60-1dd6-49d6-b0d0-e31b95925b3a"}
+	},
+	"queryProfiles": {
+		"_argonaut_cerner": {
+			"title": "Argonaut (Cerner)",
+			"fhirVersion": "R2",
+			"queries": [{
+				"resourcePath": "metadata"
+			},{
+				//may require user/Practitioner.read scope to work properly - unclear
+				"resourcePath": "CarePlan",
+				"params": {"patient": "{{patientId}}", "category": "assess-plan",  "_count": 100},
+				 "retrieveReferences": "author",
+				"pageLimit": 1
+
+			},{
+				"resourcePath": "Patient/{{patientId}}"
+			},{
+				"resourcePath": "CarePlan",
+				"params": {"patient": "{{patientId}}", "category": "careteam", "_count": 100},
+				"containReferences": "participant.member",
+				"pageLimit": 1
+			},{
+				"resourcePath": "Goal",
+				"params": {"patient": "{{patientId}}"},
+				"pageLimit": 1
+			},{
+				"resourcePath": "ProcedureRequest",
+				"params": {"patient": "{{patientId}}", "_count": 100},
+				"pageLimit": 1			
+			},{
+				"resourcePath": "DiagnosticReport",
+				"params": {"patient": "{{patientId}}",  "_count": 100},
+				"retrieveReferences": "performer",
+				"downloadAttachments": "presentedForm",
+				"pageLimit": 1
+			},{
+				"resourcePath": "Observation",
+				"params": {"patient": "{{patientId}}", "_count": 100},
+				"pageLimit": 1
+			},{
+				"resourcePath": "Device",
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"resourcePath": "Encounter",
+				"params": {"patient": "{{patientId}}", "_count": 100},
+				"containReferences": "participant.individual",
+				"pageLimit": 1
+			},{
+				//requires RelatedPerson.read scope
+				"resourcePath": "Contract",
+				"params": {"subject": "Patient/{{patientId}}", "_include": "Contract:actor"},
+				"pageLimit": 1
+			},{	
+				"resourcePath": "AllergyIntolerance",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "recorder",
+				"pageLimit": 1
+			},{
+				"resourcePath": "Condition",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "asserter",
+				"pageLimit": 1
+			},{
+				"resourcePath": "Procedure",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "performer",
+				"pageLimit": 1
+			},{
+				"resourcePath": "RelatedPerson",
+				"params": {"patient": "{{patientId}}"},
+				"pageLimit": 1
+			},{
+				"resourcePath": "Immunization",
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "perfomer",
+				"pageLimit": 1
+				//["performer", "location"] //location looks like a FHIR resource, but isn't exposed
+			},{
+				"resourcePath": "MedicationAdministration",
+				"params": {"patient": "{{patientId}}", "_count": 100},
+				"retrieveReferences": "practitioner",
+				"pageLimit": 1
+			},{
+				"resourcePath": "MedicationStatement",
+				"params": {
+					"patient": "{{patientId}}",
+					"status": ["active", "completed"],
+					"_count": 100
+				},
+				"retrieveReferences": "informationSource",
+				"pageLimit": 1
+			// },{
+			// 	"resourcePath": "DocumentReference",
+			// 	"params": {"patient": "{{patientId}}", "_count": 100},
+			// 	"downloadAttachments": "content.attachment",
+			// 	//note that page limit is set due to bugs in the Cerner sandbox
+			// 	//this should be removed for production implementations!
+			// 	"pageLimit": 1
+			}]
+		}
+
 	}
+
 }
