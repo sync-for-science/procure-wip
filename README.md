@@ -247,6 +247,12 @@ If a template has one or more template id values in its `extends` property (desc
 - `validateExists` - ensures the path is populated in the FHIR Resource being evaluated.
 
 
+## Contributing
+
+As early stage software, Procure has bugs. If you run into an issue, please review the "issues" tab on Github and, if the problem isn't listed, open a new issue ticket to let us know! Also, if you're a software developer and are able to fix the code, git pull requests are very welcome, but please get in touch before coding large changes.
+
+Developers submitting code should install [Git Secrets](https://github.com/awslabs/git-secrets) and configure it as a pre-commit hook on their local Github repository to prevent inadvertent disclosure of confidential information. Pull requests will be screened using this tool prior to being merged.
+
 ## Third Party Libraries Used
 
 ### Core
