@@ -31,9 +31,6 @@ export default () => {
 			.value()
 	);
 
-	// const orgRef = useRef(null)
-	// useEffect(() => orgRef.current.focus(), []);
-
 	const handleCancel = useCallback( e => {
 		e.preventDefault();
 		dispatch("uiState/set", {mode: "ready"});
@@ -84,8 +81,7 @@ export default () => {
 			if (orgConfig.defaultId !== undefined) orgConfig = {...defaults, ...orgConfig};
 		} else {
 			orgConfig = {
-				name: selection.label,
-				scope: ["patient/*.read", "launch/patient"],
+				name: selection.label
 			}
 		}
 		//get credential details if included by reference
@@ -94,6 +90,8 @@ export default () => {
 
 		//update provider with new defaults
 		const updatedProvider = {
+			scope: ["patient/*.read", "launch/patient"],
+			queryProfile: "argonaut_spec",
 			...orgConfig,
 			redirectUri,
 			id: provider.id,
