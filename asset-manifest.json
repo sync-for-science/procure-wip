@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/procure-wip/static/js/main.4f7618e4.chunk.js",
-    "main.js.map": "/procure-wip/static/js/main.4f7618e4.chunk.js.map",
+    "main.js": "/procure-wip/static/js/main.3ca37277.chunk.js",
+    "main.js.map": "/procure-wip/static/js/main.3ca37277.chunk.js.map",
     "runtime-main.js": "/procure-wip/static/js/runtime-main.5c7cfaaf.js",
     "runtime-main.js.map": "/procure-wip/static/js/runtime-main.5c7cfaaf.js.map",
     "static/js/2.8fdeea1c.chunk.js": "/procure-wip/static/js/2.8fdeea1c.chunk.js",
     "static/js/2.8fdeea1c.chunk.js.map": "/procure-wip/static/js/2.8fdeea1c.chunk.js.map",
     "index.html": "/procure-wip/index.html",
-    "precache-manifest.148e3a7672330886ac08dc566161cd4b.js": "/procure-wip/precache-manifest.148e3a7672330886ac08dc566161cd4b.js",
+    "precache-manifest.c47fef9700efe3e7dfceb615d6755c9f.js": "/procure-wip/precache-manifest.c47fef9700efe3e7dfceb615d6755c9f.js",
     "service-worker.js": "/procure-wip/service-worker.js",
     "static/js/2.8fdeea1c.chunk.js.LICENSE.txt": "/procure-wip/static/js/2.8fdeea1c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5c7cfaaf.js",
     "static/js/2.8fdeea1c.chunk.js",
-    "static/js/main.4f7618e4.chunk.js"
+    "static/js/main.3ca37277.chunk.js"
   ]
 }
