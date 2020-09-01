@@ -11,10 +11,10 @@
 		//open issues: can't read practitioner references even with correct scopes
 		//also, in general, sandbox server token times out on large requests, so can only test a few
 		//queries at a time.
-		//username: nancy_smart, password: Cerner01
-		//see full list at: https://docs.google.com/document/d/1yQXPHs5cqFuoBg6A1SW0495lUpNHb5cPoRlX28TRcck/edit
+		//username: nancysmart, password: Cerner01
+		//see full list at: https://docs.google.com/document/d/10RnVyF1etl_17pyCyK96tyhUWRbrTyEcqpwzW-Z-Ybs/edit
 		"name": "Sandbox - Secure - Cerner",
-		"fhirEndpoint": "https://fhir-myrecord.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/",
+		"fhirEndpoint": "https://fhir-myrecord.cerner.com/dstu2/ec2458f2-1e24-41c8-b71b-0e701af7583d",
 		"queryProfile": "argonaut_cerner",
 		"credentialId": "cerner_sandbox_secure",
 		"scope": [
@@ -85,17 +85,17 @@
 		"patient": "c7ec9560-58cd-4a08-874b-91e3429ef1d6"
 	},{
 		"name": "Sandbox - Open - Cerner (Joe)",
-		"fhirEndpoint": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/",
-		"patient": "4342010",
+		"fhirEndpoint": "https://fhir-open.cerner.com/dstu2/ec2458f2-1e24-41c8-b71b-0e701af7583d/",
+		"patient": "12724067",
 		"isOpen": true,
 		"id": "cerner-open-joe",
 		"queryProfile": "argonaut_cerner"
 	},{
-		"name": "Sandbox - Open - Cerner (Jake)",
-		"fhirEndpoint": "https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/",
-		"patient": "1316020",
+		"name": "Sandbox - Open - Cerner (Jason)",
+		"fhirEndpoint": "https://fhir-open.cerner.com/dstu2/ec2458f2-1e24-41c8-b71b-0e701af7583d/",
+		"patient": "12508017",
 		"isOpen": true,
-		"id": "cerner-open-jake",
+		"id": "cerner-open-jason",
 		"queryProfile": "argonaut_cerner"
 	}]
 }
