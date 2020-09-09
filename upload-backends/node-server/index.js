@@ -32,7 +32,7 @@ app.get("/manifest/:userid", (req, res) => {
 })
  
 app.put("/:fileName", bodyParser.raw({inflate:false, limit: "5mb"}), (req, res) => {
-	const filePath = path.join(__dirname, config.destinationDir, req.params.fileName)
+	const filePath = path.join(__dirname, config.destinationDir, path.basename(req.params.fileName))
 	fs.writeFile(filePath, req.body, "binary", (err) => {
 		if (err) {
 			console.log(err)
