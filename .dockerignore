@@ -1,0 +1,19 @@
+# Ignore everything
+**
+
+# Especially ignore:
+.git
+**/node_modules
+
+# Allow files and directories
+!/config/**
+!/public/**
+!/scripts/**
+!/src/**
+!/upload-backends/**
+
+!package.json
+!package-lock.json
+
+# Allow additional files
+!run.sh
