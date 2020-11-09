@@ -1,0 +1,17 @@
+{
+   "upload": {
+      "manifestUrl": "http://DATA/data/manifest",
+      "label": "Discovery"
+   }
+}
+
+
+// Returned manifest contents
+//{
+//   "name": "Upload to Discovery",
+//   "uploadUrl": "http://DATA/data/upload/<id>",
+//   "infoUrl": "about:blank",
+//   "continueLabel": "Continue...",
+//   "continueUrl": "http://THIS:3000/uploaded/<id>",
+//   "successMessage": "Success!"
+//}
