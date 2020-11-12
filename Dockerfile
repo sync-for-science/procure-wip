@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:14
 # FROM centos/nodejs-12-centos7
 
 WORKDIR procure-wip
