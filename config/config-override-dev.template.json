@@ -1,0 +1,6 @@
+{
+   "upload": {
+      "manifestUrl": "http://DATA_HOST/data/manifest",
+      "label": "Discovery"
+   }
+}
