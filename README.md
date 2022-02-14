@@ -55,7 +55,7 @@ To build a production version of Procure, run the following command from the Pro
 
 ### Epic
 
-Visit https://open.epic.com and navigate to the My Apps > Create App item in the top menu bar (you'll need to register and verify your identity first). Complete the create app form, making sure that the `Redirect Url` field is set to the URL where you'll be hosting Procure followed by `/callback.html` (eg. `https://example.com/callback.html`). Once approved, Epic will generate a `client id` value for your instance of the app. You'll want to add this value to the `public/config/config-override.json` file in Procure, so it looks something like this:
+Visit https://fhir.epic.com and navigate to the `Build Apps` item in the top menu bar (you'll need to register and verify your identity). Complete the create app form, making sure that the `Redirect Url` field is set to the URL where you'll be hosting Procure followed by `/callback.html` (eg. `https://example.com/callback.html`). Epic will generate a `client id` value for your instance of the app (note that it can take up to 24 hours for this value to propagate to EHRs and be ready for use). You'll want to add this value to the `public/config/config-override.json` file in Procure, so it looks something like this:
 
 ```json
 {
