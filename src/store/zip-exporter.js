@@ -60,6 +60,12 @@ function generateFile(providers, multiProviderFileName) {
 	const exportableProviders = _.filter(providers, p => {
 		return p.data && p.data.entry && p.selected && (p.data.entry.length || p.data.errorLog.length)
 	});
+	
+	//work around jszip timezone bug
+	const currDate = new Date();
+	const dateWithOffset = new Date(currDate.getTime() - currDate.getTimezoneOffset() * 60000);
+	jszip.defaults.date = dateWithOffset;
+	
 	if (exportableProviders.length > 1) {
 		return exportProviders(exportableProviders, multiProviderFileName);
 	} else {
