@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/procure-wip/static/js/main.dc3e37cd.chunk.js",
-    "main.js.map": "/procure-wip/static/js/main.dc3e37cd.chunk.js.map",
+    "main.js": "/procure-wip/static/js/main.4540a512.chunk.js",
+    "main.js.map": "/procure-wip/static/js/main.4540a512.chunk.js.map",
     "runtime-main.js": "/procure-wip/static/js/runtime-main.5c7cfaaf.js",
     "runtime-main.js.map": "/procure-wip/static/js/runtime-main.5c7cfaaf.js.map",
-    "static/js/2.da07e11f.chunk.js": "/procure-wip/static/js/2.da07e11f.chunk.js",
-    "static/js/2.da07e11f.chunk.js.map": "/procure-wip/static/js/2.da07e11f.chunk.js.map",
+    "static/js/2.78dbfbdc.chunk.js": "/procure-wip/static/js/2.78dbfbdc.chunk.js",
+    "static/js/2.78dbfbdc.chunk.js.map": "/procure-wip/static/js/2.78dbfbdc.chunk.js.map",
     "index.html": "/procure-wip/index.html",
-    "precache-manifest.4eb99ebbe8887e789505495b2fedda27.js": "/procure-wip/precache-manifest.4eb99ebbe8887e789505495b2fedda27.js",
+    "precache-manifest.a4f42257bea73f044111092b89b019f0.js": "/procure-wip/precache-manifest.a4f42257bea73f044111092b89b019f0.js",
     "service-worker.js": "/procure-wip/service-worker.js",
-    "static/js/2.da07e11f.chunk.js.LICENSE.txt": "/procure-wip/static/js/2.da07e11f.chunk.js.LICENSE.txt"
+    "static/js/2.78dbfbdc.chunk.js.LICENSE.txt": "/procure-wip/static/js/2.78dbfbdc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5c7cfaaf.js",
-    "static/js/2.da07e11f.chunk.js",
-    "static/js/main.dc3e37cd.chunk.js"
+    "static/js/2.78dbfbdc.chunk.js",
+    "static/js/main.4540a512.chunk.js"
   ]
 }
