@@ -10,6 +10,7 @@
 			"properties": {
 				"clientId": { "type": "string" },
 				"clientSecret": { "type": "string" },
+				"orgId": { "type": "string" },
 				"queryProfile": { "type": "string" },
 				"isOpen": { "type": "boolean" },
 				"scope": {

@@ -1,10 +1,12 @@
 {
 	"appName": "Procure",
 	"credentials": {
-		"epic_sandbox_secure": {"clientId": "8ab5bc00-5c7b-4dc4-bf2f-3eba54e3b21d" },
+		"epic_sandbox_secure_r2": {"clientId": "d5b308c3-59bf-48ec-bf7d-9b1ab374087b" },
+		"epic_sandbox_secure_r4": {"clientId": "e1c76c06-8aee-4ae2-8cfd-4b5cf8aa3e32" },
 		"smart_sandbox_secure": {"clientId": "fake_client_id"},
 		"cerner_sandbox_secure": {"clientId": "9342771e-969a-413a-b70c-7909ce8d7c1d"},
-		"epic": {"clientId": "tbd"}
+		"epic_r2": {"clientId": "must_override"},
+		"epic_r4": {"clientId": "must_override"}
 	},
 	"mimeTypeMappings": {
 		"application/pdf": "pdf",
@@ -33,12 +35,21 @@
 		"Procedure": ["performedDateTime", "performedPeriod"]
 	},
 	"endpointLists": {
-		"epic_endpoints": {
-			"path": "./config/epic_endpoints.json",
+		"epic_endpoints_r2": {
+			"path": "./config/epic_endpoints_r2.json",
 			"defaults": {
 				"queryProfile": "argonaut_epic",
 				"isOpen": false,
-				"credentialId": "epic",
+				"credentialId": "epic_r2",
+				"scope": ["launch/patient", "patient/*.read"]
+			}
+		},
+		"epic_endpoints_r4": {
+			"path": "./config/epic_endpoints_r4.json",
+			"defaults": {
+				"queryProfile": "uscdi_epic",
+				"isOpen": false,
+				"credentialId": "epic_r4",
 				"scope": ["launch/patient", "patient/*.read"]
 			}
 		},
@@ -202,7 +213,6 @@
 				"resourcePath": "DocumentReference",
 				"params": {"patient": "{{patientId}}"},
 				"downloadAttachments": "content.attachment"
-
 			},{
 				"resourcePath": "Observation",
 				"params": {
@@ -230,6 +240,158 @@
 			},{
 				"resourcePath": "Procedure",
 				"params": {"patient": "{{patientId}}"}
+			}]
+		},
+		"uscdi": {
+			"title": "USCDI WIP",
+			"fhirVersion": "R4",
+			"retryLimit": 2,
+			"queries": [{
+				"resourcePath": "metadata"
+			},{
+				"title": "US Core AllergyIntolerance",
+				"resourcePath": "AllergyIntolerance", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core CarePlan",
+				"resourcePath": "CarePlan", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core CareTeam",
+				"resourcePath": "CareTeam", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core Condition",
+				"resourcePath": "Condition", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core DiagnosticReport",
+				"resourcePath": "DiagnosticReport", 
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "performer"
+			},{
+				"title": "US Core DocumentReference",
+				"resourcePath": "DocumentReference", 
+				"params": {"patient": "{{patientId}}"},
+				"downloadAttachments": "content.attachment"
+			},{
+				"title": "US Core Encounter",
+				"resourcePath": "Encounter", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core Goal",
+				"resourcePath": "Goal", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core Immunization",
+				"resourcePath": "Immunization", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core Implantable Device",
+				"resourcePath": "Device", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core Observation",
+				"resourcePath": "Observation", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core MedicationRequest",
+				"resourcePath": "MedicationRequest", 
+				"params": {"patient": "{{patientId}}"},
+				"containReferences": "medicationReference",
+				"retrieveReferences": "requester"
+			},{
+				"title": "US Core Procedure",
+				"resourcePath": "Procedure", 
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "performer"
+			},{
+				"title": "US Core Patient",
+				"resourcePath": "Patient/{{patientId}}"
+			}]
+		},
+
+		"uscdi_epic": {
+			"title": "USCDI Epic WIP",
+			"fhirVersion": "R4",
+			"retryLimit": 2,
+			"queries": [{
+				"resourcePath": "metadata"
+			},{
+				"title": "US Core AllergyIntolerance",
+				"resourcePath": "AllergyIntolerance", 
+				//Epic pre-August release requires the active parameter orerrors as bad request
+				//If omitted from post-August Epic, will return inactive allergies as well
+				"params": {"patient": "{{patientId}}", "clinical-status": "active"}
+			},{
+				//Does not search for encounter level care plans since those would require walking encounters
+				"title": "US Core CarePlan",
+				"resourcePath": "CarePlan", 
+				"params": {"patient": "{{patientId}}", "category": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category|assess-plan"}
+			},{
+				"title": "US Core CareTeam",
+				"resourcePath": "CareTeam", 
+				"params": {"patient": "{{patientId}}", "status": "proposed,active,suspended,inactive"}
+			},{
+				"title": "US Core Condition Prob List Item",
+				"resourcePath": "Condition", 
+				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item", "status": "active,resolved,inactive"}
+			},{
+				"title": "US Core Condition Health Concern",
+				"resourcePath": "Condition", 
+				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/condition-category|health-concern", "status": "active,resolved,inactive"}
+			},{
+				"title": "US Core DiagnosticReport",
+				"resourcePath": "DiagnosticReport", 
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "performer"
+			},{
+				"title": "US Core DocumentReference",
+				"resourcePath": "DocumentReference", 
+				"params": {"patient": "{{patientId}}"},
+				"downloadAttachments": "content.attachment"
+			},{
+				"title": "US Core Encounter",
+				"resourcePath": "Encounter", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core Goal",
+				"resourcePath": "Goal", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core Immunization",
+				"resourcePath": "Immunization", 
+				"params": {"patient": "{{patientId}}", "status": "completed,not-done"}
+			},{
+				"title": "US Core Implantable Device",
+				"resourcePath": "Device", 
+				"params": {"patient": "{{patientId}}"}
+			},{
+				"title": "US Core Laboratory Result Observation",
+				"resourcePath": "Observation", 
+				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/observation-category|laboratory"}
+			},{
+				"title": "US Core MedicationRequest",
+				"resourcePath": "MedicationRequest", 
+				"params": {"patient": "{{patientId}}"},
+				"containReferences": "medicationReference",
+				"retrieveReferences": "requester"
+			},{
+				"title": "US Core Procedure",
+				"resourcePath": "Procedure", 
+				"params": {"patient": "{{patientId}}"},
+				"retrieveReferences": "performer"
+			},{
+				"title": "US Core Social History Observation",
+				"resourcePath": "Observation", 
+				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/observation-category|social-history"}
+			},{
+				"title": "US Core Vital Signs Observation",
+				"resourcePath": "Observation", 
+				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/observation-category|vital-signs"}
+			},{
+				"title": "US Core Patient",
+				"resourcePath": "Patient/{{patientId}}"
 			}]
 		},
 
@@ -401,7 +563,7 @@
 			"sortBy": [{"name": "EffectiveDateTime", "dir": "desc"}],
 			"template": [
 				{"path": "resourceType", "test": "validateValue", "target": "Observation"},
-				{"path": "category.coding", "test": "validateCode", "target": "vital-signs", "id": "category"},
+				{"path": "category", "test": "validateCodeableConcept", "target": "vital-signs", "id": "category"},
 				{"name": "Source", "transform": "getHelperData", "helperDataField": "source"},
 				{"name": "ResourceId", "path": "id"},
 				{"name": "Status", "path": "status"},

@@ -14,6 +14,13 @@ const defaultHelperFns = {
 		if (!Array.isArray(v)) v = [v];
 		return v.find( c => c.code === template.target ) ? true : false;
 	},
+	validateCodeableConcept: (v, template) => {
+		if (!v) return false;
+		if (!Array.isArray(v)) v = [v];
+		return v.find( cc => {
+			return cc.coding.find( c => c.code === template.target ) 
+		}) ? true : false;
+	},
 	validateValue: (v, template) => {
 		return v === template.target;
 	},
@@ -185,6 +192,12 @@ function exportSpreadsheet(providers, spreadsheetTemplates, templateId, format) 
 		const sortDir = _.map(mergedTemplateDefinition.sortBy, s => s.dir || "desc");
 		flatData = _.orderBy(flatData, sortBy, sortDir);
 	}
+	
+	//csv exporter has a bug with undefined values - change to null
+	flatData = flatData.map( row => {
+		return _.mapValues(row, v => v === undefined ? null : v )
+	})
+
 	if (format === "xlsx") {
 		return exportFlatDataExcel(flatData, mergedTemplateDefinition.template, mergedTemplateDefinition.name)
 	} else {

@@ -123,11 +123,11 @@ Sometimes you may wish to replace the object associated with a property entirely
 
 Endpoint list files populate the entries in Procure's `organizations` list that shows when a user adds a provider in the app. At runtime, users can also add a *custom organization* that is not included in a directory file, or override the default properties of any of these endpoints. 
 
-Epic makes a directory file available at `https://open.epic.com/MyApps/EndpointsJson` that is included in Procure's `public` directory as `epic_endpoints.json`. You can update this file at any time by running `scripts/update_epic_endpoints.sh` from the command line. Procure also includes a directory  of test sandboxes in a file named `sandbox_endpoints.json`. 
+Epic makes directory files available for FHIR DSTU2 and FHIR R4 that are included in Procure's `public` directory as `epic_endpoints_r2.json` and `epic_endpoints_r4.json`. You can update these files at any time by running `scripts/update_epic_endpoints.sh` from the command line. Procure also includes a directory  of test sandboxes in a file named `sandbox_endpoints.json`. 
 
-Each of these endpoint list files are referenced from the `endpointLists` > `[id]` > `path` property of `config.json`, and you can remove these endpoint lists or add others by altering the `config-override.json` file as described above.
+Each of these endpoint list files are referenced from the `endpointLists` > `[id]` > `path` property of `config.json`, and you can remove these endpoint lists or add others by altering the `config-override.json` file as described above. Endpoint lists are loaded in alphabetical order by their key. 
 
-Endpoint list files are structured as an JSON object with a single `Entry` (or `entry`) property that is an array of FHIR endpoints. Each endpoint can have the following properties:
+An endpoint list may be represented as a bundle of FHIR Endpoint resources that each populate the `name`, `status` and `address` elements. Alternatively, an endpoint list may be structured as a custom JSON object with a single `Entry` (or `entry`) property that is an array of objects containing the fields listed below. Entries in a non-bundle list may have an `id` or `orgId` field that will be used to de-duplicate endpoints within and between lists, retaining the last endpoint loaded with that identifier. If neither of these fields are populated, or if the endpoint list is a bundle of FHIR Endpoint resources, the endpoint will be assigned an identifier at load time based on its name.
 
 | Property | Type | Description | 
 | --- | --- | --- |

@@ -227,7 +227,7 @@ describe("Flatten resources based on template", () => {
 
 describe("Flatten Observations", () => {
 
-	test("flatten a vital sign", () => {
+	test("flatten a r2 vital sign", () => {
 		const resource =  {
 			"effectiveDateTime": "2015-08-26T22:00:00Z",
 			"resourceType": "Observation",
@@ -274,7 +274,58 @@ describe("Flatten Observations", () => {
 		}])
 	});
 	
-	test("flatten a blood pressure", () => {
+	test("flatten a r4 vital sign", () => {
+		const resource =  {
+			"resourceType": "Observation",
+			"id": "1",
+			"status": "final",
+			"category": [{
+				"coding": [{
+					"system": "http://terminology.hl7.org/CodeSystem/observation-category",
+					"code": "vital-signs",
+					"display": "Vital Signs"
+				}],
+				"text": "Vital Signs"
+			}],
+			"code": {
+				"coding": [{
+					"system": "http://loinc.org",
+					"code": "39156-5",
+					"display": "Body Mass Index (BMI) [Ratio]"
+				},{
+					"system": "http://loinc.org",
+					"code": "8716-3",
+					"display": "Vital signs"
+				}],
+				"text": "BMI (Calculated)"
+			},
+			"subject": {
+				"reference": "Patient/euBTtyZGh3f-JTiA7uZ5FgZJna7wj9UegXGnkSaLxxLk3",
+			},
+			"encounter": {
+				"reference": "Encounter/eVMXHnnT7souX6XGVBlM3Cg3"
+			},
+			"effectiveDateTime": "2018-08-09T14:50:00Z",
+			"valueQuantity": {"value": 24.3}
+		};
+		const flatResource = exporter.flatten(
+			resource, templates.vitalSigns.template, {source: "test"}
+		);
+		expect(flatResource).toEqual([{
+			ResourceId: '1',
+			Source: 'test',
+			EffectiveDateTime: new Date('2018-08-09T14:50:00Z'),
+			Status: 'final',
+			ObservationType: 'BMI (Calculated)',
+			ObservationCodes: 'http://loinc.org|39156-5 http://loinc.org|8716-3',
+			ValueType: 'BMI (Calculated)',
+			ValueCodes: 'http://loinc.org|39156-5 http://loinc.org|8716-3',
+			Value: 24.3,
+			ValueUnit: undefined
+		}])
+	});
+
+	test("flatten a r2 blood pressure", () => {
 		const resource =  {
 			"resourceType": "Observation",
 			"effectiveDateTime": "2015-08-26T22:00:00Z",
@@ -356,7 +407,89 @@ describe("Flatten Observations", () => {
 		}]);
 	});
 
-	test("flatten a lab result", () => {
+	test("flatten a r4 blood pressure", () => {
+		const resource =  {
+			"resourceType": "Observation",
+			"effectiveDateTime": "2015-08-26T22:00:00Z",
+			"status": "final",
+			"category": [{
+				"text": "Vital Signs",
+				"coding": [{
+					"system": "http://hl7.org/fhir/observation-category",
+					"code": "vital-signs",
+					"display": "Vital Signs"
+				}]
+			}],
+			"id": "1",
+			"code": {
+				"text": "BP",
+				"coding": [{
+					"system": "http://loinc.org",
+					"code": "55284-4",
+					"display": "Blood pressure systolic and diastolic"
+				}]
+			},
+			"component": [{
+				"code": {
+					"text": "Systolic blood pressure",
+					"coding": [{
+						"system": "http://loinc.org",
+						"code": "8480-6",
+						"display": "Systolic blood pressure"
+					}]
+				},
+				"valueQuantity": {
+					"value": 120,
+					"unit": "mm[Hg]",
+					"code": "mm[Hg]",
+					"system": "http://unitsofmeasure.org"
+				}
+			},{
+				"code": {
+					"text": "Diastolic blood pressure",
+					"coding": [{
+						"system": "http://loinc.org",
+						"code": "8462-4",
+						"display": "Diastolic blood pressure"
+					}]
+				},
+				"valueQuantity": {
+					"value": 72,
+					"unit": "mm[Hg]",
+					"code": "mm[Hg]",
+					"system": "http://unitsofmeasure.org"
+				}
+			}]
+		};
+		const flatResource = exporter.flatten(
+			resource, templates.vitalSigns.template, {source: "test"}
+		);
+		expect(flatResource).toEqual([{ 
+			ResourceId: '1',
+			Source: 'test',
+			EffectiveDateTime: new Date('2015-08-26T22:00:00Z'),
+			Status: 'final',
+			ObservationType: 'BP',
+			ObservationCodes: 'http://loinc.org|55284-4',
+			ValueType: 'Systolic blood pressure',
+			ValueCodes: 'http://loinc.org|8480-6',
+			Value: 120,
+			ValueUnit: 'mm[Hg]'
+		},{ 
+			ResourceId: '1',
+			Source: 'test',
+			EffectiveDateTime: new Date('2015-08-26T22:00:00Z'),
+			Status: 'final',
+			ObservationType: 'BP',
+			ObservationCodes: 'http://loinc.org|55284-4',
+			ValueType: 'Diastolic blood pressure',
+			ValueCodes: 'http://loinc.org|8462-4',
+			Value: 72,
+			ValueUnit: 'mm[Hg]'
+		}]);
+	});
+
+	test("flatten a r2 lab result", () => {
 		const resource =  {
 			"effectiveDateTime": "2015-08-26T22:00:00Z",
 			"resourceType": "Observation",
@@ -434,6 +567,85 @@ describe("Flatten Observations", () => {
 		}])
 	});
 
+	test("flatten a r4 lab result", () => {
+		const resource =  {
+			"effectiveDateTime": "2015-08-26T22:00:00Z",
+			"resourceType": "Observation",
+			"category": [{
+				"text": "Laboratory",
+				"coding": [{
+					"system": "http://hl7.org/fhir/observation-category",
+					"code": "laboratory",
+					"display": "Laboratory"
+				}]
+			}],
+			"status": "final",
+			"id": "1",
+			"code": {
+				"text": "HEMOGLOBIN A1C/HEMOGLOBIN TOTAL IN BLOOD",
+				"coding": [{
+					"system": "http://loinc.org",
+					"code": "4548-4",
+					"display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+				}]
+			},
+			"valueQuantity": {
+				"value": 3,
+				"unit": "%",
+				"code": "%",
+				"system": "http://unitsofmeasure.org"
+			},
+			"interpretation": {
+				"text": "Abnormal",
+				"coding": [{
+					"system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+					"code": "A",
+					"display": "Abnormal"
+				}]
+			},
+			"referenceRange": [{
+				"text": "4.0 - 6.0 %",
+				"low": {
+					"value": 4,
+					"unit": "%",
+					"code": "%",
+					"system": "http://unitsofmeasure.org"
+				},
+				"high": {
+					"value": 6,
+					"unit": "%",
+					"code": "%",
+					"system": "http://unitsofmeasure.org"
+				}
+			}]
+		};
+		const template = mergeObjects.merge([
+			templates.vitalSigns.template, templates.laboratory.template
+		])
+		const flatResource = exporter.flatten(
+			resource, template, {source: "test"}
+		);
+		expect(flatResource).toEqual([{
+			ResourceId: '1',
+			Source: 'test',
+			EffectiveDateTime: new Date('2015-08-26T22:00:00Z'),
+			Status: 'final',
+			ObservationType: 'HEMOGLOBIN A1C/HEMOGLOBIN TOTAL IN BLOOD',
+			ObservationCodes: 'http://loinc.org|4548-4',
+			ValueType: 'HEMOGLOBIN A1C/HEMOGLOBIN TOTAL IN BLOOD',
+			ValueCodes: 'http://loinc.org|4548-4',
+			Value: 3,
+			ValueUnit: '%',
+			ReferenceLowValue: 4,
+			ReferenceLowUnit: '%',
+			ReferenceHighValue: 6,
+			ReferenceHighUnit: '%',
+			Interpretation: 'Abnormal',
+			InterpretationCode: 'http://hl7.org/fhir/ValueSet/observation-interpretation|A'
+		}])
+	});
+
+
 	test("set type to code text or fallback to first display value", () => {
 		let resource =  {
 			"code": {
@@ -486,7 +698,7 @@ describe("Flatten Observations", () => {
 		)
 	});
 
-	test("limit to observations with a code, valid category and quantity value", () => {
+	test("limit to r2 observations with a code, valid category and quantity value", () => {
 		let resources = [{
 			//valid
 			resource: {
@@ -562,6 +774,98 @@ describe("Flatten Observations", () => {
 						"display": "Vital Signs"
 					}]
 				},
+				"code": {
+					"text": "BMI (Calculated)",
+					"coding": [{
+						"system": "http://loinc.org",
+						"code": "39156-5",
+						"display": "Body mass index"
+					}]
+				}
+			}
+		}];
+		let providers = [{selected: true, data: {entry: resources}}];
+		expect( 
+			exporter.flattenProviders(providers, templates.vitalSigns.template).length
+		).toEqual(1);
+	});
+
+	test("limit to r4 observations with a code, valid category and quantity value", () => {
+		let resources = [{
+			//valid
+			resource: {
+				"resourceType": "Observation",
+				"category": [{
+					"text": "Vital Signs",
+					"coding": [{
+						"system": "http://hl7.org/fhir/observation-category",
+						"code": "vital-signs",
+						"display": "Vital Signs"
+					}]
+				}],
+				"code": {
+				  "text": "BMI (Calculated)",
+				  "coding": [{
+					  "system": "http://loinc.org",
+					  "code": "39156-5",
+					  "display": "Body mass index"
+					}]
+				},
+				"valueQuantity": { "value": 22.5 }
+			}
+		},{
+			//not an observation
+			resource: {
+				"resourceType": "Condition",
+				"category": [{
+					"coding": [{
+						"system": "http://hl7.org/fhir/observation-category",
+						"code": "vital-signs",
+						"display": "Vital Signs"
+					}]
+				}],
+				"code": {
+				  "text": "BMI (Calculated)",
+				  "coding": [{
+					  "system": "http://loinc.org",
+					  "code": "39156-5",
+					  "display": "Body mass index"
+					}]
+				},
+				"valueQuantity": { "value": 22.5 }
+			}
+		},{
+			//not a vital sign
+			resource: {
+				"resourceType": "Observation",
+				"category": [{
+					"coding": [{
+						"system": "http://hl7.org/fhir/observation-category",
+						"code": "laboratory",
+					}]
+				}],
+				"code": {
+					"text": "BMI (Calculated)",
+					"coding": [{
+						"system": "http://loinc.org",
+						"code": "39156-5",
+						"display": "Body mass index"
+					}]
+				},
+				"valueQuantity": { "value": 22.5 }
+			}
+		},{
+			//no valueQuantity
+			resource: {
+				"resourceType": "Observation",
+				"category": [{
+					"text": "Vital Signs",
+					"coding": [{
+						"system": "http://hl7.org/fhir/observation-category",
+						"code": "vital-signs",
+						"display": "Vital Signs"
+					}]
+				}],
 				"code": {
 					"text": "BMI (Calculated)",
 					"coding": [{

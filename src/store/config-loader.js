@@ -189,6 +189,19 @@ function loadEndpointLists(config) {
 					throw new Error(`${endpointList.path} is not valid JSON.`);
 				}
 			})
+			//convert Endpoint resource bundle to endpoint list format
+			.then( data => {
+				if (data.resourceType !== "Bundle") return data;
+				const transformedEntries = _.chain(data.entry)
+					.filter( entry => entry.resource && 
+						entry.resource.name && entry.resource.address &&
+						entry.resource.status === "active"
+					).map( entry => ({
+						fhirEndpoint: entry.resource.address,
+						name: entry.resource.name
+					})).value();
+				return {entry: transformedEntries}
+			})
 			.then( data => {
 				tv4.validate(data, endpointListSchema);
 				if (tv4.error) {
@@ -223,7 +236,7 @@ function loadEndpointLists(config) {
 			.then( data => {
 				const result = (data.Entries || data.entry).map( entry => {
 					let newEntry = {...entry}
-					//standardize epic format
+					//standardize old epic format
 					if (newEntry.OrganizationName) {
 						newEntry.name = newEntry.OrganizationName;
 						delete newEntry.OrganizationName;
@@ -235,7 +248,11 @@ function loadEndpointLists(config) {
 					if (newEntry.id) {
 						newEntry.orgId = newEntry.id;
 						delete newEntry.id;
-					}
+					} 
+					//add unique id if not present
+					if (!newEntry.orgId)
+						newEntry.orgId = newEntry.name.replace(/\W/g, "");
+					
 					//add defaults group name
 					if (endpointList.defaults)
 						newEntry.defaultId = id;
@@ -249,11 +266,20 @@ function loadEndpointLists(config) {
 			})
 	}
 
-	return Promise.all(
-		_.map( config.endpointLists, (l,id) => getEndpointList(l,id) )
-	)
+	//order by key so can de-dupe by name keeping latest
+	const endpointPromises = _.chain( config.endpointLists )
+		.map( (l, id) => ({l, id}) )
+		.sortBy( "id" )
+		.reverse()
+		.map( item => 
+			getEndpointList(item.l, item.id)
+				.then( list => list.reverse() )
+		)
+		.value();
+	
+	return Promise.all(endpointPromises)
 		.then( data => {
-			const organizations = [].concat.apply([], data);
+			const organizations = _.unionBy(...data, "orgId")
 			const orgDefaults = _.mapValues( config.endpointLists, v => v.defaults );
 			return {...config, orgDefaults, organizations, endpointLists: null}
 		});
