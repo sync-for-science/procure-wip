@@ -13,7 +13,8 @@ function addProviderToZip(zipFolder, provider) {
 			return {
 				entry: _.map(entry, e => ({fullUrl: e.fullUrl, resource: e.resource}) ),
 				total: entry.length, 
-				type:"collection"
+				type:"collection",
+				resourceType: "Bundle"
 			}
 		}).value();
 	_.each(bundles, (bundle, resourceType) => {

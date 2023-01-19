@@ -70,13 +70,15 @@ export default class GithubExporter {
 					).then( blob => [blob] );
 		}
 
+		//TODO: share bundle generation code with ZipExporter
 		const bundles = _.chain(provider.data.entry)
 			.groupBy(e => e.resource.resourceType)
 			.mapValues(entry => {
 				return {
 					entry: _.map(entry, e => ({fullUrl: e.fullUrl, resource: e.resource}) ),
 					total: entry.length, 
-					type:"collection"
+					type:"collection",
+					resourceType: "Bundle"
 				}
 			}).value();
 
