@@ -2,7 +2,7 @@
   "name": "procure-wip",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://syncfor.science/procure-wip/",
+  "homepage": "https://procure.syncfor.science",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-brands-svg-icons": "^5.9.0",
