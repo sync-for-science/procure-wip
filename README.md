@@ -19,7 +19,7 @@ Procure is compatible with the latest versions of Google Chrome, IE Edge, Safari
 
 ## Demo
 
-[Wizard UI](https://procure.syncfor.science/index.html?wizard=true) - sample integration with historical data collection for a study
+[Wizard UI](https://procure.syncfor.science/?wizard=true) - sample integration with historical data collection for a study
 
 [Patient UI](https://procure.syncfor.science) - interface for patients interested in obtaining their own raw healthcare data or developers testing a FHIR server
 
