@@ -142,7 +142,7 @@ export default class FhirLoader {
 		// 	.then( this.mergeAndDeDupeData )
 
 		//parallel (moderated by browser)
-		return Promise.all( queryProfile.queries.filter(q => q.skip != true).map(fetchQuery) )
+		return Promise.all( queryProfile.queries.filter(q => q.skip !== true).map(fetchQuery) )
 			.then( this.mergeAndDeDupeData )
 	}
 	
