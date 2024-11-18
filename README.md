@@ -207,6 +207,7 @@ Query Profiles defines the set of FHIR endpoints and parameters that Procure use
 | `containReferences` | string or array of strings, optional | Follows the same logic as `retrieveReferences`, however retrieved resources are embedded as contained resources in the resources that reference them and the reference elements themselves are converted to relative references. Contained references will only be retrieved once, but will be embedded in each resource that references them. |
 | `downloadAttachments` | string or array of strings, optional | One or more limited FHIR path expressions (only dot delimited segments are supported). If populated, Procure will walk the resources returned by this query, and retrieve any attachments referenced at the paths in this parameter. Attachments will be named as sequential integers, saved as files, and included in the result set. The file extension appended to each attachment is dictated by the `mimeTypeMappings` configuration item described above. |
 | `pageLimit` | integer, optional | Used for testing - do not set in production. If the FHIR response is paginated so that bundles only contain a portion of the result set, this parameter will set the maximum number of subsequent requests to retrieve additional resources in the result set. |
+| `skip` | string, optional | When set to true, the query will be skipped when the query profile is run. |
 
 ### Spreadsheet Templates
 
