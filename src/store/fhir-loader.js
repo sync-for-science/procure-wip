@@ -46,11 +46,11 @@ export default class FhirLoader {
 				if (Array.isArray(params[k])) params[k] = params[k].join(",");
 				params[k] = params[k].toString().replace("{{patientId}}", patientId);
 			});
-			const resourcePath = query.resourcePath.replace(/\{\{patientId\}\}/g, patientId);
+			const path = query.path.replace(/\{patientId\}/g, patientId);
 
 			return FHIR.getResourcesByQuery({
 				fhirEndpoint: provider.fhirEndpoint, 
-				query: {...query, params, resourcePath, fhirVersion: queryProfile.fhirVersion},
+				query: {...query, params, path, fhirVersion: queryProfile.fhirVersion},
 				token: context ? context.access_token : null,
 				retryLimit,
 				allowErrors,
@@ -142,7 +142,7 @@ export default class FhirLoader {
 		// 	.then( this.mergeAndDeDupeData )
 
 		//parallel (moderated by browser)
-		return Promise.all( queryProfile.queries.map(fetchQuery) )
+		return Promise.all( queryProfile.queries.filter(q => q.skip != true).map(fetchQuery) )
 			.then( this.mergeAndDeDupeData )
 	}
 	

@@ -92,7 +92,7 @@ Sometimes you may wish to replace the object associated with a property entirely
 	"queryProfiles": {
 		"argonaut_epic": {
 			"_queries": [{
-				"resourcePath": "Patient/{{patientId}}",
+				"path": "Patient/{patientId}",
 				"retrieveReferences": "careProvider"
 			}]
 		}
@@ -202,8 +202,7 @@ Query Profiles defines the set of FHIR endpoints and parameters that Procure use
 
 | Property | Type | Description | 
 | --- | --- | --- |
-| `resourcePath` | string, required | Segment appended to the server's FHIR Base URL to create the query URL. Should not have a leading slash. May be a simple resource name or a more complex path that can include a patientId template parameter that will be replaced at runtime (eg. `Patient/{{patientId}}`). |
-| `params` | object, optional | Object with properties that are FHIR search parameters. The value for a parameter can be a string or an array of strings. Arrays are converted into a comma delimited string in the FHIR query, representing an "or" structure where there server will respond with matches for any of the values. Parameter values can also incorporate a patientId template parameter. For example, a patient search parameter would be represented as the follow property in the params object: `"patient": "{{patientId}}"`). |
+| `path` | string, required | Segment appended to the server's FHIR Base URL to create the query URL. Should not have a leading slash. May be a simple resource name or a more complex path that can include a patientId template parameter that will be replaced at runtime (eg. `Patient/{patientId}`). |
 | `retrieveReferences` | string or array of strings, optional | One or more limited FHIR path expressions (only dot delimited segments are supported). If populated, Procure will walk the resources returned by this query, and retrieve any resources referenced at the paths in this parameter, including them in the result set. |
 | `containReferences` | string or array of strings, optional | Follows the same logic as `retrieveReferences`, however retrieved resources are embedded as contained resources in the resources that reference them and the reference elements themselves are converted to relative references. Contained references will only be retrieved once, but will be embedded in each resource that references them. |
 | `downloadAttachments` | string or array of strings, optional | One or more limited FHIR path expressions (only dot delimited segments are supported). If populated, Procure will walk the resources returned by this query, and retrieve any attachments referenced at the paths in this parameter. Attachments will be named as sequential integers, saved as files, and included in the result set. The file extension appended to each attachment is dictated by the `mimeTypeMappings` configuration item described above. |

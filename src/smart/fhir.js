@@ -36,14 +36,6 @@ function fetchFHIR(url, config={}, fhirVersion="DSTU2", token=null, retryLimit=0
 		});
 }
 
-function buildQs(fhirParams) {
-	return "?" + Object.keys(fhirParams).map( k => {
-		const value = Array.isArray(fhirParams[k]) ? fhirParams[k].join(",") : fhirParams[k];
-		return k + "=" + encodeURIComponent(value);
-	}).join("&");
-}
-
-
 function replaceValue(path, element, replaceFn) {
 	if (typeof(path) === "string")
 		path = path.split(".");
@@ -149,10 +141,8 @@ function getResourcesByQuery({ fhirEndpoint, query={}, retryLimit=0, token, sign
 				})
 		}
 
-		const url = fhirEndpoint.replace(/\/*$/, "/") + (query.resourcePath || "") + 
-			(Object.keys(query.params || {}).length ? buildQs(query.params) : "");
+		const url = fhirEndpoint.replace(/\/*$/, "/") + (query.path || "");
 		fetchResources(url);
-	
 	});
 
 }

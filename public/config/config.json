@@ -1,11 +1,9 @@
 {
 	"appName": "Procure",
 	"credentials": {
-		"epic_sandbox_secure_r2": {"clientId": "d5b308c3-59bf-48ec-bf7d-9b1ab374087b" },
 		"epic_sandbox_secure_r4": {"clientId": "e1c76c06-8aee-4ae2-8cfd-4b5cf8aa3e32" },
 		"smart_sandbox_secure": {"clientId": "fake_client_id"},
-		"cerner_sandbox_secure": {"clientId": "9342771e-969a-413a-b70c-7909ce8d7c1d"},
-		"epic_r2": {"clientId": "must_override"},
+		"cerner_sandbox_secure": {"clientId": "49ddec60-1dd6-49d6-b0d0-e31b95925b3a"},
 		"epic_r4": {"clientId": "must_override"}
 	},
 	"mimeTypeMappings": {
@@ -35,15 +33,6 @@
 		"Procedure": ["performedDateTime", "performedPeriod"]
 	},
 	"endpointLists": {
-		"epic_endpoints_r2": {
-			"path": "./config/epic_endpoints_r2.json",
-			"defaults": {
-				"queryProfile": "argonaut_epic",
-				"isOpen": false,
-				"credentialId": "epic_r2",
-				"scope": ["launch/patient", "patient/*.read"]
-			}
-		},
 		"epic_endpoints_r4": {
 			"path": "./config/epic_endpoints_r4.json",
 			"defaults": {
@@ -56,7 +45,7 @@
 		"sandbox_endpoints": {
 			"path": "./config/sandbox_endpoints.json",
 			"defaults": {
-				"queryProfile": "argonaut_spec",
+				"queryProfile": "uscdi",
 				"scope": ["patient/*.read", "launch/patient"]
 			}
 		},
@@ -71,489 +60,424 @@
 	"warnOnPageNavigate": false,
 	"redirectUri": null,
 	"queryProfiles": {
-		"labs": {
-			"title": "Laboratory Results (DSTU2)",
-			"fhirVersion": "R2",
-			"retryLimit": 2,
-			"queries": [{
-				"title": "Laboratory Results",
-				"resourcePath": "Observation", 
-				"params": {"category": "vital-signs", "patient": "{{patientId}}"},
-				// "include": "encounter"
-				"retrieveReferences": "encounter"
-			},{
-				"title": "Demographics",
-				"resourcePath": "Patient/{{patientId}}"
-			}]
-		},
-
 		"blue_button_r4": {
 			"title": "Blue Button R4",
 			"fhirVersion": "R4",
 			"retryLimit": 2,
 			"queries": [{
 				"title": "Explanation of Benefit",
-				"resourcePath": "ExplanationOfBenefit",
-				"params": {"patient": "{{patientId}}"}
+				"path": "ExplanationOfBenefit?patient={patientId}"
 			},{
 				"title": "Patient",
-				"resourcePath": "Patient/{{patientId}}"
+				"path": "Patient/{patientId}"
 			},{
 				"title": "Coverage",
-				"resourcePath": "Coverage",
-				"params": {"patient": "{{patientId}}"}			
-			}]
-		},
-
-		"documents": {
-			"title": "Documents (DSTU2)",
-			"fhirVersion": "R2",
-			"queries": [{
-				"title": "Documents",
-				"resourcePath": "DocumentReference", 
-				"params": {"patient": "{{patientId}}"},
-				"downloadAttachments": "content.attachment",
-				"pageLimit": 2
-			}]
-		},
-
-		"argonaut_spec": {
-			"title": "Argonaut (DSTU2)",
-			"fhirVersion": "R2",
-			"retryLimit": 2,
-			"queries": [{
-				"resourcePath": "metadata"
-			},{
-				"resourcePath": "AllergyIntolerance",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "CarePlan",
-				"params": {"patient": "{{patientId}}", "category": "assess-plan"}
-			},{
-				"resourcePath": "CarePlan",
-				"params": {"patient": "{{patientId}}", "category": "careteam", "status": "active"},
-				"retrieveReferences": "participant.member"
-			},{
-				"resourcePath": "Condition",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "Device",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "DiagnosticReport",
-				"params": {"patient": "{{patientId}}", "category": "LAB"},
-				"retrieveReferences": "performer"
-			},{
-				"resourcePath": "DocumentReference",
-				"params": {"patient": "{{patientId}}"},
-				"downloadAttachments": "content.attachment"
-			},{				
-				"title": "Laboratory Results",
-				"resourcePath": "Observation",
-				"params": {"patient": "{{patientId}}", "category": "laboratory"}
-			},{
-				"resourcePath": "Goal",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "Immunization",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "MedicationOrder",
-				"params": {"patient": "{{patientId}}"},
-				"containReferences": "medicationReference",
-				"retrieveReferences": "prescriber"
-			},{
-				"resourcePath": "MedicationStatement",
-				"params": {"patient": "{{patientId}}"},
-				"containReferences": "medicationReference"
-			},{
-				"resourcePath": "Patient/{{patientId}}"
-			},{
-				"resourcePath": "Procedure",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"title": "Smoking Status",
-				"resourcePath": "Observation",
-				"params": {"patient": "{{patientId}}", "code": "72166-2"}
-			},{
-				"title": "Vital Signs",
-				"resourcePath": "Observation",
-				"params": {"patient": "{{patientId}}", "category": "vital-signs"}
-			}]
-		},
-
-		"argonaut_epic": {
-			"title": "Argonaut (Epic)",
-			"fhirVersion": "R2",
-			"retryLimit": 2,
-			"queries": [{
-				"resourcePath": "metadata"
-			},{
-				"resourcePath": "AllergyIntolerance",
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "recorder"
-			},{
-				"resourcePath": "CarePlan",
-				"params": {"patient": "{{patientId}}", "category": ["38717003","734163000"]}
-			},{
-				"resourcePath": "Condition",
-				"params": {
-					"patient": "{{patientId}}", 
-					"clinicalStatus": ["active","confirmed","resolved"],
-					"category":["diagnosis", "health-concern", "problem"]
-				}
-			},{
-				"resourcePath": "Device",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "DiagnosticReport",
-				"params": {"patient": "{{patientId}}", "category": "LAB"},
-				"retrieveReferences": "performer"
-			},{
-				"resourcePath": "DocumentReference",
-				"params": {"patient": "{{patientId}}"},
-				"downloadAttachments": "content.attachment"
-			},{
-				"resourcePath": "Observation",
-				"params": {
-					"patient": "{{patientId}}", 
-					"category": ["vital-signs", "social-history", "laboratory"]
-				}
-			},{
-				"resourcePath": "Goal",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "Immunization",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "MedicationOrder",
-				"params": {"patient": "{{patientId}}", "status": ["active","completed","stopped"]},
-				"containReferences": "medicationReference",
-				"retrieveReferences": "prescriber"
-			},{
-				"resourcePath": "MedicationStatement",
-				"params": {"patient": "{{patientId}}", "status": ["active","completed","intended"]},
-				"containReferences": "medicationReference"
-			},{
-				"resourcePath": "Patient/{{patientId}}",
-				"retrieveReferences": "careProvider"
-			},{
-				"resourcePath": "Procedure",
-				"params": {"patient": "{{patientId}}"}
+				"path": "Coverage?patient={patientId}"
 			}]
 		},
 		"uscdi": {
-			"title": "USCDI WIP",
+			"title": "USCDI",
 			"fhirVersion": "R4",
 			"retryLimit": 2,
 			"queries": [{
-				"resourcePath": "metadata"
+				"path": "metadata"
 			},{
-				"title": "US Core AllergyIntolerance",
-				"resourcePath": "AllergyIntolerance", 
-				"params": {"patient": "{{patientId}}"}
+				"title": "AllergyIntolerance",
+				"path": "AllergyIntolerance?patient={patientId}"
 			},{
-				"title": "US Core CarePlan",
-				"resourcePath": "CarePlan", 
-				"params": {"patient": "{{patientId}}"}
+				"title": "CarePlan",
+				"path": "CarePlan?patient={patientId}"
 			},{
-				"title": "US Core CareTeam",
-				"resourcePath": "CareTeam", 
-				"params": {"patient": "{{patientId}}"}
+				"title": "CareTeam",
+				"path": "CareTeam?patient={patientId}"
 			},{
 				"title": "US Core Condition",
-				"resourcePath": "Condition", 
-				"params": {"patient": "{{patientId}}"}
+				"path": "Condition?patient={patientId}"
 			},{
 				"title": "US Core DiagnosticReport",
-				"resourcePath": "DiagnosticReport", 
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "performer"
+				"path": "DiagnosticReport?patient={patientId}"
 			},{
 				"title": "US Core DocumentReference",
-				"resourcePath": "DocumentReference", 
-				"params": {"patient": "{{patientId}}"},
+				"path": "DocumentReference??patient={patientId}", 
 				"downloadAttachments": "content.attachment"
 			},{
 				"title": "US Core Encounter",
-				"resourcePath": "Encounter", 
-				"params": {"patient": "{{patientId}}"}
+				"path": "Encounter?patient={patientId}"
 			},{
 				"title": "US Core Goal",
-				"resourcePath": "Goal", 
-				"params": {"patient": "{{patientId}}"}
+				"path": "Goal?patient={patientId}" 
 			},{
 				"title": "US Core Immunization",
-				"resourcePath": "Immunization", 
-				"params": {"patient": "{{patientId}}"}
+				"path": "Immunization?patient={patientId}"
 			},{
 				"title": "US Core Implantable Device",
-				"resourcePath": "Device", 
-				"params": {"patient": "{{patientId}}"}
+				"path": "Device??patient={patientId}"
 			},{
 				"title": "US Core Observation",
-				"resourcePath": "Observation", 
-				"params": {"patient": "{{patientId}}"}
+				"path": "Observation?patient={patientId}" 
 			},{
 				"title": "US Core MedicationRequest",
-				"resourcePath": "MedicationRequest", 
-				"params": {"patient": "{{patientId}}"},
-				"containReferences": "medicationReference",
-				"retrieveReferences": "requester"
+				"path": "MedicationRequest?patient={patientId}", 
+				"containReferences": "medicationReference"
 			},{
 				"title": "US Core Procedure",
-				"resourcePath": "Procedure", 
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "performer"
+				"path": "Procedure?patient={patientId}"
 			},{
 				"title": "US Core Patient",
-				"resourcePath": "Patient/{{patientId}}"
+				"path": "Patient/{patientId}"
 			}]
 		},
-
 		"uscdi_epic": {
-			"title": "USCDI Epic WIP",
+			"title": "USCDI - Epic (Nov 2024)",
 			"fhirVersion": "R4",
 			"retryLimit": 2,
 			"queries": [{
-				"resourcePath": "metadata"
+				"path": "metadata"
 			},{
-				"title": "US Core AllergyIntolerance",
-				"resourcePath": "AllergyIntolerance", 
-				//Epic pre-August release requires the active parameter orerrors as bad request
-				//If omitted from post-August Epic, will return inactive allergies as well
-				"params": {"patient": "{{patientId}}", "clinical-status": "active"}
+				"title": "Patient Demographics",
+				"path": "Patient/{patientId}"
 			},{
-				//Does not search for encounter level care plans since those would require walking encounters
-				"title": "US Core CarePlan",
-				"resourcePath": "CarePlan", 
-				"params": {"patient": "{{patientId}}", "category": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category|assess-plan"}
+				"title": "Allergies",
+				"path": "AllergyIntolerance?patient={patientId}",
+				"notes": [
+					"AllergyIntolerance.Search (R4) | https://fhir.epic.com/Specifications?api=947",
+					"Starting in the August 2021 version of Epic, the clinical-status parameter is no longer required, and if is not specified, both active and inactive/resolved allergies are returned",
+					"Incremental retrieval: post-filter of 'date' - The date the allergy was recorded in Epic"
+				]
 			},{
-				"title": "US Core CareTeam",
-				"resourcePath": "CareTeam", 
-				"params": {"patient": "{{patientId}}", "status": "proposed,active,suspended,inactive"}
+				"title": "CarePlans (Encounter-Level and Longitudinal)",
+				"path": "CarePlan?category=38717003,734163000&patient={patientId}", 
+				"notes": [
+					"CarePlan.Search (Encounter-Level) (R4) | https://fhir.epic.com/Specifications?api=1067 (category = 734163000)",
+					"CarePlan.Search (Longitudinal) (R4) | https://fhir.epic.com/Specifications?api=1065 (category = 734163000)",
+					"Care plan types not included in the USCDI API: Care Path, Dental, Inpatient Pathway, Inpatient, Oncology, Outpatient, Patient Education, Questionnaires Due, Episode",
+					"Blank category *will not* search all care plans",
+					"Category type 'assess-plan' is always included in search results",
+					"Incremental retrieval: post-filter of 'activity-date' (longitudinal only)"
+				]
 			},{
-				"title": "US Core Condition Prob List Item",
-				"resourcePath": "Condition", 
-				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item", "status": "active,resolved,inactive"}
+				"title": "CareTeam (Longitudinal)",
+				"path": "CareTeam?patient={patientId}",
+				"notes": [
+					"CareTeam.Search (Longitudinal) (R4) | https://fhir.epic.com/Specifications?api=1069",
+					"Incremental retrieval: post-filter of 'date'"
+				] 
 			},{
-				"title": "US Core Condition Health Concern",
-				"resourcePath": "Condition", 
-				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/condition-category|health-concern", "status": "active,resolved,inactive"}
+				"title": "Conditions (Care Plan Problem, Encounter Dx, Health Concern, Problem List Item)",
+				"path": "Condition?status=active,resolved,inactive&patient={patientId}", 
+				"notes": [
+					"Condition.Search (Care Plan Problem) (R4) | https://fhir.epic.com/Specifications?api=10048 (category = care-plan-problem)",
+					"Condition.Search (Encounter Diagnosis) (R4) | https://fhir.epic.com/Specifications?api=952 (category = encounter-diagnosis)",
+					"Condition.Search (Health Concern) (R4) | https://fhir.epic.com/Specifications?api=985 (category = health-concern)",
+					"Condition.Search (Problems) (R4) | https://fhir.epic.com/Specifications?api=953 (category = problem-list-item)",
+					"Condition types not included in USCDI API: Dental Finding, Genomics, Infection, Medical History, Reason for Visit",
+					"Blank category *should* return all available categories",
+					"Status values of 'active', 'resolved', and 'inactive' must be passed or only active conditions will be returned",
+					"Incremental retrieval: post-filters of 'recorded-date', 'onset-date', 'abatement-date'",
+					"CAUTION: Including the Condition.Search (Encounter Diagnosis) scope will limit app use to sites on Epic August 2024 or later"
+				]
 			},{
-				"title": "US Core DiagnosticReport",
-				"resourcePath": "DiagnosticReport", 
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "performer"
+				"title": "Coverage",
+				"path": "Coverage?patient={patientId}",
+				"notes": [
+					"Coverage.Search (R4) | https://fhir.epic.com/Specifications?api=1078",
+					"The patient-level coverage list represents all possible insurances that could be billed for services. A patient might have a long list of possible coverages that are applicable only for specific services. Examples include third party liability, workers' comp, black lung insurance, Medicaid for ESRD, Medicare, commercial, and others. For any specific visit, an account record will indicate which coverages will be used for that visit.",
+					"CAUTION: Including the Coverage.Search scope will limit app use to sites on Epic August 2024 or later"
+				]
 			},{
-				"title": "US Core DocumentReference",
-				"resourcePath": "DocumentReference", 
-				"params": {"patient": "{{patientId}}"},
-				"downloadAttachments": "content.attachment"
+				"title": "Devices (Implants)",
+				"path": "Device?patient={patientId}",
+				"notes": [
+					"Device.Search (Implants) (R4) | https://fhir.epic.com/Specifications?api=1013"
+				]
 			},{
-				"title": "US Core Encounter",
-				"resourcePath": "Encounter", 
-				"params": {"patient": "{{patientId}}"}
+				"title": "Diagnostic Reports",
+				"path": "DiagnosticReport?patient={patientId}",
+				"notes": [
+					"DiagnosticReport.Search (Results) (R4) | https://fhir.epic.com/Specifications?api=989",
+					"Starting in February 2024, DiagnosticReport can return EKG data using the Midmark third-party integration. If the EKG order collected heart rate and blood pressure data as well, this data is returned as Observations contained within the report",
+					"Starting in May 2024, DiagnosticReport can return audiology exam finding data. Data within the audiology exam is returned as observations contained within the response",
+					"Incremental retrieval: filter of 'date' - clinically relevant time/time period for report. Matches to the effectiveDateTime response element"
+				]
 			},{
-				"title": "US Core Goal",
-				"resourcePath": "Goal", 
-				"params": {"patient": "{{patientId}}"}
+				"title": "Documents (Clinical Notes and Lab Reports)",
+				"path": "DocumentReference?patient={patientId}", 
+				"downloadAttachments": "content.attachment",
+				"notes": [
+					"DocumentReference.Search (Clinical Notes) (R4)|https://fhir.epic.com/Specifications?api=1048",
+					"DocumentReference.Search (Labs) (R4)|https://fhir.epic.com/Specifications?api=10133",
+					"Included types are clinical notes are Discharge Documentation (18842-5), Consultation (11488-4), History & Physical (34117-2), Progress Note (11506-3), Procedure Note (28570-0), Emergency Department Note (34111-5), and Nurse Note (34746-8)",
+					"Starting in the May 2022 version of Epic or the February 2022 version of Epic by special update: Discharge Instructions (74213-0) and Risk assessment and screening note (75492-9)",
+					"Included types for labs are 18748-4 (Diagnostic imaging study), 11526-1 (Pathology study), 11502-2 (Laboratory report), 34109-9 (Note)",
+					"Search category is documented as always being 'clinical-note', even for labs which according to US Core should be 'LAB'. We want both, so omitting for safety in case they fix this",
+					"Incremental retrieval: filter of 'date' - when the document reference was created for clinical notes. For labs 'if date is provided, this service will filter orders for which narratives/impressions/addenda are returned'"
+				]
 			},{
-				"title": "US Core Immunization",
-				"resourcePath": "Immunization", 
-				"params": {"patient": "{{patientId}}", "status": "completed,not-done"}
+				"title": "Encounters",
+				"path": "Encounter?patient={patientId}", 
+				"notes": [
+					"Encounter.Search (Patient Chart) (R4) | https://fhir.epic.com/Specifications?api=909",
+					"Incremental retrieval: filter of 'date' - 'a date range that the encounter takes place'"
+				]
 			},{
-				"title": "US Core Implantable Device",
-				"resourcePath": "Device", 
-				"params": {"patient": "{{patientId}}"}
+				"title": "Goals (Care Plan and Patient)",
+				"path": "Goal?patient={patientId}", 
+				"notes": [
+					"Goal.Search (Care Plan) (R4) | https://fhir.epic.com/Specifications?api=10053",
+					"Goal.Search (Patient) (R4) | https://fhir.epic.com/Specifications?api=960",
+					"Incremental retrieval: post-filters of start-date (patient and care plan goals) and target-date (care plan goals only)"
+				]
 			},{
-				"title": "US Core Laboratory Result Observation",
-				"resourcePath": "Observation", 
-				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/observation-category|laboratory"}
+				"title": "Immunizations",
+				"path": "Immunization?patient={patientId}", 
+				"notes": [
+					"Immunization.Search (R4) | https://fhir.epic.com/Specifications?api=1071",
+					"Returns statuses of completed, entered-in-error, not-done. Incomplete Immunizations are not supported. If no status is specified, all statuses are returned.",
+					"Incremental retrieval: filter of 'date' - vaccination administration date"
+				]
+	
 			},{
-				"title": "US Core MedicationRequest",
-				"resourcePath": "MedicationRequest", 
-				"params": {"patient": "{{patientId}}"},
+				"title": "Medication Dispenses",
+				"path": "MedicationDispense?patient={patientId}",
 				"containReferences": "medicationReference",
-				"retrieveReferences": "requester"
+				"notes": [
+					"MedicationDispense.Search (Fill Status) (R4) | https://fhir.epic.com/Specifications?api=10646",
+					"CAUTION: Including the MedicationDispense.Search scope will limit app use to sites on Epic August 2024 or later"
+				]
 			},{
-				"title": "US Core Procedure",
-				"resourcePath": "Procedure", 
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "performer"
+				"title": "Medication Requests (Order or Patient Reported)",
+				"path": "MedicationRequest?patient={patientId}", 
+				"containReferences": "medicationReference",
+				"notes": [
+					"MedicationRequest.Search (Signed Medication Order) (R4) | https://fhir.epic.com/Specifications?api=997",
+					"Incremental retrieval: filter of 'date' - The medication administration date. This parameter corresponds to the dosageInstruction.timing.repeat.boundsPeriod element. Medication orders that do not have start and end dates within the search parameter dates are filtered. If the environment supports multiple time zones, the search dates are adjusted one day in both directions, so more medications might be returned than expected. Use caution when filtering a medication list by date as it is possible to filter out important active medications. Starting in the November 2022 version of Epic, this parameter is respected. In May 2022 and earlier versions of Epic, this parameter is allowed but is ignored and no date filtering is applied."
+				]
 			},{
-				"title": "US Core Social History Observation",
-				"resourcePath": "Observation", 
-				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/observation-category|social-history"}
+				"title": "Observations (Laboratory Result)",
+				"path": "Observation?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory&patient={patientId}",
+				"notes": [
+					"Observation.Search (Labs) (R4) | https://fhir.epic.com/Specifications?api=999"
+				]
 			},{
-				"title": "US Core Vital Signs Observation",
-				"resourcePath": "Observation", 
-				"params": {"patient": "{{patientId}}", "category": "http://terminology.hl7.org/CodeSystem/observation-category|vital-signs"}
+				"title": "Observations (Vital Sign)",
+				"path": "Observation?category=vital-signs&patient={patientId}",
+				"notes": [
+					"Observation.Search (Vitals) (R4) | https://fhir.epic.com/Specifications?api=973",
+					"Incremental retrieval: filter of 'date' - The date range for when the observation was taken. For growth chart data (Epic version August 2021 and later), only the most recent observation within the timeframe is returned."
+				]
 			},{
-				"title": "US Core Patient",
-				"resourcePath": "Patient/{{patientId}}"
+				"title": "Observations (Assessment)",
+				"path": "Observation?category=survey&patient={patientId}", 
+				"notes": [
+					"Observation.Search (Assessments) (R4) | https://fhir.epic.com/Specifications?api=11052",
+					"Observation.Search (SDOH Assessments) (R4) | https://fhir.epic.com/Specifications?api=11104",
+					"Observation types not included in USCDI API: Activities of Daily Living, Core Characteristics, Family Situation, Genomics, LDA-W, Labor and Delivery, Newborn Delivery, Obstetrics-Gynecology, Periodontal",
+					"Category or code parameter is required. Valid categories are disability-status, cognitive-status, functional-status and sdoh or survey for all.",
+					"Incremental retrieval: filter of 'date' - The date or date range when the observation was taken",
+					"CAUTION: Including the Observation.Search (Assessments) or Observation.Search (SDOH Assessments) scopes will limit app use to sites on Epic August 2024 or later"
+	
+				]
+			},{
+				"title": "Observation (SmartData Elements)",
+				"path": "Observation?category=smartdata&patient={patientId}",
+				"notes": [
+					"Observation.Search (SmartData Elements) (R4) | https://fhir.epic.com/Specifications?api=10121",
+					"CAUTION: Including the Observation.Search (SmartData Elements) scope will limit app use to sites on Epic August 2024 or later"
+					
+				]
+			},{
+				"title": "Observations (Social History)",
+				"path": "Observation?category=social-history&patient={patientId}",
+				"notes": [
+					"Observation.Search (Social History) (R4) | https://fhir.epic.com/Specifications?api=972",
+					"Includes: Smoking history: LOINC code 72166-2 or SNOMED code 365980008, Passive exposure: SNOMED code 43381005, Alcohol use history: LOINC code 11331-6 or SNOMED code 228273003, Drug use history: LOINC code 11343-1 or SNOMED code 228366006, Living situation: SNOMED code 365508006, Education: LOINC code LG41797-1, Employment history: LOINC code 11341-5, Social documentation: LOINC code 29762-2, Pregnancy status: LOINC code 82810-3, Uterus findings: LOINC code 32486-3, Lactation Status: LOINC code 63895-7, Menstrual status: LOINC code 3146-8, Last menstrual period start-date: LOINC code 8665-2, Estimated Delivery Date: LOINC code 11778-8, Pregnancy Intention: LOINC code 86645-9, Breastfeeding status: LOINC code 63895-7, Sexual orientation: LOINC code 76690-7",
+					"Incremental retrieval: filter of 'date' - Date when the observation occurred and 'issued' - The date range the observation is obtained."					
+				]
+			},{
+				"title": "Observations (Study Finding)",
+				"path": "Observation?category=imaging,exam&patient={patientId}",
+				"notes": [
+					"Observation.Search (Study Finding) (R4) | https://fhir.epic.com/Specifications?api=10297",
+					"Result data from procedures, such as fetal and maternal measurement data from an obstetric ultrasound",
+					"Category: 'imaging' to search for all imaging observations. Use 'exam' to search for all audiology studies",
+					"Incremental retrieval: filter of 'date' - Specify a date or date range that an Observation was resulted or recorded",
+					"CAUTION: Including the Observation.Search (Study Finding) scope will limit app use to sites on Epic August 2024 or later"
+				]
+			},{
+				"title": "Procedures (Orders, SDOH Intervention)",
+				"path": "Procedure?patient={patientId}",
+				"notes": [
+					"Procedure.Search (Orders) (R4) | https://fhir.epic.com/Specifications?api=976 (category = 103693007)",
+					"Procedure.Search (SDOH Intervention) (R4)|https://fhir.epic.com/Specifications?api=11038 (category = 410606002)",
+					"Procedure types not included in USCDI API: Nursing Intervention, Restricting Intervention, Surgical History",
+					"Allows a client to search for current and historic social determinants of health (SDOH) interventions completed in Epic from a user sending a request to a community-based organization to address an at-risk domain for a patient.",
+					"Procedure.Search (Surgeries) (R4)|https://fhir.epic.com/Specifications?api=10042 (category = 387713003)",
+					"Incremental retrieval: filter of 'date' - Date or period that the procedure was performed, using the FHIR date parameter format (orders, surgeries), The date the Procedure was completed (SDOH intervention)",
+					"CAUTION: Including the Procedure.Search (SDOH Intervention) scope will limit app use to sites on Epic August 2024 or later"
+				]
+			},{
+				"title": "Service Requests (Non-Med Orders, Community Resources)",
+				"path": "ServiceRequest?patient={patientId}",
+				"notes": [
+					"ServiceRequest.Search (Community Resource) (R4)|https://fhir.epic.com/Specifications?api=10092",
+					"Category of http://snomed.info/sct|306206005 for all requests, category of http://snomed.info/sct|410606002 for requests that *do not* address Social Driver of Health domains, category of http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh for request that *do* address Social Drivers of Health domains",
+					"ServiceRequest.Search (Order Procedure) (R4)|https://fhir.epic.com/Specifications?api=1054",
+					"This resource returns non-medication orders for a patient, such as procedures, cultures, ECGs, EKGs, imaging orders, lab orders, micro orders, or radiology orders.",
+					"ServiceRequest types not included in USCDI API: Dental Procedure, Order Template, Pregnancy Plans",
+					"This service returns all statuses if this element is not specified",
+					"CAUTION: Including a ServiceRequest scope will limit app use to sites on Epic August 2024 or later"			
+				]
 			}]
 		},
-
-		"argonaut_meditech": {
-			"title": "Argonaut (Meditech)",
-			"fhirVersion": "R2",
+		"uscdi_cerner": {
+			"title": "USCDI - Cerner Millennium (Nov 2024)",
+			"fhirVersion": "R4",
 			"retryLimit": 2,
 			"queries": [{
-				"resourcePath": "metadata"
+				"path": "metadata"
 			},{
-				"resourcePath": "AllergyIntolerance",
-				"params": {"patient": "{{patientId}}"}
+				"title": "Patient Demographics",
+				"path": "Patient/{patientId}"
 			},{
-				"resourcePath": "CarePlan",
-				"params": {"patient": "{{patientId}}", "category": "assess-plan"}
+				"title": "Allergies",
+				"path": "AllergyIntolerance?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-allergyintolerance-get.html",
+					"Incremental retrieval: _lastUpdated - This parameter may be provided up to two times, and must use the eq, ge, gt, le, or lt prefixes. When a value is provided without a prefix, an implied eq prefix is used. When provided twice, the lower value must have a ge or gt prefix and the higher value must have an le or lt prefix."
+				]
 			},{
-				"resourcePath": "CarePlan",
-				"params": {"patient": "{{patientId}}", "category": "careteam", "status": "active"}
+				"title": "Appointments",
+				"path": "Appointment?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-appointment-get.html",
+					"Incremental retrieval: Search by date returns appointments with a status other than proposed that start within the date range provided. Search by -date-or-req-period returns the same appointments as the date parameter, but also returns appointments with a status of proposed that are requested to start or end between the dates provided.",
+					"When searching with a patient authorization type, sensitive appointments will not be returned."
+				]
 			},{
-				"resourcePath": "Condition",
-				"params": {
-					"patient": "{{patientId}}",
-					"category": "condition" //no support for multiple categories in a single request
-				}
+				"title": "CarePlans (Encounter-Level and Longitudinal)",
+				"path": "CarePlan?category=assess-plan&patient={patientId}", 
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-careplan-get.html",
+					"Incremental retrieval: Search by date - The time period that the plan covers. When provided, must use both ge and le prefixes in the same search. The lower value must have the ge prefix and the higher value must have the le prefix. The date precision must be consistent. May be combined with the patient and category parameters."
+				]
 			},{
-				"resourcePath": "Condition",
-				"params": {
-					"patient": "{{patientId}}",
-					"category": "health-concern"
-				}
+				"title": "CareTeams (Longitudinal and Encounter)",
+				"path": "CareTeam?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-careteam-get.html"
+				] 
 			},{
-				"resourcePath": "Device",
-				"params": {"patient": "{{patientId}}"}
+				"title": "Conditions (Care Plan Problem, Encounter Dx, Health Concern, Problem List Item)",
+				"path": "Condition?patient={patientId}", 
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-condition-get.html",
+					"Incremental retrieval: _lastUpdated is supported. This parameter may be provided up to two times, and must use the eq, ge, gt, le, or lt prefixes. When a value is provided without a prefix, an implied eq prefix is used. When provided twice, the lower value must have a ge or gt prefix and the higher value must have an le or lt prefix."
+				]
 			},{
-				"resourcePath": "DiagnosticReport",
-				"params": {"patient": "{{patientId}}", "category": "LAB"}
+				"title": "Coverage",
+				"path": "Coverage?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-coverage-get.html"
+				]
 			},{
-				"resourcePath": "DocumentReference",
-				"params": {"patient": "{{patientId}}"},
-				"downloadAttachments": "content.attachment" //attachments seem to 404
-			},{				
-				"title": "Laboratory Results",
-				"resourcePath": "Observation",
-				"params": {"patient": "{{patientId}}", "category": "laboratory"}
+				"title": "Devices (Implants)",
+				"path": "Device?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-device-get.html"
+				]
 			},{
-				"resourcePath": "Goal",
-				"params": {"patient": "{{patientId}}"}
+				"title": "Diagnostic Reports",
+				"path": "DiagnosticReport?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-diagnosticreport-get.html",
+					"Incremental retrieval: _lastUpdated is supported."
+				]
 			},{
-				"resourcePath": "Immunization",
-				"params": {"patient": "{{patientId}}"}
+				"title": "Documents (Clinical Notes and Lab Reports)",
+				"path": "DocumentReference?patient={patientId}", 
+				"skip": true,
+				"downloadAttachments": "content.attachment",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-documentreference-get.html",
+					"The search operation is supported for clinical-note, cardiology, radiology, microbiology, and pathology charted documents and clinical-note staged documents.",
+					"Incremental retrieval: _lastUpdated is supported. The date range in which the document was last updated. This parameter only qualifies clinically significant updates. For example, changes to the value or code, and other significant fields. Minor updates, such as nonclinically relevant note updates, do not qualify."
+				]
 			},{
-				"resourcePath": "MedicationOrder",
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "prescriber"
+				"title": "Encounters",
+				"path": "Encounter?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-encounter-get.html",
+					"Incremental retrieval: _lastUpdated is supported. This parameter may be provided up to two times and must use the eq, ge, gt, le, or lt prefixes. When a value is provided without a prefix, an implied eq prefix is used. When provided twice, the lower value must have a ge or gt prefix and the higher value must have a le or lt prefix."
+				]
 			},{
-				"resourcePath": "MedicationStatement",
-				"params": {"patient": "{{patientId}}"}
+				"title": "Goals",
+				"path": "Goal?patient={patientId}", 
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-goal-get.html",
+					"Incremental retrieval: target-date - A date or date range from which to find goals. The target-date parameter may be provided once with a prefix to imply a date range or without a prefix to search for goals at a specific date. Alternately, it may be provided twice with le, lt, ge, or gt prefixes to search for goals within a specific range. The date and prefix pairs must create a closed range."
+				]
 			},{
-				"resourcePath": "Patient/{{patientId}}"
+				"title": "Immunizations",
+				"path": "Immunization?patient={patientId}", 
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-immunization-get.html",
+					"Incremental retrieval:  _lastUpdated is supported. May be provided with only a single reference, and must use the gt or ge prefix. The time component is optional."
+				]
 			},{
-				"resourcePath": "Procedure",
-				"params": {"patient": "{{patientId}}"}
+				"title": "Medication Administrations",
+				"path": "MedicationAdministration?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-medicationadministration-get.html",
+					"Incremental retrieval: effective-time. A date range for when the administration happened. For a single effective-time occurrence: Must be provided with a ge, gt, le, or lt prefix to imply the date range for an administrations search. The time component is required. For two effective-time occurences: Must be provided once with the le or lt prefix, and once with the ge or gt prefix to search for administrations within the given upper and lower timestamps, respectively. The time component is required for both parameters."
+				]
 			},{
-				"title": "Smoking Status",
-				"resourcePath": "Observation",
-				"params": {"patient": "{{patientId}}", "code": "72166-2"}
+				"title": "Medication Dispenses",
+				"path": "MedicationDispense?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-medicationdispense-get.html"
+				]
 			},{
-				"title": "Vital Signs",
-				"resourcePath": "Observation",
-				"params": {"patient": "{{patientId}}", "category": "vital-signs"}
-			}]
-		},
-
-		"demographics": {
-			"title": "Demographics",
-			"fhirVersion": "R2",
-			"retryLimit": 2,
-			"queries": [{
-				"resourcePath": "Patient/{{patientId}}"
-			}]
-		},
-
-		"argonaut_cerner": {
-			"title": "Argonaut (Cerner)",
-			"fhirVersion": "R2",
-			"queries": [{
-				"resourcePath": "metadata"
+				"title": "Medication Requests (Order or Patient Reported)",
+				"path": "MedicationRequest?patient={patientId}", 
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-medicationrequest-get.html",
+					"Incremental retrieval: _lastUpdated is supported. The date and time range within which the most recent clinically relevant update was made to the medication. For a single _lastUpdated occurence: Must be provided with a le or ge prefix to imply the date range for the medications search. For two _lastUpdated occurences: Must be provided with the le and ge prefixes to search for medications within the given upper and lower timestamps, respectively."
+				]
 			},{
-				//may require user/Practitioner.read scope to work properly - unclear
-				"resourcePath": "CarePlan",
-				"params": {"patient": "{{patientId}}", "category": "assess-plan",  "_count": 100},
-			 	"retrieveReferences": "author"
+				"title": "Nutrition Orders",
+				"path": "NutritionOrder?patient={patientId}", 
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-nutritionorder-get.html",
+					"Incremental retrieval: _lastUpdated is supported. An explicit or implied date and time range during which the most recent clinically relevant update was made to the nutrition order. Must include a time and must be prefixed by ge or le. May be provided once with a prefix of ge or le representing the earliest date or latest date (for example, date=ge2015-01-01 or date=le2016-01-01). May be provided twice with the prefixes of ge and le to indicate a specific range (for example, date=ge2015-01-01&date=le2016-01-01)."
+				]
 			},{
-				"resourcePath": "Patient/{{patientId}}"
+				"title": "Observations",
+				"path": "Observation?patient={patientId}", 
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-observation-get.html",
+					"Incremental retrieval: _lastUpdated is supported. The date range in which the observation was last updated. May be provided up to two times, and must use the eq, ge, gt, le, or lt prefixes. When a value is provided without a prefix, an implied eq prefix is used. When provided twice, the lower value must have a ge or gt prefix and the higher value must have an le or lt prefix. May not be provided with date. Only clinically significant updates are qualified, such as changes to the value or code, and other significant fields. Minor updates, such as non-clinically relevant note updates, do not qualify."
+				]
 			},{
-				"resourcePath": "CarePlan",
-				"params": {"patient": "{{patientId}}", "category": "careteam", "_count": 100},
-				"containReferences": "participant.member"
+				"title": "Procedures (Orders, SDOH Intervention)",
+				"path": "Procedure?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-procedure-get.html",
+					"Incremental retrieval: _lastUpdated is supported. The date range in which the procedures was last updated. This parameter may be provided up to two times, and must use the eq, ge, gt, le, or lt prefixes. When a value is provided without a prefix, an implied eq prefix is used. When provided twice, the lower value must have a ge or gt prefix and the higher value must have an le or lt prefix. The _lastUpdated parameter may not be provided at the same time as the date parameter."
+				]
 			},{
-				"resourcePath": "Goal",
-				"params": {"patient": "{{patientId}}"}
+				"title": "QuestionnaireResponse",
+				"path": "QuestionnaireResponse?patient={patientId}",
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-questionnaireresponse-get.html"
+				]
 			},{
-				"resourcePath": "ProcedureRequest",
-				"params": {"patient": "{{patientId}}", "_count": 100}				
-			},{
-				"resourcePath": "DiagnosticReport",
-				"params": {"patient": "{{patientId}}",  "_count": 100},
-				"retrieveReferences": "performer",
-				"downloadAttachments": "presentedForm"
-			},{
-				"resourcePath": "Observation",
-				"params": {"patient": "{{patientId}}", "_count": 100}
-			},{
-				"resourcePath": "Device",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "Encounter",
-				"params": {"patient": "{{patientId}}", "_count": 100},
-				"containReferences": "participant.individual"
-			},{
-				//requires RelatedPerson.read scope
-				"resourcePath": "Contract",
-				"params": {"subject": "Patient/{{patientId}}", "_include": "Contract:actor"}
-			},{			
-				"resourcePath": "AllergyIntolerance",
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "recorder"
-			},{
-				"resourcePath": "Condition",
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "asserter"
-			},{
-				"resourcePath": "Procedure",
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "performer"
-			},{
-				"resourcePath": "RelatedPerson",
-				"params": {"patient": "{{patientId}}"}
-			},{
-				"resourcePath": "Immunization",
-				"params": {"patient": "{{patientId}}"},
-				"retrieveReferences": "perfomer" 
-				//["performer", "location"] //location looks like a FHIR resource, but isn't exposed
-			},{
-				"resourcePath": "MedicationAdministration",
-				"params": {"patient": "{{patientId}}", "_count": 100},
-				"retrieveReferences": "practitioner"
-			},{
-				"resourcePath": "MedicationStatement",
-				"params": {
-					"patient": "{{patientId}}",
-					"status": ["active", "completed"],
-					"_count": 100
-				},
-				"retrieveReferences": "informationSource"
-			// },{
-			// 	"resourcePath": "DocumentReference",
-			// 	"params": {"patient": "{{patientId}}", "_count": 100},
-			// 	"downloadAttachments": "content.attachment",
-			// 	//note that page limit is set due to bugs in the Cerner sandbox
-			// 	//this should be removed for production implementations!
-			// 	"pageLimit": 1
+				"title": "Service Requests",
+				"path": "ServiceRequest?patient={patientId}",
+				"skip": true,
+				"notes": [
+					"https://docs.oracle.com/en/industries/health/millennium-platform-apis/mfrap/op-servicerequest-get.html",
+					"Incremental retrieval: _lastUpdated is supported.An explicit or implied date and time range within which the most recent clinically relevant update was made to the service request. Must include a time, and must be prefixed by ge or le. May be provided: Once with a ge or le prefix representing the earliest date or latest date. Twice with the ge and le prefixes to indicate a specific range."
+				]
 			}]
 		}
 	},

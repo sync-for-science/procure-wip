@@ -133,7 +133,7 @@ describe("Get resources by query", () => {
 
 		return fhir.getResourcesByQuery({
 			fhirEndpoint: sampleEndpoint, 
-			query: {resourcePath: "Patient/" + samplePatientId}
+			query: {path: "Patient/" + samplePatientId}
 		}).then( data => {
 			expect(getFetchUrl()).toBe(
 				"http://launch.smarthealthit.org/v/r2/fhir/Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6"
@@ -148,10 +148,7 @@ describe("Get resources by query", () => {
 
 		return fhir.getResourcesByQuery({
 			fhirEndpoint: sampleEndpoint, 
-			query: {
-				resourcePath: "Procedure",
-				params: {patient: samplePatientId}
-			}
+			query: {path: "Procedure?patient=" + samplePatientId}
 		}).then( data => {
 			expect(getFetchUrl()).toBe(
 				"http://launch.smarthealthit.org/v/r2/fhir/Procedure?patient=c7ec9560-58cd-4a08-874b-91e3429ef1d6"
@@ -167,7 +164,7 @@ describe("Get resources by query", () => {
 		return expect( 
 			fhir.getResourcesByQuery({
 				fhirEndpoint: sampleEndpoint, 
-				query: {resourcePath: "Patient/" + samplePatientId + "123"}
+				query: {path: "Patient/" + samplePatientId + "123"}
 			})
 		).rejects.toMatchObject({
 			message: "Resource Patient/c7ec9560-58cd-4a08-874b-91e3429ef1d6123 is not known"
@@ -187,7 +184,7 @@ describe("Get resources by query", () => {
 
 		return fhir.getResourcesByQuery({
 			fhirEndpoint: sampleEndpoint, 
-			query: {resourcePath: "Patient/" + samplePatientId},
+			query: {path: "Patient/" + samplePatientId},
 			retryLimit: 2
 		}).then( data => {
 			expect(data.entry.length).toBe(1);
@@ -205,10 +202,7 @@ describe("Get resources by query", () => {
 
 		return fhir.getResourcesByQuery({
 			fhirEndpoint: sampleEndpoint, 
-			query: {
-				resourcePath: "Observation",
-				params: {patient: samplePatientId}
-			}
+			query: { path: "Observation?patient=" + samplePatientId }
 		}).then( data => {
 			expect(getFetchUrl()).toBe(
 				"http://launch.smarthealthit.org/v/r2/fhir/Observation?patient=c7ec9560-58cd-4a08-874b-91e3429ef1d6"
@@ -227,7 +221,7 @@ describe("Get resources by query", () => {
 		return fhir.getResourcesByQuery({
 			fhirEndpoint: sampleEndpoint, 
 			query: {
-				resourcePath: "Patient/" + samplePatientId,
+				path: "Patient/" + samplePatientId,
 				fhirVersion: "R4"
 			}
 		}).then( data => {
@@ -241,7 +235,7 @@ describe("Get resources by query", () => {
 		return fhir.getResourcesByQuery({
 			fhirEndpoint: sampleEndpoint,
 			query: {
-				resourcePath: "Patient/" + samplePatientId,
+				path: "Patient/" + samplePatientId,
 				fhirVersion: "R2"
 			}
 		}).then( data => {
@@ -255,7 +249,7 @@ describe("Get resources by query", () => {
 		return fhir.getResourcesByQuery({
 			fhirEndpoint: sampleEndpoint, 
 			query: {
-				resourcePath: "Observation",
+				path: "Observation",
 				fhirVersion: "R4"
 			}
 		}).then( data => {

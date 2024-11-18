@@ -127,16 +127,14 @@
 		},
 		"query": {
 			"type": "object",
-			"required": [ "resourcePath" ],
+			"required": [ "path" ],
 			"properties": {
-				"title": { "type": "string"},
-				"resourcePath": { "type": "string" },
-				"params" : {
-					"type": "object",
-					"additionalProperties": {
-						"type": ["string", "array", "integer", "number"],
-						"item": { "type": "string" }
-					}
+				"title": { "type": "string" },
+				"path": { "type": "string" },
+				"skip": { "type": "boolean" },
+				"notes" : {
+					"type": "array",
+					"items": { "type": "string" }
 				},
 				"retrieveReferences": { 
 					"type": ["array", "string"],
